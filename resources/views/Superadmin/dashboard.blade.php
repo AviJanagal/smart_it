@@ -1,5 +1,5 @@
-@include('layouts.header')
-@include('layouts.sidebar')
+@include('Superadmin.layouts.header')
+@include('Superadmin.layouts.sidebar')
 
 	<main class="maintop">
 		<div class="mainsectionbox">
@@ -52,7 +52,7 @@
 							</div>
 						</div>
 						
-						<div class="col-md-12">
+						<!-- <div class="col-md-12">
 							<div class="pendingboxinner">
 									
 								<div class="imgbox2">
@@ -121,7 +121,7 @@
 								</div>
 								<div class="viewbuttonbox"> <a href="#">View More</a> </div>
 							</div>
-						</div>
+						</div> -->
 							
 							
 										
@@ -131,7 +131,7 @@
 							
 						</div>
 					</div>
-					<div class="col-md-5">
+					<!-- <div class="col-md-5">
 						<div class="row">
 							<div class="col-md-12">
 								<div class="Pendingbox">
@@ -243,10 +243,10 @@
 
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 	</main>
 		
 
-@include('layouts.footer')
+@include('Superadmin.layouts.footer')

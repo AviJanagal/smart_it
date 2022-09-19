@@ -3,7 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 class AdminMiddleware
 {
     /**
@@ -13,6 +15,7 @@ class AdminMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
+
     public function handle($request, Closure $next)
     {
     if (Auth::user() &&  Auth::user()->role == 'admin') 

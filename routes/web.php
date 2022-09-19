@@ -13,19 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::get('/', function () {
    return redirect()->route('login');
 });
 
 Auth::routes();
 
-Route::group(['middleware' => ['admin']], function () {
+Route::group(['as'=>'admin.','prefix' => 'admin','middleware' => ['auth', 'isAdmin']], function () {
+
    Route::get('/home', 'HomeController@index')->name('home');
-   Route::get('add', 'AdminController@add')->name('add');
-   Route::post('add_employee', 'AdminController@add_employee')->name('add_employee');
+   Route::resource('employee', 'superadmin\EmployeeController');
+
 });
-
-
 
 Route::group(['as'=>'employee.','prefix' => 'employee','middleware' => ['auth', 'employee']], function () {
    Route::resource('employee','employee\EmployeeController');
