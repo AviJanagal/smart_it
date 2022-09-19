@@ -18,10 +18,15 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
+        if (Auth::guard($guard)->check() && Auth::user()->role == 'admin') {
             return redirect(RouteServiceProvider::HOME);
         }
-
-        return $next($request);
+        elseif(Auth::guard($guard)->check() && Auth::user()->role == 'employee'){
+                return redirect()->route('employee.employee.index');
+        }
+        else{
+            return $next($request);
+        }
     }
+
 }
