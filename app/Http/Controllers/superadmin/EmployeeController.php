@@ -140,7 +140,6 @@ class EmployeeController extends Controller
     {
         //
 
-
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -156,8 +155,6 @@ class EmployeeController extends Controller
         $user->phone_number  = $request->phone_number ;
         $user->role = "employee";
         $user->save();
-
-
         $user->emp_info->dob =$request->dob;
         $user->emp_info->gender = $request->a;
         $user->emp_info->employee_id  = $request->employee_id ;
@@ -167,8 +164,6 @@ class EmployeeController extends Controller
         $user->emp_info->employee_type = $request->employee_type;
         $user->emp_info->date_of_joining = $request->date_of_joining;
          $user->emp_info->save();
-
-        
         $user->emp_account->ctc	 = $request->ctc;
         $user->emp_account->bank_name  = $request->bank_name ;
         $user->emp_account->city = $request->city;
@@ -176,48 +171,6 @@ class EmployeeController extends Controller
         $user->emp_account->ifsc_code = $request->ifsc_code;
         $user->emp_account->account_number  = $request->account_number ;
         $user->emp_account->save();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // $employee_info =  \App\EmployeeInformation::find($user->id);
-        // $employee_info->dob = $request->dob;
-        // $employee_info->gender = $request->a;
-        // $employee_info->employee_id  = $request->employee_id ;
-        // $employee_info->department = $request->department;
-        // $employee_info->designation = $request->designation;
-        // $employee_info->job_title = $request->job_title;
-        // $employee_info->employee_type = $request->employee_type;
-        // $employee_info->date_of_joining = $request->date_of_joining;
-        // $employee_info->save();
-
-        // $employee_account =  \App\EmployeeAccount::find($user->id);
-        // $employee_account->ctc	 = $request->ctc;
-        // $employee_account->bank_name  = $request->bank_name ;
-        // $employee_account->city = $request->city;
-        // $employee_account->branch_name = $request->branch_name;
-        // $employee_account->ifsc_code = $request->ifsc_code;
-        // $employee_account->account_number  = $request->account_number ;
-        // $employee_account->save();
-
         if ( $user->emp_info->save()) {
 
             return redirect()->route('admin.employee.create')->with(['alert' => 'success', 'message' => 'Employee Updated successfully!.']);
