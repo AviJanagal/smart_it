@@ -15,7 +15,7 @@
                 </div>
 
                 @if($type == 1)
-                <form role="form" id="regForm" autocomplete="off" data-toggle="validator" action="{{route('admin.employee.store')}}" method="post" enctype="multipart/form-data">
+                <form role="form" class="jqueryvalidationerror" id="regForm" autocomplete="off" data-toggle="validator" action="{{route('admin.employee.store')}}" method="post" enctype="multipart/form-data">
                 @else
                 <form role="form" id="regForm" data-toggle="validator" action="{{route('admin.employee.update',$employee->id)}}" method="post" enctype="multipart/form-data">
                 {{ method_field('PUT') }}
@@ -26,7 +26,7 @@
 
 
                     <div class="tab">
-                    <h1 Style="text-align:center;">Mandatory information</h1> 
+                    <h1 Style="text-align:center;">Employee information</h1> 
 
                         <div class="col-md-8">
                             <div class="form-group custom-from">
@@ -77,7 +77,7 @@
                         <div class="col-md-8">
                             <div class="form-group custom-from">
                                 <label for="phone_number" class="inputlabel"> Phone Number</label>
-                                <input class="form-control custom-control @error('phone_number') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->phone_number : ''; ?>" type="text"  name="phone_number" placeholder=" Mobile Number" required  />
+                                <input class="form-control custom-control @error('phone_number') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->phone_number : ''; ?>" type="number"  name="phone_number" placeholder=" Mobile Number" required  />
                                 @error('phone_number')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

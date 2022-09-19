@@ -35,8 +35,18 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script> -->
+
    
 <script>
+
+
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+
+
    
     $("#select_customers").select2({
         tags: true,
@@ -351,6 +361,61 @@ function fixStepIndicator(n) {
 }
 
 </script>
+
+
+
+
+
+
+<script>
+   $("#regForm").validate({
+
+    rules: {
+         first_name: 'required',
+         last_name: 'required',
+          email: {
+            required: true,
+            email: true,//add an email rule that will ensure the value entered is valid email id.
+            maxlength: 255,
+         },
+         phone_number: {
+            required: true,
+            number: true,
+            minlength: 10,
+            maxlength: 10,
+
+         },
+      }
+
+      
+    });
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
