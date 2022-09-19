@@ -13,12 +13,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::get('/', function () {
    return redirect()->route('login');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('add', 'AdminController@add')->name('add');
-Route::post('add_employee', 'AdminController@add_employee')->name('add_employee');
+Route::group(['as'=>'admin.','prefix' => 'admin','middleware' => ['auth', 'isAdmin']], function () {
+
+
+
+   Route::get('/home', 'HomeController@index')->name('home');
+
+
+   Route::resource('employee', 'superadmin\EmployeeController');
+
+
+
+   // Route::get('/add_employee', 'superadmin\EmployeeController@index')->name('add_employee');
+   // Route::post('/store_employee', 'superadmin\EmployeeController@store')->name('store_employee');
+   // Route::get('/show_employee', 'superadmin\EmployeeController@show')->name('show_employee');
+
+
+
+
+
+});
+
