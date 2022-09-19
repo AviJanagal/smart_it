@@ -33,5 +33,6 @@ Route::group(['as'=>'employee.','prefix' => 'employee','middleware' => ['auth', 
    Route::post('log_out_time', 'employee\EmployeeController@log_out_time')->name('log_out_time');
    Route::get('default_log_in_time', 'employee\EmployeeController@default_log_in_time')->name('default_log_in_time');
    Route::get('attendance_history', 'employee\EmployeeController@attendance_history')->name('attendance_history');
+   Route::get('daily_activity', 'employee\EmployeeController@daily_activity')->name('daily_activity');
    
 });

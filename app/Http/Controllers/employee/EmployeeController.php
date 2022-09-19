@@ -183,5 +183,10 @@ class EmployeeController extends Controller
         $my_attendance = \App\EmployeeAttendance::where('employee_id',Auth::id()) ->whereMonth('created_at', \Carbon\Carbon::now()->month)->get();
         return view('employee.attendance_history',compact('my_attendance'));
     }
+
+    public function daily_activity(){
+        $type = 1;
+       return view('employee.daily_activity',compact('type'));
+    }
 }
 

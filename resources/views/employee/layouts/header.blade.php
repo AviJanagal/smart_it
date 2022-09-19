@@ -9,7 +9,7 @@
 	<title>Dashboard</title>
 
 	<!-- Bootstrap -->
-	<link rel="icon" href="{{ asset('images/mainlogo.png') }}" type="image/png" sizes="16x16">
+	<link rel="icon" href="{{ asset('images/smart_it.png') }}" type="image/png" sizes="16x16">
 	<!-- <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
