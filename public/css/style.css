@@ -2060,4 +2060,10 @@ h5.customnamesetting {
 
 /* multiple form css end */
 
+.jqueryvalidationerror label.error{ 
+
+    color: #dc3545;
+         font-size: 14px;
+}
+
 

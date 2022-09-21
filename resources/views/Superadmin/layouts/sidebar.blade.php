@@ -18,10 +18,12 @@
 						
 					</ul>
 				</li>
-				<!-- <li class="sidebar-dropdown  ">
-					<a href=""> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>fdfddf </span> </a>
-				</li> -->
-				
+				<li class="sidebar-dropdown  ">
+					<a href="{{route('admin.client.index')}}"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Client</span> </a>
+				</li>
+				<li class="sidebar-dropdown  ">
+					<a href="{{route('admin.project.index')}}"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Project</span> </a>
+				</li>
 			</ul>
 		</nav>
 	</div>
