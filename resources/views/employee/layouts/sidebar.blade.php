@@ -6,7 +6,7 @@
 		<nav>
 			<ul >
 				<li>
-					<a href="{{route('home')}} " class="{{ (request()->is('home')) ? 'active' : '' }}"> <span class="icon "><i class="fa fa-server" aria-hidden="true"></i></span> <span class="title ">Dashboard</span> </a>
+					<a href="{{route('employee.employee.index')}} " class="{{ (request()->is('employee.employee.index')) ? 'active' : '' }}"> <span class="icon "><i class="fa fa-server" aria-hidden="true"></i></span> <span class="title ">Dashboard</span> </a>
 				</li>
 
 				<li>
@@ -18,7 +18,8 @@
 						<li> <a href="{{route('employee.daily_activity') }}">Add
                         
                       </a> </li>
-						<li> <a href="#">View</a> </li>
+						<li> <a href="{{route('employee.all_daily_activities') }}">My Activity</a> </li>
+						
 						
 					</ul>
 				</li>

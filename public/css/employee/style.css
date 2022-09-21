@@ -467,10 +467,13 @@ ul.sidenavbarul li a {
 }
 
 .mainlogoimage img {
-    width: 149px;
-    /* margin-top: 30px; */
+    width: 191px;
+    margin-top: 7px;
     /* margin-left: 70px; */
-    padding-top: 30px;
+    padding-top: 1px;
+    background: white;
+    border-radius: 3px;
+    height: 62px;
 }
 
 span.number-custom {
@@ -2061,3 +2064,16 @@ h5.customnamesetting {
 /* multiple form css end */
 
 
+.modal-content.customchanges {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 650px;
+    height: 500px;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1pxsolidrgba(0, 0, 0, .2);
+    border-radius: .3rem;
+    outline: 0;
+}

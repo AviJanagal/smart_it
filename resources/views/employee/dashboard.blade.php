@@ -9,7 +9,7 @@
 						<div class="row ">
 						<div class="col-md-12">
 							<div class="mainheadingtop">
-								<h4>Hi <span>{{ ucfirst(trans(auth()->user()->name)) }}</span>,Welcome back</h4>
+								<h4>Hi <span>{{ ucfirst(trans(auth()->user()->first_name)) }}</span>,Welcome back</h4>
 							</div>
 						</div>	
 						<div class="col-md-4">
@@ -77,9 +77,8 @@
 									<div class="tab-pane fade active show" id="nav-Artist1" role="tabpanel" aria-labelledby="nav-Artist-tab1">
 										<div class="pendingboxinner">
 											<!-- php	 -->    
-											@php $my_attendance = \App\EmployeeAttendance::whereDate('created_at', \Carbon\Carbon::today())->get(); @endphp
+											@php $my_attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereDate('created_at', \Carbon\Carbon::today())->get(); @endphp
 											<!-- endphp -->
-
 											@if(count($my_attendance) > 0) 
 											<div class="table-wrapper p-0">
 												<table class=" datatable table table-bordered table-striped table-hover " >

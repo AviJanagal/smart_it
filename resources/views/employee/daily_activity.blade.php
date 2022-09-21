@@ -12,40 +12,36 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           @endif
+          @include('sweet::alert')
         </div>
         <div class="col-md-12">
           <div class="tattotsylehed">
             <h4>Select Project</h4>
           </div>
         </div>
-        <div class="container-fluid ">
-          @if($type == 1)
-            <form data-toggle="validator" action="" method="post" enctype="multipart/form-data">
-          @else
-            <form data-toggle="validator" action="" method="post" enctype="multipart/form-data">
-          @endif
-          @csrf
-          @if($type == 2)
-            {{ method_field('PUT') }}
-          @endif
-            <select class="form-select col-md-4" aria-label="Default select example">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
 
+        <div class="row mb-4">
+           <div class="col-md-8">
+            <form data-toggle="validator">
+              @csrf         
+            <select class="form-select col-md-4"  name="project_id" id="myProject" {{($type == "1") ? "disabled" : " "}} required>
+                <option selected value="">Select Project</option>
+                <option value="1">Cut2You</option>
+                <option value="2">Heal It</option>
+                <option value="3">Maid Me</option>
+                <option value="4">Orchard Theives</option>
+            </select>
+          </div>
               <div class="col-md-4">
                 @if($type == 1)
-                <button type="submit" class="btn btn-danger custom-innerbutton btn-stylessav">Submit</button>
+                <a href="{{ route('employee.finish_daily_activity')}}" class="btn btn-success" >Finish</a>
                 @else
-                <button type="submit" class="btn btn-danger custom-innerbutton btn-stylessav">Update</button>
+                <button type="submit" class="btn btn-danger custom-innerbutton btn-stylessav d-none" id="#sub">Submit</button>
                 @endif
-              </div>
-            </div>
+              </div>           
             </form>
-        </div>
-      </div>
+       </div>
+
       <div class="table-title-add">
         <div class="row">
           <div class="col-sm-12">
@@ -57,28 +53,66 @@
 
       <div class="main-container-inner">
        
+       @if(count($total_daily_activity) > 0)
         <div class="table-wrapper p-0">
           <table class=" datatable table table-bordered table-striped table-hover " id="user_data_table">
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Tattoo Style</th>
-                <th>Action</th>
+                <th>Project Name</th>
+                <th>Description</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Total Time</th>
               </tr>
             </thead>
             <tbody>
-             
+             @foreach($total_daily_activity as $daily_activity)
               <tr>
-                <td>if</td>
-                <td>name</td>
+                <td>{{$daily_activity->id}}</td>
+                @if($daily_activity->project_id == 1)
+                <td>Cut2You</td>
+                @elseif($daily_activity->project_id == 2)
+                <td>Heal It</td>
+                @elseif($daily_activity->project_id == 3)
+                <td>Maid Me</td>
+                @else
+                <td>Orchard Theives</td>
+                @endif
+                <td>{{$daily_activity->description}}</td>
+                <td>{{($daily_activity->start_time !== null) ? \Carbon\Carbon::parse($daily_activity->start_time)->format('g:i A') : "Pending"}}</td>
+                <td>{{($daily_activity->end_time !== null) ? \Carbon\Carbon::parse($daily_activity->end_time)->format('g:i A') : "Pending"}}</td>
+                <?php
+                  // Converting time to hours/minutes/seconds..
+                  $startTime = strtotime($daily_activity->start_time);
+                  if(!is_null($daily_activity->end_time)){
+                    $endTime = strtotime($daily_activity->end_time);
+                    $init = $endTime - $startTime;
+                    $hours = floor($init / 3600);
+                    $hour = (int) ($hours);
+                    $minutes = floor(($init / 60) % 60);
+                    $minute = (int) ($minutes);
+                  }
+                  //End converting time to hours/minutes/seconds..
+                ?>
+                @if(!is_null($daily_activity->end_time))
+                  @if($hour !== 0 )
+                    <td>{{$hour}} hour {{$minute}} min</td>
+                  @else
+                    <td>{{$minute}} min</td>
+                  @endif
+                @else
+                  <td>Pending</td>
+                @endif
+               
               </tr>
-            
+            @endforeach
             </tbody>
           </table>
         </div>
-      
+      @else
         <h1 class="nodatafoundheading" >No data found</h1>
-     
+      @endif 
       </div>
       </div>
     </div>

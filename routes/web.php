@@ -35,5 +35,10 @@ Route::group(['as'=>'employee.','prefix' => 'employee','middleware' => ['auth', 
    Route::get('default_log_in_time', 'employee\EmployeeController@default_log_in_time')->name('default_log_in_time');
    Route::get('attendance_history', 'employee\EmployeeController@attendance_history')->name('attendance_history');
    Route::get('daily_activity', 'employee\EmployeeController@daily_activity')->name('daily_activity');
+   Route::post('add_daily_activity', 'employee\EmployeeController@add_daily_activity')->name('add_daily_activity');
+   Route::get('finish_daily_activity', 'employee\EmployeeController@finish_daily_activity')->name('finish_daily_activity');
+   Route::get('all_daily_activities', 'employee\EmployeeController@all_daily_activities')->name('all_daily_activities');
+   Route::post('attendance_filter', 'employee\EmployeeController@attendance_filter')->name('attendance_filter');
+   Route::post('activity_filter', 'employee\EmployeeController@activity_filter')->name('activity_filter');
    
 });
