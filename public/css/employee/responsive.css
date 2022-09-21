@@ -1,0 +1,454 @@
+
+    
+    @media (min-width: 1301px) and (max-width: 1600px) {
+
+    }
+    @media (min-width: 992px) and (max-width: 1300px) {
+      .notificationtime h6 {
+        margin-top: 21px;
+        
+        font-size: 12px;
+    }
+    .notificationtextbox p {
+      margin-top: 23px;
+     
+      font-size: 14px;
+  }
+  .nav-tabs .nav-link.custom-tab {
+   
+    min-width: 152px;
+    font-size: 16px;
+   
+}
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+
+    }
+
+    
+    @media (min-width: 320px) and (max-width: 767px) {
+        
+      .profilepagemainbannersection {
+        
+        padding: 99px;
+    }
+    .profilecirclebox img {
+      
+      width: 90px;
+      height: 90px;
+  }
+  .profiletextrightbox2 h3 {
+    font-size: 14px;
+}
+.profiletextrightbox2 p {
+  
+  font-size: 11px;
+}
+.profiletextrightbox2 h6 {
+  font-size: 12px;
+}
+.editprofilebuttonright a {
+ padding: 6px 17px;
+  display: block;
+  font-size: 11px;
+}
+.editprofilebuttonright h5 {
+  font-size: 13px;
+  margin-left: 6px;
+    margin-top: 10px;
+}
+.textsectioninner h6 {
+ 
+  font-size: 11px;
+}
+.nav-tabs .nav-link.custom-tab {
+  min-width: 80px;
+  font-size: 14px;
+  margin-right: 3px;
+  padding: 8px 8px;
+  margin-bottom: 9px;
+}
+.categorytattoobox ul li {
+  padding-right: 24px;
+  padding: 8px 8px;
+  font-size: 12px;
+  
+  margin-right: 7px;
+}
+.reviewinnersection {
+  
+  padding: 10px;
+  margin-bottom: 3px;
+    margin-top: 10px;
+}
+.reviewimgbox img {
+  
+  width: 40px;
+  height: 40px;
+  
+}
+.reviewtextboxinner h4 {
+  font-size: 12px;
+}
+.reviewtextboxinner p {
+  
+  font-size: 9px;
+}
+.reviewratingbox i {
+  font-size: 9px;
+}
+.categorytattoobox {
+  margin-left: 0px;
+  
+}
+.profilecirclebox {
+ 
+  margin-top: -35px;
+}
+.editprofilebuttonright h4 {
+  margin-left: 24px;
+  font-size: 19px;
+}
+.editprofilebuttonright {
+ 
+  margin-top: 17px;
+}
+.centerservicebutton a {
+  
+  padding: 7px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+.serviceinnertextbox {
+ 
+  padding: 15px;
+  margin-top: 19px;
+ 
+}
+.servicetextboxprice h4 {
+  font-size: 15px;
+}
+.servicepricebox h5 {
+  font-size: 15px;
+}
+.servicetextboxprice p {
+  font-size: 12px;
+ 
+}
+.reviewtextboxinner {
+  margin-left: 13px;
+  
+    }
+    .monthleftbox h4 {
+      font-size: 13px;
+  }
+  .infotimebox h3 {
+    font-size: 14px;
+    margin-top: 0px;
+}
+.infophonecustom {
+  margin-right: 0px;
+}
+.custombuttonchanges {
+ 
+  padding: 8px;
+  
+  font-size: 17px;
+  
+}
+.customchangesemail {
+  
+  font-size: 14px;
+}
+.customrememberchanges {
+  font-size: 12px;
+  top: 6px;
+ }
+ .leftformsectionbox {
+  
+  height: 44vh;
+}
+.leftformsectionbox img {
+ 
+  height: 38vh;
+}
+.customforgot {
+  width: 50%;
+}
+.customremeber {
+  width: 50%;
+  margin-top: 7px;
+}
+.forgotpassword a {
+  
+  font-size: 12px;
+}
+.customtabs2 {
+  padding: 7px 26px !important;
+  font-size: 16px!important;
+  margin-left: 17px;
+}
+.customchangesemail2 {
+  
+font-size: 13px;
+}
+.lablesos {
+  
+  font-size: 14px;
+}
+.custombuttonchanges2 {
+ 
+  padding: 5px 37px;
+  
+  font-size: 16px;
+  
+}
+.allcheckboxwrapper label {
+  margin-right: 13px;
+ padding: 8px 41px 8px 17px;
+ font-size: 15px;
+}
+.customiconplus {
+ 
+  top: 8px;
+}
+.custompopup {
+ padding: 8px 11px;
+  font-size: 13px;
+}
+.search-input {
+  width: 66%;
+  
+}
+.mainbannertopsection {
+  
+  padding: 57px;
+  
+}
+.dateheading h6 {
+  font-size: 15px;
+  
+}
+.custombookingbutton {
+  width: 50%;
+  margin-top: -5px;
+}
+.customdateheading {
+  width: 50%;
+}
+.bookingleftbox {
+  
+  padding: 4px;
+  
+}
+.bookingimagebox img {
+  width: 79px;
+ 
+  margin-top: 9px;
+  margin-left: 10px;
+}
+.profiletextbox h3 {
+  font-size: 12px;
+}
+.profiletextbox p {
+  margin-top: 7px;
+  margin-bottom: 7px;
+  font-size: 13px;
+}
+.profiletextbox span {
+  font-size: 10px;
+}
+.pendingboxright {
+  
+  margin-top: 0px;
+  margin-right: 14px;
+  
+  padding-left: 32px;
+}
+.pendingboxright h5 {
+ 
+  font-size: 13px;
+  
+}
+.pendingboxright h6 {
+  margin-top: 6px;
+  margin-bottom: 6px;
+
+}
+.pendingboxright h2 {
+  font-size: 14px;
+ 
+}
+.Allbooking a {
+  
+  padding: 6px 16px;
+  
+  font-size: 12px;
+}
+.profiletextbox {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.custompendingheading {
+  width: 33%;
+}
+.bookingtopbutton a {
+ 
+  font-size: 16px;
+ 
+}
+.mainheadingtop {
+  
+  margin-top: 12px;
+  margin-bottom: 12px;
+
+}
+.mainheadingtop h3 {
+  font-size: 15px;
+}
+.profileboximage img {
+  width: 91px;
+  
+}
+.profiletext h4 {
+  font-size: 13px;
+}
+.profiletext h6 {
+  margin-top: 3px;
+  margin-bottom: 5px;
+  font-size: 12px;
+}
+.messagebox {
+  
+  
+  padding: 5px 5px;
+ 
+  font-size: 13px;
+}
+.messagebox a i {
+  font-size: 13px;
+  
+}
+.timebox {
+  margin-top: 5px;
+  padding: 8px;
+  
+}
+.profiletextrightbox {
+  padding: 6px;
+  margin-left: 0px;
+  margin-top: 20px;
+  
+}
+.timebox h6 {
+  
+  font-size: 14px;
+}
+.buttonfooterbox a {
+  padding: 10px 40px;
+  margin-left: 0px;
+  margin-right: 20px;
+}
+.profiletext {
+  
+  margin-top: -20px;
+}
+.profiletextrightbox h5 {
+  font-size: 16px;
+  
+}
+.profiletextrightbox p {
+  margin-top: 11px;
+  
+  font-size: 12px;
+}
+.confirmsdatebox h5 {
+ 
+  font-size: 14px;
+}
+.datebox h6 {
+  font-size: 14px;
+  
+}
+.timeboxinner h2 {
+  font-size: 14px;
+ 
+}
+.totolleftbox h5 {
+  font-size: 15px;
+}
+.totolrightbox h5 {
+  font-size: 15px;
+}
+.custombuttonbottom {
+  margin-top: 39px;
+  margin-bottom: 0px;
+  padding: 9px 32px;
+  font-size: 16px;
+}
+.leftformsectionbox img {
+ 
+  height: 33vh;
+}
+.leftformsectionbox {
+  
+  height: 39vh;
+}
+.reviewratingbox {
+  
+  width: 29%;
+}
+.addtattooseemorebutton a {
+  
+  padding: 5px 4px;
+ 
+  display: block;
+  font-size: 13px;
+}
+.notificationimgbox img {
+  width: 60px;
+  height: 60px;
+ 
+}
+.notificationtextbox p {
+  margin-top: 9px;
+  margin-left: 8px;
+}
+.notificationtime h6 {
+  margin-top: 6px;
+  margin-right: -14px;
+  font-size: 13px;
+}
+.notificationtextbox p {
+  margin-top: 16px;
+  margin-left: 0px;
+  font-size: 12px;
+}
+.notificationinnerbox {
+  
+  padding: 4px;
+}
+.notificationtime h6 {
+  margin-top: 16px;
+  
+  margin-right: 3px;
+  font-size: 10px;
+}
+.messagesprofilebox img {
+  width: 50px;
+  height: 50px;
+ 
+}
+.messagesprofiletextbox h4 {
+  font-size: 15px;
+  margin-top: 0px;
+}
+.messagestimerightbox {
+  
+  margin-top: 8px;
+}
+.messagesinnersectionright h3 {
+  font-size: 16px;
+}
+  }

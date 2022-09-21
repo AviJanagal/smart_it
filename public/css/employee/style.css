@@ -11,7 +11,7 @@ h6,
 body {
     margin: 0px;
     padding: 0px;
-    font-family: "Muli", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 * {
@@ -37,7 +37,7 @@ header {
     position: fixed;
     width: 280px;
     height: 100vh;
-    background-color: #122f51;
+    background-color: #AF2D7D;
 
 }
 
@@ -337,13 +337,13 @@ span.ïcon {
 }
 
 span.app {
-    color: #f15a22;
+    color: #AF2D7D;
 }
 
 .sidemenubar ul li a:hover,
 .sidemenubar ul li a.active {
-    color: #000000;
-    background-color: #f05a22;
+    color: white;
+    background-color: #C7368F;
     border-radius: 6px;
 
 }
@@ -357,7 +357,7 @@ span.app {
 }
 
 #svg #bar {
-    stroke: #f15a22;
+    stroke: #AF2D7D;
 }
 
 #cont {
@@ -467,10 +467,13 @@ ul.sidenavbarul li a {
 }
 
 .mainlogoimage img {
-    width: 149px;
-    /* margin-top: 30px; */
+    width: 191px;
+    margin-top: 7px;
     /* margin-left: 70px; */
-    padding-top: 12px;
+    padding-top: 1px;
+    background: white;
+    border-radius: 3px;
+    height: 62px;
 }
 
 span.number-custom {
@@ -636,7 +639,7 @@ button.dropbtn i.fa.fa-angle-right {
     right: -24px;
     top: 0px;
     width: 27px;
-    background: #122f51;
+    background: #af2d7d;
     height: 42px;
     z-index: -1;
 }
@@ -646,7 +649,6 @@ button.dropdown-toggle.dropdown-custom {
     border: none;
     border-radius: 8px;
 }
-
 
 .dropdown-toggle::after {
     display: inline-block;
@@ -730,7 +732,7 @@ table.dataTable.no-footer {
 
 .btn-stylessav {
     width: 100px !important;
-    margin-top: 32px !important;
+    margin-top: 37px !important;
     float: none !important;
 }
 
@@ -798,17 +800,10 @@ button.btn.btn-danger.custom-innerbutton {
     margin-right: 40px;
 
     border-radius: 10px;
-    background-color: #f15a22;
+    background-color: #AF2D7D;
     width: 15%;
     display: block;
     padding: 12px;
-}
-
-button.btn.btn-danger.custom-innerbutton.btn-stylessav.btnclient {
-    max-width: 200px;
-    width: 100%;
-    margin: 0px auto 20px;
-    display: block;
 }
 
 .custom-control-lg {
@@ -1644,8 +1639,8 @@ span.custompriceheading {
 }
 
 .table-title-add h2 {
-    background: #cad7e6;
-    color: black;
+    background: #ac2b7b;
+    color: #fff;
     padding: 16px 30px;
     margin-bottom: 15px;
     font-size: 20px;
@@ -1662,10 +1657,11 @@ a.boxdatainfo {
 }
 
 .tattotsylehed h4 {
-    font-size: 16px;
+    font-size: 21px;
     margin-bottom: 10px;
-    color: #f15a22;
+    color: #a92979;
 }
+
 .dataTables_info {
     font-size: 13px;
     padding: 12px !important;
@@ -1689,8 +1685,8 @@ a.paginate_button {
 }
 
 .faqheading h4 {
-    background: #cad7e6;
-    color: black;
+    background: #ac2b7b;
+    color: #fff;
     padding: 16px 30px;
     margin-bottom: 15px;
     font-size: 20px;
@@ -1723,7 +1719,7 @@ select#select_user_type {
     float: right;
     margin-right: 40px;
     border-radius: 10px;
-    background-color: #f15a22;
+    background-color: #AF2D7D;
     display: block;
     padding: 12px;
     width: 100px !important;
@@ -1995,7 +1991,7 @@ h5.customnamesetting {
 
 /* new update css in dashboard */
 .mainheadingtop span {
-    color: #f15a22;
+    color: #ac2b7b;
 }
 
 .mainheadingtop {
@@ -2012,47 +2008,54 @@ h5.customnamesetting {
 
 /* multiple form css */
 
-* {
-    box-sizing: border-box;
-}
-.tab{
-    display: none;
+#regForm {
+    background-color: #ffffff;
+    margin: 100px auto;
+    padding: 40px;
+    width: 70%;
+    min-width: 300px;
+  }
+  
+  /* Style the input fields */
+  input {
+    padding: 10px;
     width: 100%;
-    height: 50%;
-    margin: 0px auto;
-}
-.current{
-    display: block;
-}
-
-
-/* Make circles that indicate the steps of the form: */
-.step {
-    height: 20px;
-    width: 20px;
-    cursor: pointer;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+  }
+  
+  /* Mark input boxes that gets an error on validation: */
+  input.invalid {
+    background-color: #ffdddd;
+  }
+  
+  /* Hide all steps by default: */
+  .tab {
+    display: none;
+  }
+  
+  /* Make circles that indicate the steps of the form: */
+  .step {
+    height: 15px;
+    width: 15px;
     margin: 0 2px;
-    color: #fff;
     background-color: #bbbbbb;
     border: none;
     border-radius: 50%;
     display: inline-block;
-    opacity: 0.8;
-    padding: 5px
-}
-
-.step.active {
+    opacity: 0.5;
+  }
+  
+  /* Mark the active step: */
+  .step.active {
     opacity: 1;
-    background-color: #4CAF50;
-}
-
-.step.finish {
-    background-color: #4CAF50;
-}
-
-.error {
-    color: #f00;
-}
+  }
+  
+  /* Mark the steps that are finished and valid: */
+  .step.finish {
+    background-color: #04AA6D;
+  }
 
   .error{
     color: red;
@@ -2060,10 +2063,17 @@ h5.customnamesetting {
 
 /* multiple form css end */
 
-.jqueryvalidationerror label.error{ 
 
-    color: #dc3545;
-         font-size: 14px;
+.modal-content.customchanges {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 650px;
+    height: 500px;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1pxsolidrgba(0, 0, 0, .2);
+    border-radius: .3rem;
+    outline: 0;
 }
-
-
