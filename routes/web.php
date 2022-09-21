@@ -27,6 +27,15 @@ Route::group(['as'=>'admin.','prefix' => 'admin','middleware' => ['auth', 'isAdm
    Route::resource('employee', 'superadmin\EmployeeController');
    Route::resource('client', 'superadmin\ClientController');
    Route::resource('project', 'superadmin\ProjectController');
+   Route::get('/get_project_assign', 'superadmin\ProjectController@get_project_assign')->name('get_project_assign');
+   Route::post('/store_assigned_projects', 'superadmin\ProjectController@store_assigned_projects')->name('store_assigned_projects');
+   Route::get('edit_assigned_projects/{id}','superadmin\ProjectController@edit_assigned_projects')->name('edit_assigned_projects');
+   Route::get('delete_assigned_project/{id}','superadmin\ProjectController@delete_assigned_project')->name('delete_assigned_project');
+
+
+
+
+
 
 
 

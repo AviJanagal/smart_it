@@ -12,7 +12,7 @@
 								<h4>Hi <span>Admin</span>,Welcome back</h4>
 							</div>
 						</div>	
-						<div class="col-md-4">
+						<!-- <div class="col-md-4">
 							<div class="mainheadingbox">
 								<h6>Total Customers</h6>
 							</div>
@@ -24,8 +24,8 @@
 									</svg>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-4">
+						</div> -->
+						<!-- <div class="col-md-4">
 							<div class="mainheadingbox">
 								<h6>Total Artist</h6>
 							</div>
@@ -37,8 +37,8 @@
 									</svg>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-4">
+						</div> -->
+						<!-- <div class="col-md-4">
 							<div class="mainheadingbox">
 								<h6>Total Vendor</h6>
 							</div>
@@ -50,7 +50,7 @@
 									</svg>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						
 						<!-- <div class="col-md-12">
 							<div class="pendingboxinner">

@@ -15,9 +15,9 @@
                 </div>
 
                 @if($type == 1)
-                <form role="form" class="jqueryvalidationerror" id="regForm" autocomplete="off" data-toggle="validator" action="{{route('admin.employee.store')}}" method="post" enctype="multipart/form-data">
+                <form role="form" class="jqueryvalidationerror" id="myForm" autocomplete="off" data-toggle="validator" action="{{route('admin.employee.store')}}" method="post" enctype="multipart/form-data">
                 @else
-                <form role="form" id="regForm" data-toggle="validator" action="{{route('admin.employee.update',$employee->id)}}" method="post" enctype="multipart/form-data">
+                <form role="form" id="myForm" data-toggle="validator" action="{{route('admin.employee.update',$employee->id)}}" method="post" enctype="multipart/form-data">
                 {{ method_field('PUT') }}
 
                 @endif
@@ -26,7 +26,7 @@
 
 
                     <div class="tab">
-                    <h1 Style="text-align:center;">Employee information</h1> 
+                    <h1 Style="text-align:center;">Employee Login Information</h1> 
 
                         <div class="col-md-8">
                             <div class="form-group custom-from">
@@ -89,12 +89,12 @@
 
 
                         <div class="tab">
-                        <h1 Style="text-align:center;">Employee information</h1> 
+                        <h1 Style="text-align:center;">Employee Basic Information</h1> 
 
                         <div class="col-md-8">
                             <div class="form-group custom-from">
                                 <label for="dob" class="inputlabel"> Date of Birth</label>
-                                <input class="form-control custom-control @error('dob') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_info->dob : ''; ?>" type="date"  name="dob" placeholder="D-O-B" required  />
+                                <input class="form-control custom-control @error('dob') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_info->dob : ''; ?>" type="text"  name="dob" placeholder="D-O-B" required  />
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -184,7 +184,7 @@
                         <div class="col-md-8">
                             <div class="form-group custom-from">
                                 <label for="Name" class="inputlabel"> Date of Joining</label>
-                                <input class="form-control custom-control @error('service_name') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_info->date_of_joining : ''; ?>" type="date"  name="date_of_joining" placeholder="Date Of Joining" required  />
+                                <input class="form-control custom-control @error('service_name') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_info->date_of_joining : ''; ?>" type="text"  name="date_of_joining" placeholder="Date Of Joining" required  />
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -194,7 +194,9 @@
                         </div>
                         </div>
 
-                        <div class="tab">Employee Account information:
+                        <div class="tab">
+                            <h1 Style="text-align:center;">Employee Account Information</h1> 
+
                         
 
                         <div class="col-md-8">
@@ -267,8 +269,12 @@
 
                         <div style="overflow:auto;">
                         <div style="float:right;">
-                     <button type="button" class="btn btn-danger custom-innerbutton "  id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                     <button type="button"  class="btn btn-danger custom-innerbutton " id="nextBtn" onclick="nextPrev(1)">Next</button>
+
+                        <button type="button" class="previous btn btn-danger custom-innerbutton">Previous</button>
+                        <button type="button" class="next btn btn-danger custom-innerbutton">Next</button>
+                        <button type="button" class="submit btn btn-danger custom-innerbutton">Submit</button>
+                     <!-- <button type="button" class="btn btn-danger custom-innerbutton "  id="prevBtn" onclick="nextPrev(-1) ">Previous</button>
+                     <button type="button"  class="btn btn-danger custom-innerbutton " id="nextBtn" onclick="nextPrev(1)">Next</button> -->
 
                      </div>
                      </div> 
@@ -276,8 +282,8 @@
                      <div style="text-align:center;margin-top:40px;">
                      <span class="step"></span>
                      <span class="step"></span>
-                  <span class="step"></span>
-            </div> 
+                     <span class="step"></span>
+                  </div> 
 
 
                         <!-- <div class="col-md-6">

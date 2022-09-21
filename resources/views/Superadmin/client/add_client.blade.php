@@ -30,7 +30,7 @@
             <div class="row">
               <div class="col-md-7">
                 <div class="form-group custom-from">
-                  <label for="Name" class="inputlabel"> Name</label>
+                  <label for="Name" class="inputlabel">Client Name</label>
                   <input class="form-control custom-control @error('name') is-invalid @enderror" value="<?php echo $type == 2 ? $client->name : ''; ?>" type="text" id="name" name="name" placeholder=" Name" required />
                   @error('name')
                   <span class="invalid-feedback" role="alert">
@@ -42,7 +42,7 @@
 
               <div class="col-md-7">
                 <div class="form-group custom-from">
-                  <label for="email" class="inputlabel"> Email</label>
+                  <label for="email" class="inputlabel">Email</label>
                   <input class="form-control custom-control @error('name') is-invalid @enderror" value="<?php echo $type == 2 ? $client->email : ''; ?>" type="email" id="email" name="email" placeholder=" Email" required />
                   @error('email')
                   <span class="invalid-feedback" role="alert">
@@ -66,7 +66,7 @@
       <div class="table-title-add">
         <div class="row">
           <div class="col-sm-12">
-            <h2 style="text-align:center;">Client  List </h2>
+            <h2 style="text-align:center;">Client List</h2>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Client Name</th>
                 <th>Email</th>
                 <th>Action</th>
               </tr>

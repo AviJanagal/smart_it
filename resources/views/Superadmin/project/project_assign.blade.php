@@ -14,14 +14,14 @@
         </div>
         <div class="col-md-12">
           <div class="tattotsylehed">
-            <h4>Enter Project Details</h4>
+            <h4>Project Assign Details</h4>
           </div>
         </div>
         <div class="container-fluid">
           @if($type == 1)
-            <form data-toggle="validator" action="{{route('admin.project.store')}}" method="post" enctype="multipart/form-data">
+            <form data-toggle="validator" action="{{route('admin.store_assigned_projects')}}" method="post" enctype="multipart/form-data">
           @else
-            <form data-toggle="validator" action="{{route('admin.project.update',$project->id)}}" method="post" enctype="multipart/form-data">
+            <form data-toggle="validator" action="" method="post" enctype="multipart/form-data">
           @endif
           @csrf
           @if($type == 2)
@@ -30,39 +30,51 @@
             <div class="row">
               <div class="col-md-7">
                 <div class="form-group custom-from">
-                  <label for="Name" class="inputlabel">Project Name</label>
-                  <input class="form-control custom-control @error('name') is-invalid @enderror" value="<?php echo $type == 2 ? $project->project_name : ''; ?>" type="text" id="project_name" name="project_name" placeholder=" Name" required />
-                  @error('project_name')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-                </div>
-              </div>
-              <div class="col-md-7">
-                <div class="form-group custom-from">
-                    <label for="category" class="form-label">Clients</label>
-                    <select id="select_client" class="select2 form-select" name="client">
-                    <option value="" disabled selected hidden>Select Clients</option>
+                <label for="Name" class="inputlabel">Project Name</label>
+                    <select id="select_project" class="select2 form-select" name="select_project">
+                    <option value="" disabled selected hidden>Select Project</option>
+
                         @if($type == 1)
-                        @foreach($get_clients as $list)
-                        <option value="{{$list->id}}">{{$list->name}}</option>
+                        @foreach($get_projects as $list)
+                        <option value="{{$list->id}}">{{$list->project_name}}</option>
                         @endforeach
                         @else
-                            @foreach($get_clients as $list)
-                                @if($list->id == $project->client)
-                                <option value="{{$list->id}}" selected>{{$list->name}}</option>
+                            @foreach($get_projects as $list)
+                                @if($list->id == $assign_project->project_id)
+                                <option value="{{$list->id}}" selected>{{$list->project_name}}</option>
                                 @else
-                                <option value="{{$list->id}}">{{$list->name}}</option>
+                                <option value="{{$list->id}}">{{$list->project_name}}</option>
                                 @endif
                             @endforeach
                         @endif
                     </select>
                 </div>
               </div>
+
+               <div class="col-md-7">
+                <div class="form-group custom-from">
+                  <label for="Name" class="inputlabel">Developer Name</label>
+                  <select class="select2 form-select" id="select_employee" name="select_employee[]" multiple="multiple">
+                  @if($type == 1)
+                        @foreach($employee as $list)
+                        <option value="{{$list->id}}">{{$list->first_name}}&nbsp;{{$list->last_name}}</option>
+                        @endforeach
+                        @else
+                            @foreach($employee as $list)
+                                @if($list->id == $assign_project->developer_id)
+                                <option value="{{$list->id}}" selected>{{$list->first_name}}&nbsp;{{$list->last_name}}</option>
+                                @else
+                                <option value="{{$list->id}}">{{$list->first_name}}&nbsp;{{$list->last_name}}</option>
+                                @endif
+                            @endforeach
+                        @endif
+                  </select>
+                </div>
+              </div> 
+
               <div class="col-md-5">
                 @if($type == 1)
-                <button type="submit" class="btn btn-danger custom-innerbutton btn-stylessav">Save</button>
+                <button type="submit" class="btn btn-danger custom-innerbutton btn-stylessav">Assign</button>
                 @else
                 <button type="submit" class="btn btn-danger custom-innerbutton btn-stylessav">Update</button>
                 @endif
@@ -74,7 +86,7 @@
       <div class="table-title-add">
         <div class="row">
           <div class="col-sm-12">
-            <h2 style="text-align:center;">project  List </h2>
+            <h2 style="text-align:center;">Assigned projects List </h2>
           </div>
         </div>
       </div>
@@ -87,7 +99,7 @@
               <tr>
                 <th>Id</th>
                 <th>Project Name</th>
-                <th>Client</th>
+                <th>Developer Name</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -96,10 +108,10 @@
               <tr>
                 <td>{{$item->id}}</td>
                 <td>{{ $item->project_name }}</td>
-                <td>{{ $item->client }}</td>
+                <td>{{ $item->first_name }}</td>
                 <td class="btn-td">
-                  <a href="{{route('admin.project.edit',$item->id)}}" class="edit"><i class="fa fa-pencil"></i></a>
-                  <a class="delete" onclick="deletedata('{{route('admin.project.show',$item->id)}}');"><i class="fa fa-trash"></i></a>
+                  <!-- <a href="{{route('admin.edit_assigned_projects',$item->id)}}" class="edit"><i class="fa fa-pencil"></i></a> -->
+                  <a class="delete" onclick="deletedata('{{route('admin.delete_assigned_project',$item->id)}}');"><i class="fa fa-trash"></i></a>
                 </td>
               </tr>
               @endforeach
