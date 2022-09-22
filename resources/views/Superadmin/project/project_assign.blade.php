@@ -31,7 +31,7 @@
               <div class="col-md-7">
                 <div class="form-group custom-from">
                 <label for="Name" class="inputlabel">Project Name</label>
-                    <select id="select_project" class="select2 form-select" name="select_project">
+                    <select id="select_project" class="select2 form-select" name="select_project" required>
                     <option value="" disabled selected hidden>Select Project</option>
 
                         @if($type == 1)
@@ -54,7 +54,7 @@
                <div class="col-md-7">
                 <div class="form-group custom-from">
                   <label for="Name" class="inputlabel">Developer Name</label>
-                  <select class="select2 form-select" id="select_employee" name="select_employee[]" multiple="multiple">
+                  <select class="select2 form-select" id="select_employee" name="select_employee[]" multiple="multiple" required>
                   @if($type == 1)
                         @foreach($employee as $list)
                         <option value="{{$list->id}}">{{$list->first_name}}&nbsp;{{$list->last_name}}</option>

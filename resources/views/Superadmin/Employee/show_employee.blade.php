@@ -42,7 +42,9 @@
                                 <td>{{$item->phone_number}}</td>
                                 <td>
                                     <a href="{{route('admin.employee.edit',$item->id)}}" class="edit"><i class="fa fa-pencil"></i></a>
-                                    <a href="#deleteEmployeeModal" class="delete"  onclick="deletedata('{{route('admin.employee.show',$item->id)}}');"  data-toggle="modal"><i class="fa fa-trash" aria-hidden="true"data-toggle="tooltip" title="Delete"></i></a>
+                                    <a  class="delete"  onclick="deletedata('{{route('admin.employee.show',$item->id)}}');"  data-toggle="modal"><i class="fa fa-trash" aria-hidden="true"data-toggle="tooltip" title="Delete"></i></a>
+                                    <a href="{{route('admin.view_employee',$item->id)}}" class="edit"><i class="fa fa-eye"></i></a>
+
                                 </td>
                             </tr>  
                             @endforeach

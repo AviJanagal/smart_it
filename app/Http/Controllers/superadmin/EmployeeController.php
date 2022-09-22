@@ -193,9 +193,55 @@ class EmployeeController extends Controller
     {
         //
 
-       
+
+    }
+
+    public function view_employee($id)
+    {
+        //
+         $employee = \App\User::where('role','employee')->find($id);
+
+    
+         $project_assign = \App\ProjectAssign::where('developer_id',$id)->get();
+
+         foreach($project_assign as $data)
+         {
+
+            $project = \App\Project::find($data->project_id);
+            
+              $data->project_name = $project->project_name;
+
+
+         }
+        return view('superadmin/employee/view_employee',compact('employee','project_assign'));
 
 
 
     }
-}
+
+
+    public function del_emp_assigned_project($id)
+
+    {
+
+        $project_assign = \App\ProjectAssign::find($id);
+        if($project_assign->delete())
+        {
+            return redirect()->route('admin.view_employee')->with(['alert' => 'success','message' => 'Assigned project has been Deleted Successfully!.']);
+        }
+        else
+        {
+            return redirect()->route('admin.view_employee')->with(['alert' => 'danger', 'message' => 'Assigned project has not been Deleted!.']);
+        }
+    }
+
+
+
+
+    }
+
+
+
+
+
+
