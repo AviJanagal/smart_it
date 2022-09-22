@@ -94,7 +94,7 @@
                         <div class="col-md-8">
                             <div class="form-group custom-from">
                                 <label for="dob" class="inputlabel"> Date of Birth</label>
-                                <input class="form-control custom-control @error('dob') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_info->dob : ''; ?>" type="text"  name="dob" placeholder="D-O-B" required  />
+                                <input class="form-control custom-control @error('dob') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_info->dob : ''; ?>" type="date"  name="dob" placeholder="D-O-B" required  />
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -184,7 +184,7 @@
                         <div class="col-md-8">
                             <div class="form-group custom-from">
                                 <label for="Name" class="inputlabel"> Date of Joining</label>
-                                <input class="form-control custom-control @error('service_name') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_info->date_of_joining : ''; ?>" type="text"  name="date_of_joining" placeholder="Date Of Joining" required  />
+                                <input class="form-control custom-control @error('service_name') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_info->date_of_joining : ''; ?>" type="date"  name="date_of_joining" placeholder="Date Of Joining" required  />
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

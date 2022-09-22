@@ -263,7 +263,7 @@ if (selectedTab) {
         <script src="{{ asset('js/custom.js') }}"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                $.validator.addMethod('date', function (value, element, param) {
+                $.validator.addMethod('datee', function (value, element, param) {
                     return (value != 0) && (value <= 31) && (value == parseInt(value, 10));
                 }, 'Please enter a valid date!');
                 $.validator.addMethod('month', function (value, element, param) {
