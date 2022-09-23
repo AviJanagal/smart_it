@@ -222,7 +222,6 @@ class EmployeeController extends Controller
 
 
     public function del_emp_assigned_project($id)
-
     {
 
         $project_assign = \App\ProjectAssign::find($id);
@@ -233,67 +232,6 @@ class EmployeeController extends Controller
         }
 
     }
-
-
-
-    public function emp_graph($id)
-    {
-        
-           $graph_id = \App\User::find($id);
-           $complaint_ids = \App\AssignTo::where('user_id', $id)->pluck('complaint_id');
-           $complaints = \App\Complaint::whereIn('id', $complaint_ids)->where('status','2')->get();
-
-
-        $my_array = [];
-
-        foreach($complaints as $data){
-
-            $current_time = Carbon::now('Asia/Kolkata')->toDateTimeString();
-            $complaint_assign = \App\AssignTo::where('complaint_id', $data->id)->first();    
-    
-            $to = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $complaint_assign->assign_time);
-            $deadline = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $complaint_assign->deadline);
-
-
-            $diff_in_hours = $to->diffInHours($deadline);
-
-    
-            $complete_time = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $data->complete_date);
-    
-            if( $data->complete_date > $complaint_assign->deadline ){
-                $exceed_hours = $complete_time->diffInHours($deadline);
-            }else{
-                $exceed_hours = 0;
-            }            
-    
-            $data->current_time = $current_time;									
-    
-            array_push($my_array,[strval($data->id), $diff_in_hours, $exceed_hours ,'']);
-                  
-        }
-
-        $key = "all";
-        $start_week = "";
-        $end_week = "";
-        return view("departmentGraph", compact('key','my_array','start_week', 'end_week', 'graph_id'));
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

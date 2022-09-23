@@ -4,17 +4,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Login</title>
-<<<<<<< HEAD
         <link rel="icon" href="{{ asset('images/moblogo.png') }}" type="image/png" sizes="16x16" />
         <link rel="stylesheet" href="{{ asset('css/employee/bootstrap.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/employee/style.css') }}" />
         <link href="{{ asset('css/employee/responsive.css') }}" rel="stylesheet" />
-=======
         <link rel="icon" href="{{ asset('images/smartit.png') }}" type="image/png" sizes="16x16" />
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
         <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
->>>>>>> 59fa035b0a64163cc37ad2a6018cabcc640a30af
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet" />
         <body>
@@ -25,18 +22,15 @@
                             <div class="leftloginwrapper">
                                 <div class="leftloginformcontainer">
                                     <div class="leftformsectionboxheading">
-<<<<<<< HEAD
                                         <img src="{{ asset('images/smart_it.png') }}" />
                                     </div>
                                     <div class="leftformsectioninnerdata">
                                         <h1>Welcome to <span>SMART IT VENTURES</span></h1>
                                         <h6>Please sign in to continue</h6>
-=======
                                         <!-- <img src="{{ asset('images/smart_it.png') }}" /> -->
                                     </div>
                                     <div class="leftformsectioninnerdata">
                                         <h1>Welcome to <span> Smart It Ventures</span></h1>
->>>>>>> 59fa035b0a64163cc37ad2a6018cabcc640a30af
                                         <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                                             @csrf
                                             <div class="row">
