@@ -91,7 +91,7 @@ class UserController extends Controller
      public function add_employee(Request $request)
      {
 
-        $request->validate([
+        $rules = [
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|unique:users',
@@ -114,7 +114,7 @@ class UserController extends Controller
 
 
 
-        ]);
+        ];
         
         $validator = Validator::make($request->all(), $rules);
 
@@ -162,7 +162,7 @@ class UserController extends Controller
 
            
         if ($employee_account->save()) {
-            return response()->json(['status' => true,'message' => 'Employee Added Successfully.', 'user_id'=> $user_id, 'payload'=>$user]);
+            return response()->json(['status' => true,'message' => 'Employee Added Successfully.', 'user_id'=> $user->id, 'payload'=>$user]);
         }
         else{
 
