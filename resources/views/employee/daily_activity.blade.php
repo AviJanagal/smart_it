@@ -24,12 +24,20 @@
            <div class="col-md-8">
             <form data-toggle="validator">
               @csrf         
+              <?php
+              $projects_ids = \App\ProjectAssign::where('developer_id',auth()->user()->id)->pluck('project_id');
+              if($projects_ids){
+                $projects = \App\Project::whereIn('id', $projects_ids)->get();
+              }
+              ?>
             <select class="form-select col-md-4"  name="project_id" id="myProject" {{($type == "1") ? "disabled" : " "}} required>
                 <option selected value="">Select Project</option>
-                <option value="1">Cut2You</option>
-                <option value="2">Heal It</option>
-                <option value="3">Maid Me</option>
-                <option value="4">Orchard Theives</option>
+               @if($projects_ids){
+                @foreach ($projects as $project)
+									<option value="{{$project->id}}">{{$project->project_name}}</option>
+								@endforeach
+              @endif
+               
             </select>
           </div>
               <div class="col-md-4">

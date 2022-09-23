@@ -30,8 +30,33 @@
         <div class="row custom-row">
             <div class="col-md-6">
                 <div class="headingbox">
-                    <h6>
-                        <a href="#"> <span class="app">Application </span></a><span class="ïcon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span><span class="dash">Dashboard</span>
+                    <h6>   
+                        @php 
+                        if(Route::is('employee.attendance_history'))
+                        {
+                            $name = "Attendance History";
+                        }
+                        elseif(Route::is('employee.employee.index'))
+                        {
+                            $name = "Dashboard";
+                        }
+                        elseif(Route::is('employee.daily_activity'))
+                        {
+                            $name = "Daily Activity";
+                        }
+                        elseif(Route::is('employee.all_daily_activities'))
+                        {
+                            $name = "My All Activity";
+                        }
+                        elseif(Route::is('employee.graphs') || Route::is('employee.graph_time'))
+                        {
+                            $name = "Graphs";
+                        }
+                        else{
+                             $name = " ";
+                        }
+                        @endphp
+                        <a href="#"> <span class="app">Application </span></a><span class="ïcon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span><span class="dash">{{$name}}</span>
                     </h6>
                 </div>
             </div>
@@ -43,7 +68,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#">Profile</a>
-                            <a class="dropdown-item" href="#">Setting</a>
+                            <!-- <a class="dropdown-item" href="#">Setting</a> -->
                             <a class="{{ (request()->is('logout')) ? 'active' : '' }} dropdown-item custom-dropdown" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                 <span class="menuname">
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>

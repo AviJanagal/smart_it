@@ -61,6 +61,7 @@
                             if(!is_null($daily_activities->end_time)){
                                 $endTime = strtotime($daily_activities->end_time);
                                 $init = $endTime - $startTime;
+                                
                                 $hours = floor($init / 3600);
                                 $hour = (int) ($hours);
                                 $minutes = floor(($init / 60) % 60);
@@ -68,21 +69,24 @@
                             }
                             //End converting time to hours/minutes/seconds..
                         ?>
+                       
                         @if(!is_null($daily_activities->end_time))
                             @if($hour !== 0 )
                                 <td>{{$hour}} hour {{$minute}} min</td>
                             @else
-                                <td>{{$minute}} min</td>
+                                <td>{{$minute}} min </td>
                             @endif
                         @else
                             <td>Pending</td>
                         @endif
+                           
 
                     </tr>  
                     @endforeach
                 </tbody>
                     </table>
                 </div>
+                
             @else
             <h1 class="nodatafoundheading" >No data found</h1>
             @endif

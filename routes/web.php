@@ -45,12 +45,6 @@ Route::group(['as'=>'admin.','prefix' => 'admin','middleware' => ['auth', 'isAdm
    Route::get('delete_assigned_project/{id}','superadmin\ProjectController@delete_assigned_project')->name('delete_assigned_project');
 
 
-
-
-
-
-
-
 });
 
 Route::group(['as'=>'employee.','prefix' => 'employee','middleware' => ['auth', 'employee']], function () {
@@ -65,15 +59,17 @@ Route::group(['as'=>'employee.','prefix' => 'employee','middleware' => ['auth', 
    Route::get('all_daily_activities', 'employee\EmployeeController@all_daily_activities')->name('all_daily_activities');
    Route::post('attendance_filter', 'employee\EmployeeController@attendance_filter')->name('attendance_filter');
    Route::post('activity_filter', 'employee\EmployeeController@activity_filter')->name('activity_filter');
+   Route::get('graphs', 'employee\EmployeeController@graphs')->name('graphs');
+   Route::post('graph_time', 'employee\EmployeeController@graph_time')->name('graph_time');
    
 });
 
-Route::group(['as'=>'employee.','prefix' => 'employee','middleware' => ['auth', 'employee']], function () {
-   Route::resource('employee','employee\EmployeeController');
-   Route::post('log_in_time', 'employee\EmployeeController@log_in_time')->name('log_in_time');
-   Route::post('log_out_time', 'employee\EmployeeController@log_out_time')->name('log_out_time');
-   Route::get('default_log_in_time', 'employee\EmployeeController@default_log_in_time')->name('default_log_in_time');
-   Route::get('attendance_history', 'employee\EmployeeController@attendance_history')->name('attendance_history');
-   Route::get('daily_activity', 'employee\EmployeeController@daily_activity')->name('daily_activity');
+// Route::group(['as'=>'employee.','prefix' => 'employee','middleware' => ['auth', 'employee']], function () {
+//    Route::resource('employee','employee\EmployeeController');
+//    Route::post('log_in_time', 'employee\EmployeeController@log_in_time')->name('log_in_time');
+//    Route::post('log_out_time', 'employee\EmployeeController@log_out_time')->name('log_out_time');
+//    Route::get('default_log_in_time', 'employee\EmployeeController@default_log_in_time')->name('default_log_in_time');
+//    Route::get('attendance_history', 'employee\EmployeeController@attendance_history')->name('attendance_history');
+//    Route::get('daily_activity', 'employee\EmployeeController@daily_activity')->name('daily_activity');
    
-});
+// });
