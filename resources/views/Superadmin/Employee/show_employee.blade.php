@@ -30,6 +30,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Number</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -40,9 +41,10 @@
                                 <td>{{$item->first_name}}&nbsp;{{$item->last_name}}</td>
                                 <td>{{$item->email}}</td>
                                 <td>{{$item->phone_number}}</td>
+                                <td>{{$item->emp_status}}</td>
                                 <td>
                                     <a href="{{route('admin.employee.edit',$item->id)}}" class="edit"><i class="fa fa-pencil"></i></a>
-                                    <a  class="delete"  onclick="deletedata('{{route('admin.employee.show',$item->id)}}');"  data-toggle="modal"><i class="fa fa-trash" aria-hidden="true"data-toggle="tooltip" title="Delete"></i></a>
+                                    <a  class="delete"  onclick="deletedata('{{route('admin.employee.show',$item->id)}}');"><i class="fa fa-trash" aria-hidden="true"data-toggle="tooltip" title="Delete"></i></a>
                                     <a href="{{route('admin.view_employee',$item->id)}}" class="edit"><i class="fa fa-eye"></i></a>
 
                                 </td>

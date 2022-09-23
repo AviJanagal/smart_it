@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Are you sure?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -11,7 +11,8 @@
                 <p>Do yo really want to delete these records?This process cannot be undone.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+
                 <a id="delete_user" href=""  class="btn btn-danger">Delete</a> 
             </div>
         </div>
@@ -21,26 +22,24 @@
 
 
 <script src="{{ asset('js/jquery.min.js') }}"></script>
-<!-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script> -->
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+
 <script src="https://kit.fontawesome.com/9681e38096.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script> -->
+
+
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
 
 
-<script>
-    
-
-    
-    function deletedata(url){
-    $('#delete_modal').modal('show');
-    $("#delete_user").attr('href', url);
-    }
 
 
-</script>
 
 
 
@@ -126,6 +125,16 @@ $("#select_employee").select2({
         $('#user_data_table_1').DataTable({order:[[1,"desc"]]});
     });
 
+</script>
+
+<script>
+    
+    function deletedata(url){
+
+    $('#delete_modal').modal('show');
+    $("#delete_user").attr('href', url);
+    
+    }
 </script>
 
 <script>

@@ -29,6 +29,12 @@ Route::group(['as'=>'admin.','prefix' => 'admin','middleware' => ['auth', 'isAdm
    Route::get('/del_emp_assigned_project/{id}', 'superadmin\EmployeeController@del_emp_assigned_project')->name('del_emp_assigned_project');
 
 
+   Route::get('emp_graph', 'superadmin\EmployeeController@emp_graph')->name('emp_graph');
+    Route::any('emp_graph_search_status/{id}', 'superadmin\EmployeeController@emp_graph_search_status')->name('emp_graph_search_status');
+    Route::any('emp_graph_search_report/{id}', 'superadmin\EmployeeController@emp_graph_search_report')->name('emp_graph_search_report');
+
+   
+
 
    
    Route::resource('client', 'superadmin\ClientController');
