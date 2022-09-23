@@ -22,6 +22,7 @@ class CreateDailyActivitiesTable extends Migration
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
             $table->date('date')->nullable();
+            $table->integer('time_in_minutes')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
         });

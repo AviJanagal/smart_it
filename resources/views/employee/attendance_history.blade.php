@@ -22,13 +22,13 @@
                 <div class="row">
                 @csrf
                 <div class="col-sm-2">
-                    <input type="text" id="yearPicker" name="year" placeholder="Select Year">
+                    <input type="text" id="yearPicker" name="year" placeholder="Select Year" autocomplete="off">
                 </div>
                 <div class="col-sm-2"> 
-                    <input type="text" id="monthPicker" name="month"  placeholder="Select Month">
+                    <input type="text" id="monthPicker" name="month"  placeholder="Select Month" autocomplete="off">
                 </div>
                 <div class="col-sm-2">
-                    <input type="text" id="datePicker"  name="date"  placeholder="Select Date">
+                    <input type="text" id="datePicker"  name="date"  placeholder="Select Date" autocomplete="off">
                 </div>
                 <div class="col-sm-2">
                     <button type="submit" class="btn btn-primary">Search</button>

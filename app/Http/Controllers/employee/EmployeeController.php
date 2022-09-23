@@ -224,7 +224,11 @@ class EmployeeController extends Controller
     public function finish_daily_activity(){
         $finish_activity = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at', \Carbon\Carbon::today())->latest()->first();
         $finish_activity->end_time = (new DateTime)->format('H:i:s');
+        $startTime = strtotime($finish_activity->start_time);
+        $endTime = strtotime($finish_activity->end_time);
+        $finish_activity->time_in_minutes = floor(round(abs($endTime - $startTime) / 60,2));
         if($finish_activity->save()){
+            // return $finish_activity->start_time.":".$finish_activity->end_time;
             alert()->success('Daily Activity Finished Successfully!','Success');
             return redirect()->route('employee.daily_activity');
         }
@@ -316,5 +320,64 @@ class EmployeeController extends Controller
         return view('employee.all_daily_activities',compact('all_daily_activities'));
     }
 
+    public function graphs(){
+        $week_dates = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfWeek(), \Carbon\Carbon::now()->endOfWeek());
+        $result = [];
+        foreach($week_dates as $date){
+          $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->sum('time_in_minutes');
+          $hours = floor($minutes/60) ;
+          $minutes = $minutes%60 ;
+          array_push($result,[(string)$date->format('l'), $hours.".".$minutes ,"#122f51"]);
+        }
+        $title_discription = "Weekly Attendance Chart";
+        $title = "Days";
+
+        return view('employee.graphs',compact('result','title_discription','title'));
+    }
+
+    public function graph_time(Request $request){
+        if($request->graph_time == "monthly"){
+            $month_dates = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfMonth(), \Carbon\Carbon::now()->endOfMonth());
+            $result = [];
+            foreach($month_dates as $date){
+                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->sum('time_in_minutes');
+                $hours = floor($minutes/60) ;
+                $minutes = $minutes%60 ;
+                array_push($result,[$date->format('Y/m/d'), $hours.".".$minutes ,"#122f51"]);
+            }
+            $title_discription = "Monthly Attendance Chart";
+            $title = "Dates";
+        }
+        elseif($request->graph_time == "yearly"){
+            $result = [];
+            $month = [];
+            for ($m=1; $m<=12; $m++) {
+                $month[] = date('F', mktime(0,0,0,$m, 1, date('Y')));
+            }
+            foreach($month as $month){
+                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at',date('m',strtotime($month)))->whereYear('created_at', date('Y'))->sum('time_in_minutes');
+                $hours = floor($minutes/60) ;
+                $minutes = $minutes%60 ;
+                array_push($result,[date('F',strtotime($month)), $hours.".".$minutes ,"#122f51"]);
+            }
+           
+            $title_discription = "Yearly Attendance Chart";
+            $title = "Months";
+        }
+        else{
+            $week_dates = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfWeek(), \Carbon\Carbon::now()->endOfWeek());
+            $result = [];
+            foreach($week_dates as $date){
+                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->sum('time_in_minutes');
+                $hours = floor($minutes/60) ;
+                $minutes = $minutes%60 ;
+                array_push($result,[(string)$date->format('l'), $hours.".".$minutes ,"#122f51"]);
+            }
+            $title_discription = "Weekly Attendance Chart";
+            $title = "Days";
+        }
+        return view('employee.graphs',compact('result','title_discription','title'));  
+    }
 }
 
+        

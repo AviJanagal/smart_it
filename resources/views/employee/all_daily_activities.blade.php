@@ -22,13 +22,13 @@
                 <div class="row">
                 @csrf
                 <div class="col-sm-2">
-                    <input type="text" id="yearPicker" name="year" placeholder="Select Year">
+                    <input type="text" id="yearPicker" name="year" placeholder="Select Year" autocomplete="off">
                 </div>
                 <div class="col-sm-2"> 
-                    <input type="text" id="monthPicker" name="month"  placeholder="Select Month">
+                    <input type="text" id="monthPicker" name="month"  placeholder="Select Month" autocomplete="off">
                 </div>
                 <div class="col-sm-2">
-                    <input type="text" id="datePicker"  name="date"  placeholder="Select Date">
+                    <input type="text" id="datePicker"  name="date"  placeholder="Select Date" autocomplete="off">
                 </div>
                 <div class="col-sm-2">
                     <button type="submit" class="btn btn-primary">Search</button>
@@ -87,7 +87,8 @@
                                 $minute = (int) ($minutes);
                             }
                             //End converting time to hours/minutes/seconds..
-                        ?>
+                        ?>   
+                        
                         @if(!is_null($daily_activities->end_time))
                             @if($hour !== 0 )
                                 <td>{{$hour}} hour {{$minute}} min</td>
@@ -97,6 +98,7 @@
                         @else
                             <td>Pending</td>
                         @endif
+                           
 
                     </tr>  
                     @endforeach

@@ -37,7 +37,7 @@ header {
     position: fixed;
     width: 280px;
     height: 100vh;
-    background-color: #AF2D7D;
+    background-color:#122f51;
 
 }
 
@@ -231,8 +231,7 @@ a.vendor1 {
 }
 
 .Pendingbox {
-
-    background-color: #AF2D7D;
+    background-color: #ff5a04;
     padding: 10px;
     color: white;
     border-radius: 6px;
@@ -337,13 +336,13 @@ span.ïcon {
 }
 
 span.app {
-    color: #AF2D7D;
+    color: #f05a22;
 }
 
 .sidemenubar ul li a:hover,
 .sidemenubar ul li a.active {
     color: white;
-    background-color: #C7368F;
+    background-color: #f05a22;
     border-radius: 6px;
 
 }
@@ -357,7 +356,7 @@ span.app {
 }
 
 #svg #bar {
-    stroke: #AF2D7D;
+    stroke: #f05a22;
 }
 
 #cont {
@@ -471,7 +470,7 @@ ul.sidenavbarul li a {
     margin-top: 7px;
     /* margin-left: 70px; */
     padding-top: 1px;
-    background: white;
+   
     border-radius: 3px;
     height: 62px;
 }
@@ -639,7 +638,7 @@ button.dropbtn i.fa.fa-angle-right {
     right: -24px;
     top: 0px;
     width: 27px;
-    background: #af2d7d;
+    background: #ff5a04;
     height: 42px;
     z-index: -1;
 }
@@ -1639,7 +1638,7 @@ span.custompriceheading {
 }
 
 .table-title-add h2 {
-    background: #ac2b7b;
+    background: #ff600d;
     color: #fff;
     padding: 16px 30px;
     margin-bottom: 15px;
@@ -1659,7 +1658,7 @@ a.boxdatainfo {
 .tattotsylehed h4 {
     font-size: 21px;
     margin-bottom: 10px;
-    color: #a92979;
+    color: #ff5a04;
 }
 
 .dataTables_info {
@@ -1769,7 +1768,7 @@ table.table.table-striped.table-hover.dataTable td {
 }
 
 .leftformsectionboxheading img {
-    width: 71px;
+    width: 170px;
 }
 
 .leftformsectioninnerdata h1 {
@@ -1822,7 +1821,7 @@ button.btn.btn-primary.custombuttonchanges {
     width: 100%;
     display: block;
     padding: 15px;
-    background-color: #ac2b7b;
+    background-color: #ff614d;
     border: none;
     font-size: 19px;
     font-weight: 500;
@@ -1835,7 +1834,7 @@ button.btn.btn-primary.custombuttonchanges {
     top: 0px;
     right: 0px;
     width: 63%;
-    background-color: #a82e7c;
+    background-color: #25409f;
     height: 100%;
     z-index: -1;
     border-bottom-left-radius: 20px;
@@ -1991,7 +1990,7 @@ h5.customnamesetting {
 
 /* new update css in dashboard */
 .mainheadingtop span {
-    color: #ac2b7b;
+    color: #f05a22;
 }
 
 .mainheadingtop {
@@ -2077,3 +2076,8 @@ h5.customnamesetting {
     border-radius: .3rem;
     outline: 0;
 }
+
+/* .chartcustom {
+    margin-top: 192px;
+    width: 1200px;
+} */

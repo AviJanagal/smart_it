@@ -12,6 +12,7 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+  
  <script>
 	$(".confirm").click(function(){
 		$(".sweet-overlay").empty();
@@ -145,7 +146,7 @@
 
 
 		
-	<script>myProject
+	<script>
 	$('#percent').on('change', function() {
 		var val = parseInt($(this).val());
 		var $circle = $('#svg #bar');
@@ -308,6 +309,7 @@ $(document).ready(function(){
 
 
 </script>
+
 
 		 
 		  <!-- html Delete modal -->
