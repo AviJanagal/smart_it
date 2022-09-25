@@ -27,11 +27,8 @@ Route::group(['as'=>'admin.','prefix' => 'admin','middleware' => ['auth', 'isAdm
    Route::resource('employee', 'superadmin\EmployeeController');
    Route::get('/view_employee/{id}', 'superadmin\EmployeeController@view_employee')->name('view_employee');
    Route::get('/del_emp_assigned_project/{id}', 'superadmin\EmployeeController@del_emp_assigned_project')->name('del_emp_assigned_project');
+   Route::post('/employee_graph/{id}', 'superadmin\EmployeeController@employee_graph')->name('employee_graph');
 
-
-   
-
-   
 
 
    

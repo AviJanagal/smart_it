@@ -10,7 +10,6 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             @endif
-            @include('sweet::alert')
            
         </div>
     <div class="bank-innersection">
@@ -18,7 +17,6 @@
             <div class="row">
             <div class="col-sm-12">
             <h2 style="text-align:center;">My Activity Graphs</h2>
-           
             </div>
             </div>
         </div>
@@ -73,6 +71,8 @@
     var complaints = jQuery.merge(title, my_array);
 
     var data = google.visualization.arrayToDataTable(complaints);
+
+    
     var view = new google.visualization.DataView(data);
     view.setColumns([0, 1,
         { calc: "stringify",

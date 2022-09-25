@@ -234,26 +234,29 @@
             <div class="main-table">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="table-innerdata">
-                            <table class="table table-striped table-bordered datatable" id="user_data_table_1" style="width:100%">
-                                <thead class="inner-tablecolor">
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Customer</th>
-                                        <th scope="col">Comment</th>
-                                        <th scope="col">Rating</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+
+
+
+
+            <form method="post" action="" id="filterForm" enctype="multipart/form-data">
+            @csrf
+            <div class="row">
+                <div class="col-sm-2">       
+                    <select class="form-select" aria-label="Default select example" name="graph_time" id="graph_time" required>
+                        <option selected disabled value="">Select Time Period</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                </div>
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-primary " id="submit">Show</button>
+                    </div>
+            </div> 
+        </form>
+
+             <div id="myChart" style="max-width:700px; height:400px"></div>
+
                     </div>
                 </div>
             </div>
@@ -274,3 +277,67 @@
     </div>
 </main>
 @include('Superadmin.layouts.footer')
+
+
+<script>
+    $('#submit').on('click', function() {
+        var value = $("#graph_time").val();
+    });
+</script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load("current", {packages:['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var my_array = <?php echo json_encode($emp_days, JSON_NUMERIC_CHECK);?>;
+        // console.log(my_array);
+
+    var title = [
+        ['Date','Hours', { role: "style" } ]
+    ];
+
+    var activities = jQuery.merge(title, my_array);
+
+    var data = google.visualization.arrayToDataTable(activities);
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+        { calc: "stringify",
+            sourceColumn: 1,
+            type: "string",
+            role: "annotation" },
+        2]);
+
+
+
+// Set Data
+// var data = google.visualization.arrayToDataTable([
+//   ['Price', 'Size'],
+
+//   [50,5],[60,10],[70,15],[80,20],[90,25],[100,30],
+
+  
+//   ]);
+
+
+// Set Options
+var options = {
+
+    height:550,
+        width: "100%",
+    	title: "<?php echo $title_discription; ?>",
+    	bar: {groupWidth: "95%"},
+ hAxis: {
+            title: "<?php echo $title; ?>",
+        },
+
+  vAxis: {title: 'Time in hours'},
+  
+  legend: 'none'
+
+
+};
+// Draw Chart
+var chart = new google.visualization.LineChart(document.getElementById('myChart'));
+chart.draw(data, options);
+}
+</script>
