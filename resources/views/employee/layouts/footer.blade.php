@@ -146,7 +146,7 @@
 
 
 		
-	<script>
+	<!-- <script>
 	$('#percent').on('change', function() {
 		var val = parseInt($(this).val());
 		var $circle = $('#svg #bar');
@@ -168,8 +168,8 @@
 			$('#cont').attr('data-pct', val);
 		}
 	});
-	</script>
-	<script>
+	</script> -->
+	<!-- <script>
 		let toggle = document.querySelector('.toggle');
 		let sidemenubar = document.querySelector('.sidemenubar');
 		let maintop = document.querySelector('.maintop');
@@ -215,9 +215,9 @@
 				maintop.classList.toggle('active');
 				headertop.classList.toggle('active');
 			}
-		  </script>
+		  </script> -->
 		
-		 <script>
+		 <!-- <script>
 		   //Get the button
 		   var mybutton = document.getElementById("myBtn");
 	   
@@ -238,18 +238,18 @@
 			 document.documentElement.scrollTop = 0;
 		   }
 	   
-		 </script>
+		 </script> -->
 		 <script>
-		   $(window).scroll(function () {
-			 if ($(window).scrollTop() >= 300) {
-			   $('nav').addClass('fixed-header');
-			   $('nav div').addClass('visible-title');
-			 }
-			 else {
-			   $('nav').removeClass('fixed-header');
-			   $('nav div').removeClass('visible-title');
-			 }
-		   });
+		//    $(window).scroll(function () {
+		// 	 if ($(window).scrollTop() >= 300) {
+		// 	   $('nav').addClass('fixed-header');
+		// 	   $('nav div').addClass('visible-title');
+		// 	 }
+		// 	 else {
+		// 	   $('nav').removeClass('fixed-header');
+		// 	   $('nav div').removeClass('visible-title');
+		// 	 }
+		//    });
 
 		    jQuery(function ($) {
                 $(".sidebar-dropdown > a").click(function () {

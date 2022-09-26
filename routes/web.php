@@ -49,6 +49,7 @@ Route::group(['as'=>'employee.','prefix' => 'employee','middleware' => ['auth', 
    Route::post('activity_filter', 'employee\EmployeeController@activity_filter')->name('activity_filter');
    Route::get('graphs', 'employee\EmployeeController@graphs')->name('graphs');
    Route::post('graph_time', 'employee\EmployeeController@graph_time')->name('graph_time');
+   Route::get('calender', 'employee\EmployeeController@Chartjs')->name('calender');
    
 });
 

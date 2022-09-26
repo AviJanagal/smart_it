@@ -17,7 +17,7 @@
         <div class="table-title-add">
             <div class="row">
             <div class="col-sm-12">
-            <h2 style="text-align:center;">My Activity Graphs</h2>
+            <h2 style="text-align:center;">My Productivity Graph</h2>
            
             </div>
             </div>
@@ -27,10 +27,10 @@
             <div class="row">
                 <div class="col-sm-2">       
                     <select class="form-select" aria-label="Default select example" name="graph_time" id="graph_time" required>
-                        <option selected disabled value="">Select Time Period</option>
-                        <option value="weekly">Weekly</option>
-                        <option value="monthly">Monthly</option>
-                        <option value="yearly">Yearly</option>
+                        <option  disabled value="">Select Time Period</option>
+                        <option value="weekly" {{($type == "weekly" ? "selected":"")}}>Weekly</option>
+                        <option value="monthly" {{($type == "monthly" ? "selected":"")}}>Monthly</option>
+                        <option value="yearly" {{($type == "yearly" ? "selected":"")}}>Yearly</option>
                     </select>
                 </div>
                     <div class="col-sm-2">
@@ -90,6 +90,7 @@
         },
          vAxis: {
             title: 'Time Taken (Hours)',
+            minValue: 0
         },
     	legend: { position: "none" },
 

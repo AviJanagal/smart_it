@@ -162,7 +162,7 @@ class EmployeeController extends Controller
                     $minutes = floor(($init / 60) % 60);
                     $minute = (int) ($minutes);
                     if($hour !== 0 ){
-                        $total = $hours." hrs".$minutes." min";
+                        $total = $hours."hrs".$minutes."min";
                     }else{
                         $total = $minutes." min";
                     }
@@ -329,10 +329,11 @@ class EmployeeController extends Controller
           $minutes = $minutes%60 ;
           array_push($result,[(string)$date->format('l'), $hours.".".$minutes ,"#122f51"]);
         }
-        $title_discription = "Weekly Attendance Chart";
+        $title_discription = "My Weekly Productivity";
         $title = "Days";
+        $type = "weekly";
 
-        return view('employee.graphs',compact('result','title_discription','title'));
+        return view('employee.graphs',compact('result','title_discription','title','type'));
     }
 
     public function graph_time(Request $request){
@@ -345,8 +346,9 @@ class EmployeeController extends Controller
                 $minutes = $minutes%60 ;
                 array_push($result,[$date->format('Y/m/d'), $hours.".".$minutes ,"#122f51"]);
             }
-            $title_discription = "Monthly Attendance Chart";
+            $title_discription = "My Monthly Productivity";
             $title = "Dates";
+            $type = $request->graph_time;
         }
         elseif($request->graph_time == "yearly"){
             $result = [];
@@ -361,8 +363,9 @@ class EmployeeController extends Controller
                 array_push($result,[date('F',strtotime($month)), $hours.".".$minutes ,"#122f51"]);
             }
            
-            $title_discription = "Yearly Attendance Chart";
+            $title_discription = "My Yearly Productivity";
             $title = "Months";
+            $type = $request->graph_time;
         }
         else{
             $week_dates = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfWeek(), \Carbon\Carbon::now()->endOfWeek());
@@ -373,11 +376,23 @@ class EmployeeController extends Controller
                 $minutes = $minutes%60 ;
                 array_push($result,[(string)$date->format('l'), $hours.".".$minutes ,"#122f51"]);
             }
-            $title_discription = "Weekly Attendance Chart";
+            $title_discription = "My Weekly Productivity";
             $title = "Days";
+            $type = $request->graph_time;
         }
-        return view('employee.graphs',compact('result','title_discription','title'));  
+        return view('employee.graphs',compact('result','title_discription','title','type'));  
     }
+
+
+        public function Chartjs(){
+        // $Events =   [
+        //                 ["title" => "Holiday","start" => "2022-09-23"],
+        //                 ["title" => "Holiday","start" => "2022-09-13"]
+        //             ];
+        $holidays = \App\Calender::get()->toArray();
+        return view('employee.fullcalendar',['holidays' => $holidays]);
+    }
+    
 }
 
         

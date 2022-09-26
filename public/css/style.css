@@ -1800,6 +1800,7 @@ table.table.table-striped.table-hover.dataTable td {
     width: 100%;
     border-radius: 15px;
     height: 92vh;
+    background-color: #ffe6e6;
 }
 
 .form-check-input:checked {

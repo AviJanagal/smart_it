@@ -1809,12 +1809,16 @@ label.customchangesuser {
 }
 
 input.customchangesemail {
+    margin-bottom: 24px;
     padding: 10px;
     font-weight: 400;
-    margin-bottom: 24px;
     box-shadow: 0px 0px 19px 19px #00000005;
     border: 0px;
-    min-height: 50px !important;
+    min-height: 49px !important;
+    padding-left: 46px;
+    appearance: revert;
+    height: 55px;
+    border-radius: 74px;
 }
 
 button.btn.btn-primary.custombuttonchanges {
@@ -1834,7 +1838,7 @@ button.btn.btn-primary.custombuttonchanges {
     top: 0px;
     right: 0px;
     width: 63%;
-    background-color: #25409f;
+    /* background-color: #25409f; */
     height: 100%;
     z-index: -1;
     border-bottom-left-radius: 20px;
@@ -1924,6 +1928,8 @@ p.customnumberinfo {
 .mainbookingheading h4 {
     margin-bottom: 50px;
 }
+
+
 
 .imagecirclebox img {
     border-radius: 50%;
@@ -2080,4 +2086,101 @@ h5.customnamesetting {
 /* .chartcustom {
     margin-top: 192px;
     width: 1200px;
+} */
+
+
+.cal-custom {
+    height: 100px;
+    width: 800px;
+    margin-left: 102px;
+    max-width: 653px;
+    margin: auto;
+    margin-top: 25px;
+}
+
+
+a.fc-day-number {
+    text-decoration: none;
+    color: #000000;
+    font-size: 24px;
+}
+
+.fc-center h2 {
+    color: #fa5603;
+}
+
+th.fc-day-header.fc-widget-header span {
+    font-size: 25px;
+}
+
+button.fc-today-button.fc-button.fc-state-default.fc-corner-left.fc-corner-right.fc-state-disabled {
+    background: rgb(255, 255, 255);
+    color: black;
+    font-weight: 800;
+    font-size: 17px;
+    border: 2px solid #ffc192;
+}
+button.fc-today-button.fc-button.fc-state-default.fc-corner-left.fc-corner-right {
+    background: rgb(255, 255, 255);
+    color: black;
+    font-weight: 800;
+    font-size: 17px;
+}
+
+th.fc-day-header.fc-widget-header {
+    text-decoration: none;
+    color: #000000;
+    /* font-size: 21px;
+    padding: 10px; */
+}
+
+a.fc-day-grid-event.fc-h-event.fc-event.fc-start.fc-end.fc-draggable.fc-resizable {
+    background: #ff6000;
+    border: 0px;
+    padding: 3px;
+    font-weight: 400;
+}
+td.fc-day.fc-widget-content.fc-mon.fc-today {
+    background: #f9b58c52;
+}
+.fc-toolbar.fc-header-toolbar {
+    background: #ff600045;
+    /* margin-top: 10px; */
+     padding-top: 15px;
+    /*padding-left: 2px;
+    padding-right: 2px; */
+}
+.fc-toolbar.fc-header-toolbar {
+    margin-bottom: 0em;
+}
+.fc-button-group button {
+    background: white;
+    font-size: 17px;
+    font-weight: 700;
+    border: 2px solid #ff600045;
+}
+
+button#dropdownMenuButton {
+    background: #0c2f56;
+    border: 0px;
+}
+button#dropdownMenuButton img {
+    border: 2px solid #0c2f56d1;
+    border-radius: 10px;
+}
+
+/* .fc-unthemed .fc-content,
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-list-heading td,
+.fc-unthemed .fc-list-view,
+.fc-unthemed .fc-popover,
+.fc-unthemed .fc-row,
+.fc-unthemed tbody,
+.fc-unthemed td,
+.fc-unthemed th,
+.fc-unthemed thead {
+    border-color: #ddd;
+    height: 42px;
+    font-size: 23px;
+    padding-top: 6px;
 } */

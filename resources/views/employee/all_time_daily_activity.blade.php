@@ -16,12 +16,12 @@
     <div class="bank-innersection">
         <div class="table-title-add">
             <div class="row">
-            <div class="col-sm-12">
-                <h2 style="text-align:center;">Current Month Attendance </h2>
-            </div>
+                <div class="col-sm-12">
+                    <h2 style="text-align:center;">Current Month Attendance </h2>
+                </div>
             </div>
         </div>
-        </div>
+    </div>
         <div class="customtableinnerbox">
         <div class="main-container-inner">
         @if(count($all_daily_activities) > 0)
