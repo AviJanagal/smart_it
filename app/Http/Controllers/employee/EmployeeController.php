@@ -324,7 +324,7 @@ class EmployeeController extends Controller
         $week_dates = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfWeek(), \Carbon\Carbon::now()->endOfWeek());
         $result = [];
         foreach($week_dates as $date){
-          $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->sum('time_in_minutes');
+          $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
           $hours = floor($minutes/60) ;
           $minutes = $minutes%60 ;
           array_push($result,[(string)$date->format('l'), $hours.".".$minutes ,"#122f51"]);
@@ -341,7 +341,7 @@ class EmployeeController extends Controller
             $month_dates = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfMonth(), \Carbon\Carbon::now()->endOfMonth());
             $result = [];
             foreach($month_dates as $date){
-                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->sum('time_in_minutes');
+                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
                 $hours = floor($minutes/60) ;
                 $minutes = $minutes%60 ;
                 array_push($result,[$date->format('Y/m/d'), $hours.".".$minutes ,"#122f51"]);
@@ -357,7 +357,7 @@ class EmployeeController extends Controller
                 $month[] = date('F', mktime(0,0,0,$m, 1, date('Y')));
             }
             foreach($month as $month){
-                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at',date('m',strtotime($month)))->whereYear('created_at', date('Y'))->sum('time_in_minutes');
+                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at',date('m',strtotime($month)))->whereYear('created_at', date('Y'))->where('project_id','!=',0)->sum('time_in_minutes');
                 $hours = floor($minutes/60) ;
                 $minutes = $minutes%60 ;
                 array_push($result,[date('F',strtotime($month)), $hours.".".$minutes ,"#122f51"]);
@@ -371,7 +371,7 @@ class EmployeeController extends Controller
             $week_dates = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfWeek(), \Carbon\Carbon::now()->endOfWeek());
             $result = [];
             foreach($week_dates as $date){
-                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->sum('time_in_minutes');
+                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
                 $hours = floor($minutes/60) ;
                 $minutes = $minutes%60 ;
                 array_push($result,[(string)$date->format('l'), $hours.".".$minutes ,"#122f51"]);

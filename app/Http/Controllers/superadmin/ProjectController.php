@@ -154,8 +154,11 @@ class ProjectController extends Controller
 
         $type = 1;
         $employee = \App\User::where('role','employee')->orderBy('id','desc')->get();
+
         $projects = \App\ProjectAssign::orderBy('id','desc')->get();
+
         $get_projects = \App\Project::orderBy('id','desc')->get();
+
         foreach($projects as $data)
         {
             $project = \App\Project ::find($data->project_id);
@@ -165,6 +168,8 @@ class ProjectController extends Controller
             $data->first_name = $developer->first_name.' '.$developer->last_name;
 
         }
+
+
 
         return view('Superadmin/project/project_assign',compact('type','get_projects','projects','employee'));
 
@@ -204,13 +209,14 @@ class ProjectController extends Controller
         $get_projects = \App\Project::orderBy('id','desc')->get();
         foreach($projects as $data)
         {
-            $project = \App\Project ::find($data->project_id);
+            $project = \App\Project::find($data->project_id);
             $data->project_name = $project->project_name;
 
             $developer = \App\User::where('role','employee')->find($data->developer_id);
             $data->first_name = $developer->first_name.' '.$developer->last_name;
 
         }
+
 
         $type = 2;
         return view('Superadmin/project/project_assign',compact('assign_project','projects','type','employee','get_projects'));

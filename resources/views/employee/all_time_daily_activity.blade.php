@@ -43,14 +43,13 @@
                     <tr>
                         <td>{{$daily_activities->id}}</td>
                         <td>{{$daily_activities->date}}</td>
-                        @if($daily_activities->project_id == 1)
-                        <td>Cut2You</td>
-                        @elseif($daily_activities->project_id == 2)
-                        <td>Heal It</td>
-                        @elseif($daily_activities->project_id == 3)
-                        <td>Maid Me</td>
-                        @else
-                        <td>Orchard Theives</td>
+                        @if($daily_activity->project_id !== 0)
+                            @php
+                                $project = \App\Project::where('id', $daily_activity->project_id)->value('project_name');
+                            @endphp
+                            <td>{{$project}}</td>
+                            @else
+                                <td>Other</td>
                         @endif
                         <td>{{($daily_activities->start_time !== null) ? \Carbon\Carbon::parse($daily_activities->start_time)->format('g:i A') : "Pending"}}</td>
                         <td>{{($daily_activities->end_time !== null) ? \Carbon\Carbon::parse($daily_activities->end_time)->format('g:i A') : "Pending"}}</td>

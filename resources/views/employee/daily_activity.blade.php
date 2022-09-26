@@ -31,11 +31,12 @@
               }
               ?>
             <select class="form-select col-md-4"  name="project_id" id="myProject" {{($type == "1") ? "disabled" : " "}} required>
-                <option selected value="">Select Project</option>
+                <option selected value="" disabled>Select Project</option>
                @if($projects_ids){
                 @foreach ($projects as $project)
 									<option value="{{$project->id}}">{{$project->project_name}}</option>
 								@endforeach
+									<option value="0">Other</option>
               @endif
                
             </select>
@@ -78,14 +79,14 @@
              @foreach($total_daily_activity as $daily_activity)
               <tr>
                 <td>{{$daily_activity->id}}</td>
-                @if($daily_activity->project_id == 1)
-                <td>Cut2You</td>
-                @elseif($daily_activity->project_id == 2)
-                <td>Heal It</td>
-                @elseif($daily_activity->project_id == 3)
-                <td>Maid Me</td>
+                <!-- here 0 project_id is for other tasks -->
+                @if($daily_activity->project_id !== 0)
+                  @php
+                      $project = \App\Project::where('id', $daily_activity->project_id)->value('project_name');
+                  @endphp
+                  <td>{{$project}}</td>
                 @else
-                <td>Orchard Theives</td>
+                    <td>Other</td>
                 @endif
                 <td>{{$daily_activity->description}}</td>
                 <td>{{($daily_activity->start_time !== null) ? \Carbon\Carbon::parse($daily_activity->start_time)->format('g:i A') : "Pending"}}</td>

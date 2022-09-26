@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
+Route::post('register','API\UserController@register');
+Route::post('login','API\UserController@login');
+Route::post('add_employee','API\UserController@add_employee')->name('add_employee');
+
+

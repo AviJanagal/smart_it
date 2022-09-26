@@ -13,8 +13,8 @@
 							</div>
 						</div>	
 						<div class="col-md-4">
-							<div class="mainheadingbox"> 
-								<h6 onclick="logInTime()" id="checkIn" onMouseOver="this.style.cursor = 'pointer'">Check In</h6>
+							<div class="mainheadingbox" onclick="logInTime()" id="checkIn" onMouseOver="this.style.cursor = 'pointer'"> 
+								<h6 >Check In</h6>
 							</div>
 							<div class="flowchart">
 								<div id="cont" data-pct="00:00">
@@ -26,8 +26,8 @@
 							</div>
 						</div>
 						<div class="col-md-4">
-							<div class="mainheadingbox">
-								<h6 onclick="logOutTime()" onMouseOver="this.style.cursor = 'pointer'">Check Out</h6>
+							<div class="mainheadingbox" onclick="logOutTime()" onMouseOver="this.style.cursor = 'pointer'">
+								<h6>Check Out</h6>
 							</div>
 							<div class="flowchart">
 								<div id="cont" class="content"data-pct="00:00">

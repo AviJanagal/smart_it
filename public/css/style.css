@@ -830,13 +830,13 @@ button.btn.btn-danger.custom-innerbutton.btn-stylessav.btnclient {
 
 .mainheadinglink ul li a {
     text-decoration: none;
-    color: black;
+    color: #f15a22;
     font-weight: 600;
     font-size: 20px;
 }
 
 a.custom-color.active {
-    color: #AF2D7D;
+    color: #000;
 }
 
 .mainheadinglink {
@@ -884,7 +884,7 @@ a.custom-color.active {
     display: block;
     width: 20%;
     padding: 10px 20px 10px 20px;
-    background-color: #AF2D7D;
+    background-color: #f15a22;
     border-radius: 20px;
     font-size: 20px;
     text-decoration: none;
@@ -1015,8 +1015,8 @@ p.text-address {
 }
 
 thead.inner-tablecolor {
-    background: #AF2D7D;
-    color: white;
+    background: #cad7e6;
+    color: black;
 }
 
 .table-innerdata {
@@ -1530,8 +1530,8 @@ nav.custom-nav {
 }
 
 .nav-tabs .nav-link.custom-tab.active {
-    background: #ac2b7b;
-    color: #fff;
+    background: #f15a22;
+    color: black;
 }
 
 .nav-tabs .nav-link.custom-tab1.active {

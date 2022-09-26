@@ -11,14 +11,12 @@
             </div>
             @endif
             @include('sweet::alert')
-           
         </div>
     <div class="bank-innersection">
         <div class="table-title-add">
             <div class="row">
             <div class="col-sm-12">
             <h2 style="text-align:center;">My Productivity Graph</h2>
-           
             </div>
             </div>
         </div>
@@ -73,6 +71,8 @@
     var complaints = jQuery.merge(title, my_array);
 
     var data = google.visualization.arrayToDataTable(complaints);
+
+    
     var view = new google.visualization.DataView(data);
     view.setColumns([0, 1,
         { calc: "stringify",
