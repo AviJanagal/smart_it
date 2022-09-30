@@ -10,6 +10,7 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             @endif
+            @include('sweet::alert')
         </div>
     <div class="bank-innersection">
         <div class="table-title-add">

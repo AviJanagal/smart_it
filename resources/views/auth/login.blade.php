@@ -24,11 +24,7 @@
                                     <div class="leftformsectionboxheading">
                                         <img src="{{ asset('images/smart_it.png') }}" />
                                     </div>
-                                    <div class="leftformsectioninnerdata">
-                                        <h1>Welcome to <span>SMART IT VENTURES</span></h1>
-                                        <h6>Please sign in to continue</h6>
-                                        <!-- <img src="{{ asset('images/smart_it.png') }}" /> -->
-                                    </div>
+                               
                                     <div class="leftformsectioninnerdata">
                                         <h1>Welcome to <span> Smart It Ventures</span></h1>
                                         <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">

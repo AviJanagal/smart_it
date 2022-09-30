@@ -3,87 +3,20 @@
 namespace App\Http\Controllers\employee;
 use App\Http\Controllers\Controller;
 use Auth;
+use Mail;
+use App\Mail\ApplyLeaveMail;
 use DateTime;
 
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
         return view('employee.dashboard');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
     public function log_in_time()
     {
         $is_valid = \App\EmployeeAttendance::where('employee_id',Auth::id())->where('date',(new DateTime)->format('Y-m-d'))->where('end_time',null)->first();
@@ -162,7 +95,7 @@ class EmployeeController extends Controller
                     $minutes = floor(($init / 60) % 60);
                     $minute = (int) ($minutes);
                     if($hour !== 0 ){
-                        $total = $hours." hrs".$minutes." min";
+                        $total = $hours."hrs".$minutes."min";
                     }else{
                         $total = $minutes." min";
                     }
@@ -228,7 +161,6 @@ class EmployeeController extends Controller
         $endTime = strtotime($finish_activity->end_time);
         $finish_activity->time_in_minutes = floor(round(abs($endTime - $startTime) / 60,2));
         if($finish_activity->save()){
-            // return $finish_activity->start_time.":".$finish_activity->end_time;
             alert()->success('Daily Activity Finished Successfully!','Success');
             return redirect()->route('employee.daily_activity');
         }
@@ -240,7 +172,18 @@ class EmployeeController extends Controller
 
     public function all_daily_activities(){
         $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', \Carbon\Carbon::now()->month)->get();
-        return view('employee.all_daily_activities',compact('all_daily_activities'));
+        $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', \Carbon\Carbon::now()->month)->where('project_id','!=',0)->sum('time_in_minutes');
+        $month_status = date('F');
+        $hours = floor($total_mins/60) ;
+        $minute = $total_mins%60 ;
+
+        if($hours == 0){
+            $total_time =  $minute." min";
+        }
+        else{
+            $total_time = $hours." hour". $minute." min";
+        }
+        return view('employee.all_daily_activities',compact('all_daily_activities','total_time','month_status'));
     }
 
     public function attendance_filter(Request $request){
@@ -294,45 +237,66 @@ class EmployeeController extends Controller
      
         if(!empty($year) && !empty($month) && !empty($date)){
              $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereMonth('created_at', $month)->whereDate('created_at',$date)->get();
+             $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereMonth('created_at', $month)->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
         }
         elseif(!empty($year) && !empty($month) && empty($date)){
              $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereMonth('created_at', $month)->get();
+             $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereMonth('created_at', $month)->where('project_id','!=',0)->sum('time_in_minutes');
         }
         elseif(!empty($year) && empty($month) && empty($date)){
              $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->get();
+             $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->where('project_id','!=',0)->sum('time_in_minutes');
         }
         elseif(!empty($year) && empty($month) && !empty($date)){
              $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereDate('created_at',$date)->get();
+             $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
         }
         elseif(empty($year) && !empty($month) && !empty($date)){
              $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', $month)->whereDate('created_at',$date)->get();
+             $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', $month)->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
         }
         elseif(empty($year) && !empty($month) && empty($date)){
             $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', $month)->get();
+            $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', $month)->where('project_id','!=',0)->sum('time_in_minutes');
         }
         elseif(empty($year) && empty($month) && !empty($date)){
              $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->get();
+             $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
         }
         else{
             $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', \Carbon\Carbon::now()->month)->get();
+            $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', \Carbon\Carbon::now()->month)->where('project_id','!=',0)->sum('time_in_minutes');
+        }
+        $year_status = $request->year;
+        $month_status = $request->month;
+        $date_status = $request->date;
+        $hours = floor($total_mins/60) ;
+        $minute = $total_mins%60 ;
+
+        if($hours == 0 ){
+            $total_time =  $minute." min";
+        }
+        else{
+            $total_time = $hours." hour". $minute." min";
         }
 
-        return view('employee.all_daily_activities',compact('all_daily_activities'));
+        return view('employee.all_daily_activities',compact('all_daily_activities','month_status','date_status','year_status','total_time'));
     }
 
     public function graphs(){
         $week_dates = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfWeek(), \Carbon\Carbon::now()->endOfWeek());
         $result = [];
         foreach($week_dates as $date){
-          $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->sum('time_in_minutes');
+          $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
           $hours = floor($minutes/60) ;
           $minutes = $minutes%60 ;
           array_push($result,[(string)$date->format('l'), $hours.".".$minutes ,"#122f51"]);
         }
-        $title_discription = "Weekly Attendance Chart";
+        $title_discription = "My Weekly Productivity";
         $title = "Days";
+        $type = "weekly";
 
-        return view('employee.graphs',compact('result','title_discription','title'));
+        return view('employee.graphs',compact('result','title_discription','title','type'));
     }
 
     public function graph_time(Request $request){
@@ -340,13 +304,14 @@ class EmployeeController extends Controller
             $month_dates = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfMonth(), \Carbon\Carbon::now()->endOfMonth());
             $result = [];
             foreach($month_dates as $date){
-                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->sum('time_in_minutes');
+                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
                 $hours = floor($minutes/60) ;
                 $minutes = $minutes%60 ;
                 array_push($result,[$date->format('Y/m/d'), $hours.".".$minutes ,"#122f51"]);
             }
-            $title_discription = "Monthly Attendance Chart";
+            $title_discription = "My Monthly Productivity";
             $title = "Dates";
+            $type = $request->graph_time;
         }
         elseif($request->graph_time == "yearly"){
             $result = [];
@@ -355,28 +320,66 @@ class EmployeeController extends Controller
                 $month[] = date('F', mktime(0,0,0,$m, 1, date('Y')));
             }
             foreach($month as $month){
-                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at',date('m',strtotime($month)))->whereYear('created_at', date('Y'))->sum('time_in_minutes');
+                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at',date('m',strtotime($month)))->whereYear('created_at', date('Y'))->where('project_id','!=',0)->sum('time_in_minutes');
                 $hours = floor($minutes/60) ;
                 $minutes = $minutes%60 ;
                 array_push($result,[date('F',strtotime($month)), $hours.".".$minutes ,"#122f51"]);
             }
            
-            $title_discription = "Yearly Attendance Chart";
+            $title_discription = "My Yearly Productivity";
             $title = "Months";
+            $type = $request->graph_time;
         }
         else{
             $week_dates = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfWeek(), \Carbon\Carbon::now()->endOfWeek());
             $result = [];
             foreach($week_dates as $date){
-                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->sum('time_in_minutes');
+                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
                 $hours = floor($minutes/60) ;
                 $minutes = $minutes%60 ;
                 array_push($result,[(string)$date->format('l'), $hours.".".$minutes ,"#122f51"]);
             }
-            $title_discription = "Weekly Attendance Chart";
+            $title_discription = "My Weekly Productivity";
             $title = "Days";
+            $type = $request->graph_time;
         }
-        return view('employee.graphs',compact('result','title_discription','title'));  
+        if($request->ajax()){
+                return response()->json(['result'=>$result,'title_discription'=>$title_discription,'title'=>$title,'type'=>$type]);
+            }
+        else{
+
+            return view('employee.graphs',compact('result','title_discription','title','type'));  
+        }
+    }
+
+
+    public function Chartjs(){
+        $holidays = \App\Calender::get()->toArray();
+        $holidays_list = \App\Calender::get();
+        return view('employee.fullcalendar',['holidays' => $holidays,'holidays_list' => $holidays_list]);
+    }
+    
+    public function apply_leave(){
+        $leaves = \App\ApplyLeave::where('employee_id',Auth::id())->whereDate('start_date', '>=', \Carbon\Carbon::now())->get();
+        return view('employee.apply_leave',compact('leaves'));
+    }
+
+    public function send_leave(Request $request){
+        if(empty($request->discription) or is_null($request->discription)) {
+            alert()->message('Please fill Your Mail Description!','Error');
+            return back();
+        }
+        else{
+            $leave = new \App\ApplyLeave;
+            $leave->employee_id = Auth::id();
+            $leave->start_date = $request->start_date;
+            $leave->end_date = $request->end_date;
+            $leave->discription = $request->discription;
+            if($leave->save())
+                Mail::to('avinash@smartitventures.com')->send(new ApplyLeaveMail($leave));
+                alert()->message('Leave applied Successfully!','Success');
+            return redirect()->route('employee.apply_leave');
+        }
     }
 }
 

@@ -10,6 +10,7 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             @endif
+            @include('sweet::alert')
            
         </div>
     <div class="bank-innersection">
@@ -21,16 +22,19 @@
                 <div class="row">
                 @csrf
                 <div class="col-sm-2">
-                    <input type="text" id="yearPicker" name="year" placeholder="Select Year" autocomplete="off">
+                    <input type="text" id="yearPicker" name="year" placeholder="Select Year" value="{{(!empty($year_status))? $year_status:''}}" autocomplete="off">
                 </div>
                 <div class="col-sm-2"> 
-                    <input type="text" id="monthPicker" name="month"  placeholder="Select Month" autocomplete="off">
+                    <input type="text" id="monthPicker" name="month"  placeholder="Select Month" value="{{(!empty($month_status))? $month_status:''}}" autocomplete="off">
                 </div>
                 <div class="col-sm-2">
-                    <input type="text" id="datePicker"  name="date"  placeholder="Select Date" autocomplete="off">
+                    <input type="text" id="datePicker"  name="date"  placeholder="Select Date" value="{{(!empty($date_status))? $date_status:''}}" autocomplete="off">
                 </div>
                 <div class="col-sm-2">
                     <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+                <div class="col-sm-2 mt-2 ml-4">
+                    <span class=""><h6>Total Productivity Time : {{ $total_time}}</h6></span>
                 </div>
              
                 </div>
@@ -61,14 +65,13 @@
                     <tr>
                         <td>{{$daily_activities->id}}</td>
                         <td>{{$daily_activities->date}}</td>
-                        @if($daily_activities->project_id == 1)
-                        <td>Cut2You</td>
-                        @elseif($daily_activities->project_id == 2)
-                        <td>Heal It</td>
-                        @elseif($daily_activities->project_id == 3)
-                        <td>Maid Me</td>
-                        @else
-                        <td>Orchard Theives</td>
+                        @if($daily_activities->project_id !== 0)
+                            @php
+                                $project = \App\Project::where('id', $daily_activities->project_id)->value('project_name');
+                            @endphp
+                            <td>{{$project}}</td>
+                            @else
+                                <td>Other</td>
                         @endif
                         <td>{{$daily_activities->description }}</td>
                         <td>{{($daily_activities->start_time !== null) ? \Carbon\Carbon::parse($daily_activities->start_time)->format('g:i A') : "Pending"}}</td>

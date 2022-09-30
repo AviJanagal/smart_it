@@ -21,10 +21,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
-   
+
+
+    <!-- <style>
+        #loader {
+            border: 12px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 12px solid #444444;
+            width: 70px;
+            height: 70px;
+            animation: spin 1s linear infinite;
+        }
+          
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+          
+        .center {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style> -->
 </head>
 
 <body>
+     <!-- <div id="loader" class="center"></div> -->
+     
 	<header class="headertop">
     <div class="container-fluid">
         <div class="row custom-row">
@@ -32,29 +60,33 @@
                 <div class="headingbox">
                     <h6>   
                         @php 
-                        if(Route::is('employee.attendance_history'))
-                        {
-                            $name = "Attendance History";
-                        }
-                        elseif(Route::is('employee.employee.index'))
-                        {
-                            $name = "Dashboard";
-                        }
-                        elseif(Route::is('employee.daily_activity'))
-                        {
-                            $name = "Daily Activity";
-                        }
-                        elseif(Route::is('employee.all_daily_activities'))
-                        {
-                            $name = "My All Activity";
-                        }
-                        elseif(Route::is('employee.graphs') || Route::is('employee.graph_time'))
-                        {
-                            $name = "Graphs";
-                        }
-                        else{
-                             $name = " ";
-                        }
+                            if(Route::is('employee.attendance_history'))
+                            {
+                                $name = "Attendance History";
+                            }
+                            elseif(Route::is('employee.employee.index'))
+                            {
+                                $name = "Dashboard";
+                            }
+                            elseif(Route::is('employee.daily_activity'))
+                            {
+                                $name = "Daily Activity";
+                            }
+                            elseif(Route::is('employee.all_daily_activities'))
+                            {
+                                $name = "All Time Activity";
+                            }
+                            elseif(Route::is('employee.apply_leave'))
+                            {
+                                $name = "Apply Leave";
+                            }
+                            elseif(Route::is('employee.graphs') || Route::is('employee.graph_time'))
+                            {
+                                $name = "Graphs";
+                            }
+                            else{
+                                $name = " ";
+                            }
                         @endphp
                         <a href="#"> <span class="app">Application </span></a><span class="ïcon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span><span class="dash">{{$name}}</span>
                     </h6>
@@ -68,6 +100,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#">Profile</a>
+                            <!-- <a class="dropdown-item" href="#">Calender</a> -->
                             <!-- <a class="dropdown-item" href="#">Setting</a> -->
                             <a class="{{ (request()->is('logout')) ? 'active' : '' }} dropdown-item custom-dropdown" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                 <span class="menuname">
