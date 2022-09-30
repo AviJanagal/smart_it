@@ -1684,7 +1684,7 @@ a.paginate_button {
 }
 
 .faqheading h4 {
-    background: #ac2b7b;
+    background: #ff5a04;
     color: #fff;
     padding: 16px 30px;
     margin-bottom: 15px;
@@ -1718,7 +1718,7 @@ select#select_user_type {
     float: right;
     margin-right: 40px;
     border-radius: 10px;
-    background-color: #AF2D7D;
+    background-color: #ff5a04;
     display: block;
     padding: 12px;
     width: 100px !important;
@@ -2169,6 +2169,16 @@ button#dropdownMenuButton img {
     border-radius: 10px;
 }
 
+.fc-button-group button {
+    border-radius: 93px;
+}
+.Pendingbox.calender {
+    background-color: #ff5a04;
+    padding: 10px;
+    color: white;
+    border-radius: 6px;
+    margin-top: 25px;
+}
 /* .fc-unthemed .fc-content,
 .fc-unthemed .fc-divider,
 .fc-unthemed .fc-list-heading td,

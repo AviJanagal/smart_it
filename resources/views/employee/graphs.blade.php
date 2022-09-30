@@ -24,16 +24,13 @@
             @csrf
             <div class="row">
                 <div class="col-sm-2">       
-                    <select class="form-select" aria-label="Default select example" name="graph_time" id="graph_time" required>
+                    <select class="form-select" aria-label="Default select example" name="graph_time" id="graph_time" onchange="this.form.submit()" required>
                         <option  disabled value="">Select Time Period</option>
                         <option value="weekly" {{($type == "weekly" ? "selected":"")}}>Weekly</option>
                         <option value="monthly" {{($type == "monthly" ? "selected":"")}}>Monthly</option>
                         <option value="yearly" {{($type == "yearly" ? "selected":"")}}>Yearly</option>
                     </select>
                 </div>
-                    <div class="col-sm-2">
-                        <button type="submit" class="btn btn-primary " id="submit">Show</button>
-                    </div>
             </div> 
         </form>
 
@@ -50,6 +47,7 @@
 </main>
 
 @include('employee.layouts.footer')
+
 <script>
     $('#submit').on('click', function() {
         var value = $("#graph_time").val();

@@ -15,10 +15,10 @@
 			<li class="sidebar-dropdown active ">
 				<a href="#" class="{{in_array(Route::currentRouteName(),['employee.daily_activity','employee.all_daily_activities']) ? 'active' : '' }}"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Daily Activity</span> <i class="fa fa-angle-right right-custom" aria-hidden="true"></i> </a>
 				<ul class="sidebar-submenu" style="display:none;">
-					<li> <a href="{{route('employee.daily_activity') }}">Add
+					<li> <a href="{{route('employee.daily_activity') }}" class="{{(Route::is('employee.daily_activity'))?'active' : ''}}">Add
 					
 					</a> </li>
-					<li> <a href="{{route('employee.all_daily_activities') }}">All Time Activity</a> </li>
+					<li> <a href="{{route('employee.all_daily_activities') }}" class="{{(Route::is('employee.all_daily_activities'))?'active' : ''}}">All Time Activity</a> </li>
 					
 					
 				</ul>
@@ -28,6 +28,9 @@
 			</li>			
 			<li>
 				<a href="{{ route('employee.calender') }}" class="{{(Route::is('employee.calender'))?'active' : ''}}"> <span class="icon "><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span> <span class="title ">Calender</span> </a>
+			</li>			
+			<li>
+				<a href="{{ route('employee.apply_leave') }}" class="{{(Route::is('employee.apply_leave'))?'active' : ''}}"> <span class="icon "><i class="fa fa-envelope" aria-hidden="true"></i></span> <span class="title ">Apply Leave</span> </a>
 			</li>			
 		</ul>
 	</nav>

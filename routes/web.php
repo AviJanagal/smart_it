@@ -28,10 +28,6 @@ Route::group(['as'=>'admin.','prefix' => 'admin','middleware' => ['auth', 'isAdm
    Route::get('/view_employee/{id}', 'superadmin\EmployeeController@view_employee')->name('view_employee');
    Route::get('/del_emp_assigned_project/{id}', 'superadmin\EmployeeController@del_emp_assigned_project')->name('del_emp_assigned_project');
    Route::post('/employee_graph/{id}', 'superadmin\EmployeeController@employee_graph')->name('employee_graph');
-
-
-
-   
    Route::resource('client', 'superadmin\ClientController');
    Route::resource('project', 'superadmin\ProjectController');
    Route::get('/get_project_assign', 'superadmin\ProjectController@get_project_assign')->name('get_project_assign');
@@ -57,7 +53,9 @@ Route::group(['as'=>'employee.','prefix' => 'employee','middleware' => ['auth', 
    Route::get('graphs', 'employee\EmployeeController@graphs')->name('graphs');
    Route::post('graph_time', 'employee\EmployeeController@graph_time')->name('graph_time');
    Route::get('calender', 'employee\EmployeeController@Chartjs')->name('calender');
-   
+   Route::get('apply_leave', 'employee\EmployeeController@apply_leave')->name('apply_leave');
+   Route::post('send_leave', 'employee\EmployeeController@send_leave')->name('send_leave');
+
 });
 
 // Route::group(['as'=>'employee.','prefix' => 'employee','middleware' => ['auth', 'employee']], function () {
