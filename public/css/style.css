@@ -11,7 +11,7 @@ h6,
 body {
     margin: 0px;
     padding: 0px;
-    font-family: "Muli", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 * {
@@ -173,9 +173,9 @@ main {
 
 .viewbuttonbox a {
     text-decoration: none;
-    border: 1px solid #AF2D7D;
+    border: 1px solid #ff5a04;
     border-radius: 16px;
-    color: #AF2D7D;
+    color: #ff5a04;
     padding: 2px 25px 2px 25px;
 }
 
@@ -220,7 +220,7 @@ a.vendor1 {
 
 .viewbuttonbox a:hover {
     color: white;
-    background-color: #AF2D7D;
+    background-color: #ff5a04;
     border: transparent;
 }
 
@@ -232,11 +232,11 @@ a.vendor1 {
 
 .Pendingbox {
 
-    background-color: #AF2D7D;
+    background-color: #ff5a04;
     padding: 10px;
     color: white;
     border-radius: 6px;
-    margin-top: 68px;
+    /* margin-top: 68px; */
 }
 
 .Pendingbox.customerheadingbox {
@@ -292,7 +292,7 @@ a.vendor1 {
 
 .buttonbox2 a {
     text-decoration: none;
-    background-color: #AF2D7D;
+    background-color: #ff5a04;
     padding: 5px 12px 5px 12px;
     color: white;
     width: 100%;
@@ -1153,7 +1153,7 @@ nav.custom-nav {
 }
 
 .mystatusbtn [type="radio"]:checked+label {
-    color: #AF2D7D;
+    color: #f05a22;
 }
 
 .mystatusbtn [type="radio"]:checked+label:before,
@@ -1164,7 +1164,7 @@ nav.custom-nav {
     top: 1px;
     width: 20px;
     height: 20px;
-    border: 1px solid #AF2D7D;
+    border: 1px solid #f05a22;
     border-radius: 100%;
     background: #fff;
 }
@@ -1174,7 +1174,7 @@ nav.custom-nav {
     content: '';
     width: 12px;
     height: 12px;
-    background: #AF2D7D;
+    background: #f05a22;
     position: absolute;
     top: 5px;
     left: 4px;
@@ -2022,7 +2022,7 @@ h5.customnamesetting {
     margin: 0px auto;
 }
 .current{
-    display: block;
+    display: inline-block;
 }
 
 

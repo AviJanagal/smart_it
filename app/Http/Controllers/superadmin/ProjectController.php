@@ -21,7 +21,10 @@ class ProjectController extends Controller
         foreach($projects as $data)
         {
             $clients = \App\Client::find($data->client);
-            $data->client =  $clients->name;
+            if(!is_null($clients)){
+                $data->client =  $clients->name;
+            }
+            
 
         }
         
@@ -100,12 +103,13 @@ class ProjectController extends Controller
         foreach($projects as $data)
         {
             $clients = \App\Client::find($data->client);
-            $data->client =  $clients->name;
+            if(!is_null($clients))
+            {
+                $data->client =  $clients->name;
+
+            }
 
         }
-
-
-
         $type = 2;
         return view('Superadmin/project/project',compact('project','projects','type','get_clients'));
     }

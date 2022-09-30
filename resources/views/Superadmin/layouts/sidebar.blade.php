@@ -13,6 +13,8 @@
 				<ul class="sidebar-submenu" style="display:none;">
 					<li> <a href="{{route('admin.employee.index')}}">Add New Employee</a></li>
 					<li> <a href="{{route('admin.employee.create')}}">Employee List</a> </li>
+					<li> <a href="{{route('admin.show_department')}}">Department</a> </li>
+
 					
 
 				</ul>
@@ -29,3 +31,5 @@
 		</ul>
 	</nav>
 </div>
+
+

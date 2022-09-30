@@ -26,6 +26,14 @@ Route::group(['as'=>'admin.','prefix' => 'admin','middleware' => ['auth', 'isAdm
    Route::get('/home', 'HomeController@index')->name('home');
    Route::resource('employee', 'superadmin\EmployeeController');
    Route::get('/view_employee/{id}', 'superadmin\EmployeeController@view_employee')->name('view_employee');
+
+   Route::get('/show_department', 'superadmin\EmployeeController@show_department')->name('show_department');
+   Route::post('/add_department', 'superadmin\EmployeeController@add_department')->name('add_department');
+   Route::get('/edit_department/{id}', 'superadmin\EmployeeController@edit_department')->name('edit_department');
+   Route::post('/update_department/{id}', 'superadmin\EmployeeController@update_department')->name('update_department');
+   Route::get('/delete_department/{id}', 'superadmin\EmployeeController@delete_department')->name('delete_department');
+
+
    Route::get('/del_emp_assigned_project/{id}', 'superadmin\EmployeeController@del_emp_assigned_project')->name('del_emp_assigned_project');
    Route::post('/employee_graph/{id}', 'superadmin\EmployeeController@employee_graph')->name('employee_graph');
 
