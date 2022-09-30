@@ -13,6 +13,7 @@
  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
   <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+  
 
 <script type="text/javascript">
 
@@ -97,6 +98,9 @@
 				// alert(result.total);
 			if(result.message == false){
 				Swal.fire('Alert !','Please Enter Your daily Activity to Check out your attendance','Danger');
+                $(".swal2-confirm").addClass('anchorcls');
+                $('.anchorcls').html('<a href="{{route("employee.daily_activity")}}">Go to Activity</a>')
+                
 			}else{
 				$(".content").attr("data-pct"," ");
 				$(".content").attr("data-pct",result.message);
@@ -298,6 +302,75 @@ $(document).ready(function(){
   </div>
 </div>
 	<!-- End project description model -->
+
+    <!-- mail description model  start-->
+    
+<!-- Modal -->
+<div class="modal fade" id="mailModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content mlModel d-flex justify-content-center">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Leave Description</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="mailDesc">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- mail description model  end-->
+
+    <!-- ck editor required validation model start-->
+    <!-- Modal -->
+<div class="modal fade" id="ckModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content ckModelCon">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Alert</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Please enter your mail description
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- ck editor required validation model end-->
+
+
+     <script>
+            function showMailModel(text) {
+                // alert(text)
+                $("#mailModel").modal('show');
+                var value = $("#desc_"+text).val();
+                $('#mailDesc').html(value);
+            }
+        </script>
+
+      <script>
+        CKEDITOR.replace( 'discription' );
+        $("form").submit( function(e) {
+            var messageLength = CKEDITOR.instances['discription'].getData().replace(/<[^>]*>/gi, '').length;
+            if( !messageLength ) {
+                // alert( 'Please enter a message' );
+                $("#ckModel").modal('show');
+                e.preventDefault();
+            }
+        });
+    </script>
 
 
 	

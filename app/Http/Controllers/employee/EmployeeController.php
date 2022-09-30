@@ -365,15 +365,21 @@ class EmployeeController extends Controller
     }
 
     public function send_leave(Request $request){
-        $leave = new \App\ApplyLeave;
-        $leave->employee_id = Auth::id();
-        $leave->start_date = $request->start_date;
-        $leave->end_date = $request->end_date;
-        $leave->discription = $request->discription;
-        if($leave->save())
-            Mail::to('avinash@smartitventures.com')->send(new ApplyLeaveMail($leave));
-            alert()->message('Leave applied Successfully!','Success');
-       return redirect()->route('employee.apply_leave');
+        if(empty($request->discription) or is_null($request->discription)) {
+            alert()->message('Please fill Your Mail Description!','Error');
+            return back();
+        }
+        else{
+            $leave = new \App\ApplyLeave;
+            $leave->employee_id = Auth::id();
+            $leave->start_date = $request->start_date;
+            $leave->end_date = $request->end_date;
+            $leave->discription = $request->discription;
+            if($leave->save())
+                Mail::to('avinash@smartitventures.com')->send(new ApplyLeaveMail($leave));
+                alert()->message('Leave applied Successfully!','Success');
+            return redirect()->route('employee.apply_leave');
+        }
     }
 }
 

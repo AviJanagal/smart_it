@@ -13,7 +13,7 @@
                     </div>
                 </div>
                
-                <form role="form" data-toggle="validator" action="{{route('employee.send_leave')}}" method="post" enctype="multipart/form-data">
+                <form role="form" data-toggle="validator" id="ck" action="{{route('employee.send_leave')}}" method="post" enctype="multipart/form-data">
              
                 @csrf
 					<div class="row m-0">
@@ -50,7 +50,7 @@
 				</form>
                  <div class="customtableinnerbox mt-4">
                     <div class="main-container-inner">
-      <div class="col-md-12">
+                        <div class="col-md-12">
                     <div class="faqheading">
                    
                     <h4 class="">Leave Status</h4>
@@ -65,6 +65,7 @@
                         <th>Id</th>
                         <th>Date</th>
                         <th>Leave</th>
+                        <th>view</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -80,8 +81,10 @@
                         @endif
                     @else
                         <td>{{$leave->start_date}}</td>
-                    @endif
-                    <td>{!!$leave->discription!!}</td>
+                    @endif  
+                    <td class="limitedtxt"> {!! Illuminate\Support\Str::limit($leave->discription, 50)  !!}</td>
+                    <input type="hidden" id="desc_{{$leave->id}}" value="{!!$leave->discription!!}">
+                    <td> <a href="#" onclick="showMailModel('{{$leave->id}}')" ><i class="fa fa-envelope-o" aria-hidden="true"></i></a></td>    
                     @if($leave->status == 1)
                     <td> <a href="#" class="btn btn-success">Approved</a></td>    
                     @elseif($leave->status == 2)

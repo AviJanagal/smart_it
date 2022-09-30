@@ -9,7 +9,7 @@
 						<div class="row ">
 						<div class="col-md-12">
 							<div class="mainheadingtop">
-								<h4>Hi <span>{{ ucfirst(trans(auth()->user()->first_name)) }}</span>,Welcome back</h4>
+								<h4>Hi <span> {{ ucfirst(trans(auth()->user()->first_name)) }} </span>, Welcome back</h4>
 							</div>
 						</div>	
 						<div class="col-md-4">
