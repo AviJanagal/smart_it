@@ -6,6 +6,11 @@ use Auth;
 use Mail;
 use App\Mail\ApplyLeaveMail;
 use DateTime;
+use DateInterval;
+use DatePeriod;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
+use PDF;
 
 use Illuminate\Http\Request;
 
@@ -14,14 +19,67 @@ class EmployeeController extends Controller
    
     public function index()
     {
+        // $begin = new DateTime('first day of january');
+        // $end = new DateTime('last day of december');
+        // $end = $end->modify('+1 day');
+        // $interval = new DateInterval('P1D');
+        // $daterange = new DatePeriod($begin, $interval, $end);
+
+        // // getting all sunday dates
+        // foreach ($daterange as $date) {
+        //     $sunday = date('w', strtotime($date->format("Y-m-d")));
+        //     if ($sunday == 0) {
+        //         $sundays[] = $date->format("Y-m-d");
+        //     } else {
+        //         echo'';
+        //     }
+        // }
+        
+        // // getting all saturday dates
+        // foreach ($daterange as $date) {
+        //     $saturday = date('w', strtotime($date->format("Y-m-d")));
+        //     if ($saturday == 6) {
+        //         $saturdays[] = $date->format("Y-m-d");
+        //     } else {
+        //         echo'';
+        //     }
+        // }
+       
+        // //  merge saturdays and sundays
+        // $all_sat_sun =  array_merge($saturdays, $sundays);
+
+        // // getting holidays from admin
+        // $custom_holidays = \App\Calender::whereYear('date', \Carbon\Carbon::now())->pluck('date')->toArray();
+        // $all_holidays =array_unique(array_merge($all_sat_sun, $custom_holidays));
+
+
+        // // getting all dates in a year
+        // $dateRange = CarbonPeriod::create(\Carbon\Carbon::now()->startOfYear(),\Carbon\Carbon::now());
+        // $all_dates_in_year = array_map(fn ($date) => $date->format('Y-m-d'), iterator_to_array($dateRange));
+
+
+        // // total holidays to employee
+        // $working_days_count = count(array_unique(array_diff($all_dates_in_year,$all_holidays)));
+        // $working_days = array_values(array_unique(array_diff($all_dates_in_year,$all_holidays)));
+       
+        // // employee total attendance  .
+        // $employee_total_attendance = \App\EmployeeAttendance::distinct()->where('employee_id',Auth::id())->whereNotNull('end_time')->pluck('date');
+        // $employee_total_attendance_count = $employee_total_attendance->count();
+
+        // // holidays that employee ne lyeaa
+        // $employee_holidays = $working_days_count-$employee_total_attendance_count;
+
+        // // employee holiday dates
+        // $employee_holiday_dates = array_values(array_unique(array_diff($working_days,$employee_total_attendance->toArray())));
+    
         return view('employee.dashboard');
+
     }
 
     public function log_in_time()
     {
         $is_valid = \App\EmployeeAttendance::where('employee_id',Auth::id())->where('date',(new DateTime)->format('Y-m-d'))->where('end_time',null)->first();
         if(!$is_valid){
-            // $check = \App\EmployeeAttendance::where('date',(new DateTime)->format('Y-m-d'))
             $employee = new \App\EmployeeAttendance;
             $employee->employee_id = Auth::id();
             $employee->start_time = (new DateTime)->format('H:i:s');
@@ -381,6 +439,173 @@ class EmployeeController extends Controller
             return redirect()->route('employee.apply_leave');
         }
     }
+
+
+    
+    public function my_profile(){
+        $profile = \App\EmployeeInformation::where('employee_id',Auth::id())->first();
+        return view('employee.my_profile',compact('profile'));
+    }
+
+    public function download_icard()
+    {
+        $profile = \App\EmployeeInformation::where('employee_id',Auth::id())->first()->toArray();
+          
+        $pdf = PDF::loadView('employee.icard', $profile)->setOptions(['defaultFont' => 'Roboto']);
+        //  return view('employee.icard',compact('pdf'));
+    
+        return $pdf->download('SmartIt I-Card.pdf');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // function getMondays()
+    // {
+    //     $begin = new DateTime('first day of january');
+    //     $end = new DateTime('last day of december');
+    //     $end = $end->modify('+1 day');
+    //     $interval = new DateInterval('P1D');
+    //     $daterange = new DatePeriod($begin, $interval, $end);
+
+    //     // getting all sunday dates
+    //     foreach ($daterange as $date) {
+    //         $sunday = date('w', strtotime($date->format("Y-m-d")));
+    //         if ($sunday == 0) {
+    //             $sundays[] = $date->format("Y-m-d");
+    //         } else {
+    //             echo'';
+    //         }
+    //     }
+        
+    //     // getting all saturday dates
+    //     foreach ($daterange as $date) {
+    //         $saturday = date('w', strtotime($date->format("Y-m-d")));
+    //         if ($saturday == 6) {
+    //             $saturdays[] = $date->format("Y-m-d");
+    //         } else {
+    //             echo'';
+    //         }
+    //     }
+       
+    //     //  merge saturdays and sundays
+    //     $all_sat_sun =  array_merge($saturdays, $sundays);
+
+    //     // getting holidays from admin
+    //     $custom_holidays = \App\Calender::whereYear('date', \Carbon\Carbon::now())->pluck('date')->toArray();
+    //     $all_holidays =array_unique(array_merge($all_sat_sun, $custom_holidays));
+
+
+    //     // getting all dates in a year
+    //     $dateRange = CarbonPeriod::create(\Carbon\Carbon::now()->startOfYear(),\Carbon\Carbon::now()->endOfYear());
+    //     $all_dates_in_year = array_map(fn ($date) => $date->format('Y-m-d'), iterator_to_array($dateRange));
+
+
+    //     // total holidays to employee
+    //     $working_days_count = count(array_unique(array_diff($all_dates_in_year,$all_holidays)));
+    //     $working_days = array_values(array_unique(array_diff($all_dates_in_year,$all_holidays)));
+       
+       
+
+    //     // employee total attendance  .
+    //     $employee_total_attendance = \App\EmployeeAttendance::distinct()->where('employee_id',Auth::id())->whereNotNull('end_time')->pluck('date');
+    //     $employee_total_attendance_count = $employee_total_attendance->count();
+
+    //     // holidays that employee ne lyeaa
+    //      $employee_holidays = $working_days_count-$employee_total_attendance_count;
+
+    //     // employee holiday dates
+    //    return $employee_holiday_dates = count(array_values(array_unique(array_diff($working_days,$employee_total_attendance->toArray()))));
+    // } 
+    
 }
 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // $dates = [
+        //         (string)new \Carbon\Carbon('first Sunday  of '.date("F").''.date("Y").''),
+        //         (string)new \Carbon\Carbon('second Sunday  of '.date("F").''.date("Y").''),
+        //         (string)new \Carbon\Carbon('third Sunday  of '.date("F").''.date("Y").''),
+        //         (string)new \Carbon\Carbon('fourth Sunday  of '.date("F").''.date("Y").''),
+        //     ];
         
+        // $holidays = \App\Calender::whereMonth('date', \Carbon\Carbon::now())->pluck('date')->toArray();
+        // $data =  array_merge($dates, $holidays);
+        // print_r($data) ;
+        // echo "</br>";
+
+        //  $attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereNotIn('date',$data)->whereNotNull('end_time')->get();
+        
+        // $dates = 
+        // return $present = $dates->count();

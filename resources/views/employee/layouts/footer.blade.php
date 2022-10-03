@@ -175,7 +175,10 @@
 		
 		<script>
 			$(document).ready( function () {
-				$('#myTable').DataTable();
+				// $('#myTable').DataTable();
+         $("#myTable").DataTable({
+                ordering: false,
+            });
 			} );
 		</script>
 
