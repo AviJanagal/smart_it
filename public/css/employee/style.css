@@ -2219,3 +2219,148 @@ button.swal2-confirm.swal2-styled.anchorcls a {
     font-size: 23px;
     padding-top: 6px;
 } */
+
+
+.notificationinnerbox {
+    display: flex;
+
+}
+
+.notificationmainsection {
+    margin-top: 30px;
+}
+
+.notificationimgbox img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.notificationtime {
+
+    margin-left: auto;
+}
+
+.notificationtextbox p {
+    margin-top: 20px;
+    margin-left: 12px;
+}
+
+.notificationtime h6 {
+    margin-top: 10px;
+    color: #747373;
+    margin-right: 13px;
+}
+
+.notificationinnerbox {
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 19px 19px #00000005;
+    border-radius: 10px;
+    padding: 10px;
+}
+button.custtombuttonsettingdownload a {
+    color: white;
+    text-decoration: none;
+}
+
+/* new profile css start */ 
+.mainheadingtopbarcustom {
+    background-color: #ff5a00;
+    color: white;
+    height: 91px;
+}
+
+.profileimgboxcustomsetting img {
+    width: 200px;
+    border-radius: 100%;
+    margin-bottom: 14px;
+    height: 200px;
+}
+
+.mailboxcustomsetting a {
+    color: #706e71;
+}
+
+.mailboxcustomsetting a i {
+    color: #21409a;
+    margin-right: 10px;
+}
+
+.customphoneboxsetting a {
+    color: #706e71;
+}
+
+.customphoneboxsetting a i {
+    color: #21409a;
+    margin-right: 8px;
+}
+
+.customphoneboxsetting {
+    margin-bottom: 10px;
+    margin-top: 17px;
+}
+
+.personalinfoboxcustomsetting {
+    box-shadow: 0px 0px 19px 19px #00000005;
+    padding: 23px;
+    margin-top: 25px;
+}
+
+.headingpersonalinfocustomsetting h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.haedingbottombordercustomsetting {
+
+    border-bottom: 1px solid #d5d5d5;
+
+}
+
+.innerboxinfocustomsetting {
+    margin-top: 32px;
+    margin-bottom: 20px;
+}
+
+.innerboxinfocustomsetting h6 {
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.maincustomsetting {
+
+    margin-top: -67px;
+}
+
+.headingmaincustomsetting h1 {
+    color: white;
+}
+
+.headingmaincustomsetting {
+    margin-bottom: 40px;
+}
+
+.col-md-12.custompadding {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.profilesectionleftcustomsetting {
+    text-align: center;
+}
+.mailboxcustomsetting {
+    margin-bottom: 29px;
+}
+
+.custtombuttonsettingdownload {
+    padding: 12px 18px;
+    border-radius: 10px;
+    background-color: #263f97;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+

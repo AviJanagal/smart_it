@@ -74,6 +74,9 @@ Route::group(['as'=>'employee.','prefix' => 'employee','middleware' => ['auth', 
    Route::get('calender', 'employee\EmployeeController@Chartjs')->name('calender');
    Route::get('apply_leave', 'employee\EmployeeController@apply_leave')->name('apply_leave');
    Route::post('send_leave', 'employee\EmployeeController@send_leave')->name('send_leave');
+   Route::get('getMondays', 'employee\EmployeeController@getMondays')->name('getMondays');
+   Route::get('my_profile', 'employee\EmployeeController@my_profile')->name('my_profile');
+   Route::get('download_icard', 'employee\EmployeeController@download_icard')->name('download_icard');
 
 });
 

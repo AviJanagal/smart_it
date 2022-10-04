@@ -133,7 +133,7 @@
 											</div>
 										</div>
 
-									<div class="tab-pane fade" id="nav-Vendor1" role="tabpanel" aria-labelledby="nav-Vendor1-tab">
+									<!-- <div class="tab-pane fade" id="nav-Vendor1" role="tabpanel" aria-labelledby="nav-Vendor1-tab">
 										<div class="flowchart">
 											<div id="cont" data-pct="5000">
 												<svg id="svg" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -142,7 +142,23 @@
 												</svg>
 											</div>
 										</div>
-									</div>
+									</div> -->
+								
+									<!-- <div class="table-wrapper p-0">
+												<table class=" datatable table table-bordered table-striped table-hover " id="myTable">
+												<thead>
+												<tr>
+													<th>Total Time</th>
+
+												</tr>
+											</thead>
+											<tbody>
+											
+											 </tbody>
+											</table>
+										</div> -->
+
+									
 								</div>
 							</div>
 						</div>
