@@ -247,7 +247,7 @@
                                 @if($type == 1)
                                 <option value="Full-Time">Full-Time</option>
                                 <option value="Part-Time">Part-Time</option>
-                                <option value="temporary ">temporary</option>
+                                <option value="temporary ">Temporary</option>
                                 <option value="Trainee">Trainee</option>
                                 @else     
                                 <option value="Full-Time" @if($employee->emp_info->employee_type == "Full-Time") selected @endif>Full-Time Employee</option>

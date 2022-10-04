@@ -14,9 +14,7 @@
 					<li> <a href="{{route('admin.employee.index')}}">Add New Employee</a></li>
 					<li> <a href="{{route('admin.employee.create')}}">Employee List</a> </li>
 					<li> <a href="{{route('admin.show_department')}}">Department</a> </li>
-
-					
-
+					<li> <a href="{{route('admin.show_emp_leave')}}">Leaves</a> </li>
 				</ul>
 			</li>
 			<li class="sidebar-dropdown  ">

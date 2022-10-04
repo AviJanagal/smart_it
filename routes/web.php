@@ -33,6 +33,17 @@ Route::group(['as'=>'admin.','prefix' => 'admin','middleware' => ['auth', 'isAdm
    Route::post('/update_department/{id}', 'superadmin\EmployeeController@update_department')->name('update_department');
    Route::get('/delete_department/{id}', 'superadmin\EmployeeController@delete_department')->name('delete_department');
 
+   
+
+   Route::get('/show_emp_leave', 'superadmin\EmployeeController@show_emp_leave')->name('show_emp_leave');
+   Route::get('view_emp_leave', 'superadmin\EmployeeController@view_emp_leave')->name('view_emp_leave');
+
+   Route::post('leave_approvel', 'superadmin\EmployeeController@leave_approvel')->name('leave_approvel');
+
+
+
+
+
 
    Route::get('/del_emp_assigned_project/{id}', 'superadmin\EmployeeController@del_emp_assigned_project')->name('del_emp_assigned_project');
    Route::post('/employee_graph/{id}', 'superadmin\EmployeeController@employee_graph')->name('employee_graph');

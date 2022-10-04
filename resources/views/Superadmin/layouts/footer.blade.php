@@ -27,6 +27,9 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://kit.fontawesome.com/9681e38096.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
 
 <script>
 
@@ -53,6 +56,13 @@ $("#select_employee").select2({
     $("#delete_user").attr('href', url);
     
     }
+
+
+function emp_leave_modal(){
+
+$('#employee_leave').modal('show');
+
+}
 
 
     
@@ -183,6 +193,95 @@ if (selectedTab) {
     });
     
 </script>
+
+
+<script>
+
+  $(document).ready(function($) {
+    $('.btn-edit-plan').on('click', function() {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    
+    var id = $(this).attr('data-id');
+
+    // ajax
+    $.ajax({
+        type: "GET",
+        url: "{{ url('admin/view_emp_leave') }}",
+        data: { id: id },
+        dataType: 'json',
+        success: function(data) {
+
+          $('#employee_leave').modal('show');
+
+          var status = data.status;
+          
+          $('#'+status).attr('selected','selected');
+
+          $('.leave_startdate').html(data.start_date);
+          $('#employe_id').val(data.employee_id);
+          $('.leave_enddate').html(data.end_date);
+          $('.leave_desc').html(data.discription);
+
+
+         
+        }
+      });
+    });
+  })
+
+
+
+  $(function(){
+$('#leave_status').change(function(){
+    var staus_id = $(this).val();
+    var employee_id = $("#employe_id").val();
+
+    if(staus_id == 1){
+        var status = "Leave is Confirmed"
+    }else if(staus_id == 2)
+    {
+        var status = "Leave is Declined"
+    }
+
+    $.ajax({
+        url: "{{ url('admin/leave_approvel') }}",
+        data: { id: staus_id , employee_id: employee_id},
+        dataType:"json",
+        type: "post",
+        success: function(data){
+
+            swal({
+                    title:status,
+                    //text: "Leave Status Updated Successfully!",
+                    icon: "success",
+                    button: "ok!",
+                    });
+
+
+        }
+    });
+});
+});
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
 
 
 </body>

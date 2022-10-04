@@ -231,7 +231,7 @@ class EmployeeController extends Controller
             $data->project_name = $project->project_name;
         }
 
-        if(!is_null($employee->emp_info)){
+        if(!is_null($employee) && !is_null($employee->emp_info) ){
             $department = \App\Department::find($employee->emp_info->department);
             if(!is_null($department)){
                   $employee->emp_info->department = $department->name;
@@ -255,6 +255,8 @@ class EmployeeController extends Controller
         }
         $title_discription = "Weekly Activity Chart";
         $title = "Days";
+
+
         return view('superadmin/employee/view_employee', compact('employee', 'project_assign','emp_days','title_discription','title'));
     }
 
@@ -388,6 +390,23 @@ class EmployeeController extends Controller
 
 
 
+    public function show_emp_leave(Request $request)
+    {
+
+        $employee_leaves = \App\ApplyLeave::orderBy('start_date','asc')->get();
+        foreach($employee_leaves as $item)
+        {
+            $item->employee = \App\User::where('role', 'employee')->where('id',$item->employee_id )->first();
+
+        }
+
+        if ($request->has('view_confirmed_leaves')) {
+            $employee_leaves = \App\ApplyLeave::where('status','1')->orderBy('start_date','asc')->get();
+            foreach($employee_leaves as $item)
+            {
+                $item->employee = \App\User::where('role', 'employee')->where('id',$item->employee_id )->first();
+    
+            }        }
 
 
 
@@ -395,6 +414,30 @@ class EmployeeController extends Controller
 
 
 
+        return view('Superadmin/employee/show_leave',compact('employee_leaves'));
+
+    }
+
+
+    public function view_emp_leave(Request $request)
+    {
+
+        $data = \App\ApplyLeave::where('employee_id',$request->id)->first();
+        return response()->json($data, 200);
+
+
+    }
+
+
+    
+    public function leave_approvel(Request $request)
+    {
+        $data = \App\ApplyLeave::where('employee_id',$request->employee_id)->first();
+        $data->status = $request->id;
+        $data->update();
+        return response()->json($data, 200);
+        
+    }
 
 
 
