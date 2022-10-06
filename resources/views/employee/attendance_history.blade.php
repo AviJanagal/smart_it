@@ -22,13 +22,13 @@
                 <div class="row">
                 @csrf
                 <div class="col-sm-2">
-                    <input type="text" id="yearPicker" name="year" placeholder="Select Year" autocomplete="off">
+                    <input type="text" id="yearPicker" name="year" placeholder="Select Year" value="{{(!empty($year_status))? $year_status:''}}"autocomplete="off">
                 </div>
                 <div class="col-sm-2"> 
-                    <input type="text" id="monthPicker" name="month"  placeholder="Select Month" autocomplete="off">
+                    <input type="text" id="monthPicker" name="month"  placeholder="Select Month" value="{{(!empty($month_status))? $month_status:''}}"autocomplete="off">
                 </div>
                 <div class="col-sm-2">
-                    <input type="text" id="datePicker"  name="date"  placeholder="Select Date" autocomplete="off">
+                    <input type="text" id="datePicker"  name="date"  placeholder="Select Date" value="{{(!empty($date_status))? $date_status:''}}"autocomplete="off">
                 </div>
                 <div class="col-sm-2">
                     <button type="submit" class="btn btn-primary">Search</button>

@@ -19,59 +19,6 @@ class EmployeeController extends Controller
    
     public function index()
     {
-        // $begin = new DateTime('first day of january');
-        // $end = new DateTime('last day of december');
-        // $end = $end->modify('+1 day');
-        // $interval = new DateInterval('P1D');
-        // $daterange = new DatePeriod($begin, $interval, $end);
-
-        // // getting all sunday dates
-        // foreach ($daterange as $date) {
-        //     $sunday = date('w', strtotime($date->format("Y-m-d")));
-        //     if ($sunday == 0) {
-        //         $sundays[] = $date->format("Y-m-d");
-        //     } else {
-        //         echo'';
-        //     }
-        // }
-        
-        // // getting all saturday dates
-        // foreach ($daterange as $date) {
-        //     $saturday = date('w', strtotime($date->format("Y-m-d")));
-        //     if ($saturday == 6) {
-        //         $saturdays[] = $date->format("Y-m-d");
-        //     } else {
-        //         echo'';
-        //     }
-        // }
-       
-        // //  merge saturdays and sundays
-        // $all_sat_sun =  array_merge($saturdays, $sundays);
-
-        // // getting holidays from admin
-        // $custom_holidays = \App\Calender::whereYear('date', \Carbon\Carbon::now())->pluck('date')->toArray();
-        // $all_holidays =array_unique(array_merge($all_sat_sun, $custom_holidays));
-
-
-        // // getting all dates in a year
-        // $dateRange = CarbonPeriod::create(\Carbon\Carbon::now()->startOfYear(),\Carbon\Carbon::now());
-        // $all_dates_in_year = array_map(fn ($date) => $date->format('Y-m-d'), iterator_to_array($dateRange));
-
-
-        // // total holidays to employee
-        // $working_days_count = count(array_unique(array_diff($all_dates_in_year,$all_holidays)));
-        // $working_days = array_values(array_unique(array_diff($all_dates_in_year,$all_holidays)));
-       
-        // // employee total attendance  .
-        // $employee_total_attendance = \App\EmployeeAttendance::distinct()->where('employee_id',Auth::id())->whereNotNull('end_time')->pluck('date');
-        // $employee_total_attendance_count = $employee_total_attendance->count();
-
-        // // holidays that employee ne lyeaa
-        // $employee_holidays = $working_days_count-$employee_total_attendance_count;
-
-        // // employee holiday dates
-        // $employee_holiday_dates = array_values(array_unique(array_diff($working_days,$employee_total_attendance->toArray())));
-    
         return view('employee.dashboard');
 
     }
@@ -89,7 +36,6 @@ class EmployeeController extends Controller
             }
             else{
                 return response()->json(['status' => false,'message' => ' Something went wrong']);
-
             }
         }
 
@@ -172,7 +118,8 @@ class EmployeeController extends Controller
 
     public function attendance_history(){
         $my_attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereMonth('created_at', \Carbon\Carbon::now()->month)->get();
-        return view('employee.attendance_history',compact('my_attendance'));
+        $month_status = date('F');
+        return view('employee.attendance_history',compact('my_attendance','month_status'));
     }
 
     public function daily_activity(){
@@ -278,8 +225,11 @@ class EmployeeController extends Controller
         else{
             $my_attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereMonth('created_at', \Carbon\Carbon::now()->month)->get();
         }
+        $year_status = $request->year;
+        $month_status = $request->month;
+        $date_status = $request->date;
 
-        return view('employee.attendance_history',compact('my_attendance'));
+        return view('employee.attendance_history',compact('my_attendance','month_status','date_status','year_status'));
     }
 
 
@@ -449,10 +399,13 @@ class EmployeeController extends Controller
 
     public function download_icard()
     {
-        $profile = \App\EmployeeInformation::where('employee_id',Auth::id())->first()->toArray();
-          
-        $pdf = PDF::loadView('employee.icard', $profile)->setOptions(['defaultFont' => 'Roboto']);
-        //  return view('employee.icard',compact('pdf'));
+        $imagePath = public_path("images/profile_img222.jpg");
+        $image = "data:image/png;base64,".base64_encode(file_get_contents($imagePath));
+        $profile = \App\EmployeeInformation::where('employee_id',Auth::id())->first();
+        $profile->image = $image;
+        
+        $pdf = PDF::loadView('employee.icard', compact('profile'))->setOptions(['defaultFont' => 'Roboto']);
+        //  return view('employee.icard',compact('pdf','profile'));
     
         return $pdf->download('SmartIt I-Card.pdf');
     }
