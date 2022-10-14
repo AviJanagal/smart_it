@@ -82,6 +82,7 @@ span.icon {
 
 span.title {
     color: white;
+    font-size: 14px;
 }
 
 .sidemenubar ul li a {
@@ -90,6 +91,7 @@ span.title {
     padding: 15px;
     margin-bottom: 10px;
     display: block;
+    font-size: 14px;
 }
 
 .headingbox h6 {
@@ -232,7 +234,7 @@ a.vendor1 {
 
 .Pendingbox {
 
-    background-color: #ff5a04;
+    background-color: #122f51;
     padding: 10px;
     color: white;
     border-radius: 6px;
@@ -342,7 +344,7 @@ span.app {
 
 .sidemenubar ul li a:hover,
 .sidemenubar ul li a.active {
-    color: #000000;
+    color: white;
     background-color: #f05a22;
     border-radius: 6px;
 
@@ -438,6 +440,7 @@ i.fa.fa-home.home-custom {
 li.sidebar-dropdown span {
     color: white;
     padding-left: 20px;
+    font-size: 14px;
 }
 
 ul.sidenavbarul li a.active,
@@ -642,9 +645,9 @@ button.dropbtn i.fa.fa-angle-right {
 }
 
 button.dropdown-toggle.dropdown-custom {
-    background-color: whitesmoke;
+    background-color: #f05a22;
     border: none;
-    border-radius: 8px;
+    border-radius: 20px;
 }
 
 
@@ -1305,7 +1308,7 @@ table.table th i {
 table.table td:last-child i {
     opacity: 0.9;
     font-size: 16px;
-    margin: 0 5px;
+    /* margin: 0 5px; */
 }
 
 table.table td a {
@@ -2066,5 +2069,123 @@ h5.customnamesetting {
     color: #dc3545;
          font-size: 14px;
 }
+
+
+/* employee graph css */
+
+select#graph_time {
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+/* employee graph css end */
+
+
+
+/*  alert close button css */
+
+button.close.alertclosecss {
+    /* margin-left: 15px; */
+    color: #155724;
+    /* font-weight: bold; */
+    /* float: right; */
+    font-size: 23px;
+    cursor: pointer;
+    border-color: transparent;
+    background-color: transparent;
+    position: absolute;
+    /* margin-left: 0px; */
+    right: 15px;
+    top: 10px;
+}
+
+/* alert close button end */
+
+
+/* employee  Modal css  */
+
+.reqleave{
+    background-color: #122f51;
+    border: none;
+
+}
+
+.reqleave:hover {
+    background-color: #f05a22;
+    border: none;
+
+
+}
+
+.confleave{
+    background-color: #122f51;
+    border: none;
+
+}
+
+.confleave:hover {
+    background-color: #f05a22;
+    border: none;
+
+
+}
+
+.modal-dialog.moddialogue{
+
+    max-width: 600px;
+
+
+}
+
+.modheader{
+
+    background-color: lightblue;
+
+}
+
+.modtitle{
+
+    font-weight: bold;
+}
+
+.empmodbody {
+    font-weight: bold;
+    padding: 10px;
+}
+
+.modbody{
+   display: flex;
+}
+
+.leave_startdate{
+
+    margin-top: 11px;
+    margin-left: 10px;
+}
+
+
+.leave_enddate{
+
+    margin-top: 11px;
+    margin-left: 10px;
+}
+
+.leave_desc{
+
+    margin-top: 11px;
+    margin-left: 10px;
+}
+
+.leave_status{
+
+    margin-top: 11px;
+    margin-left: 10px;
+    margin-bottom: auto;
+}
+
+
+
+
+/* employee  Modal css end */
 
 

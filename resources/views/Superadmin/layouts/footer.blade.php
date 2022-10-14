@@ -32,6 +32,30 @@
 
 
 <script>
+    
+
+
+
+$("#graph_time").change(function(){
+    // this.value;
+    var graph = $(this).val();
+
+    $.ajax({
+        type: "POST",
+        url: "{{ url('admin/employee_graph') }}",
+        data: graph,
+        success: function(data) {
+
+            $('#emp_graph').submit();
+
+
+           }
+       });
+
+    
+ });
+
+
 
 
 $("#select_employee").select2({
@@ -135,7 +159,7 @@ $('#employee_leave').modal('show');
     });
 
 
-        $(document).ready(function(){
+    $(document).ready(function(){
     // Activate tooltip
     $('[data-toggle="tooltip"]').tooltip();
 	
@@ -225,9 +249,6 @@ if (selectedTab) {
           $('#employe_id').val(data.employee_id);
           $('.leave_enddate').html(data.end_date);
           $('.leave_desc').html(data.discription);
-
-
-         
         }
       });
     });
@@ -266,16 +287,6 @@ $('#leave_status').change(function(){
     });
 });
 });
-
-
-
-
-
-
-
-
-
-
 
 </script>
 

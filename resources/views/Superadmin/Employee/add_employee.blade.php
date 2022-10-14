@@ -61,27 +61,21 @@
 @include('Superadmin.layouts.sidebar')
     <div class="main">
         <div class="container">
-             <div class="container-fluid">
-
-
-            @if($type == 1)
-            <h2 style=" margin-bottom:20px; color:#122f51;">Add Employee </h2>
-            @else
-            <h2 style=" margin-bottom:20px; color:#122f51;">Update Employee </h2>
-            @endif
-
-            @if($type == 1)
-                <form role="form" class="signup-form" id="signup-form" autocomplete="off" data-toggle="validator" action="{{route('admin.employee.store')}}" method="post" enctype="multipart/form-data">
-            @else
-                <form role="form" id="signup-form" class="signup-form"  data-toggle="validator" action="{{route('admin.employee.update',$employee->id)}}" method="post" enctype="multipart/form-data">
-                {{ method_field('PUT') }}
-
-            @endif
-            @csrf
-
+            <div class="container-fluid">
+                @if($type == 1)
+                <h2 style=" margin-bottom:20px; color:#122f51;">Add Employee </h2>
+                @else
+                <h2 style=" margin-bottom:20px; color:#122f51;">Update Employee </h2>
+                @endif
+                @if($type == 1)
+                    <form role="form" class="signup-form" id="signup-form" autocomplete="off" data-toggle="validator" action="{{route('admin.employee.store')}}" method="post" enctype="multipart/form-data">
+                @else
+                    <form role="form" id="signup-form" class="signup-form"  data-toggle="validator" action="{{route('admin.employee.update',$employee->id)}}" method="post" enctype="multipart/form-data">
+                    {{ method_field('PUT') }}
+                @endif
+                @csrf
                 <h3><span class="title_text"> Login Information</span></h3>
                 <fieldset>
-
                     <div class="col-md-12">
                         <div class="form-group custom-from">
                             <label for="first_name" class="inputlabel multiformlabel">First Name</label>
@@ -93,8 +87,6 @@
                             @enderror
                         </div>
                     </div>
-
-
                     <div class="col-md-12">
                         <div class="form-group custom-from">
                             <label for="last_name" class="inputlabel multiformlabel">Last Name</label>
@@ -106,7 +98,6 @@
                             @enderror
                         </div>
                     </div>
-
                     <div class="col-md-12">
                         <div class="form-group custom-from">
                             <label for="email" class="form-label">Email</label>
@@ -118,7 +109,6 @@
                             @enderror
                         </div>
                     </div>
-
                     <div class="col-md-12">
                         <div class="form-group custom-from">
                             <label for="password" class="inputlabel multiformlabel"> Password</label>
@@ -130,7 +120,6 @@
                             @enderror
                         </div>
                     </div>
-
                     <div class="col-md-12">
                         <div class="form-group custom-from">
                             <label for="phone_number" class="inputlabel multiformlabel"> Phone Number</label>
@@ -148,7 +137,6 @@
                 </fieldset>
                 <h3><span class="title_text"> Basic Information</span></h3>
                 <fieldset>
-
                     <div class="col-md-10">
                         <div class="form-group custom-from">
                             <label for="dob" class="inputlabel multiformlabel" class="form-label multiformlabel "> Date of Birth</label>
@@ -193,7 +181,6 @@
                             @enderror
                         </div>
                     </div>
-
                     <div class="col-md-10">
                         <div class="form-group custom-from">
                             <label for="Name" class="inputlabel multiformlabel"> Department</label>
@@ -215,7 +202,6 @@
                             </select>
                         </div>
                     </div>
-
                     <div class="col-md-10">
                         <div class="form-group custom-from">
                             <label for="Name" class="inputlabel multiformlabel"> Designation</label>
@@ -241,7 +227,6 @@
                     <div class="col-md-10">
                         <div class="form-group custom-from">
                             <label for="Name" class="inputlabel multiformlabel"> Employee Type</label>
-
                             <select id="employee_type" class="form-select" name="employee_type">
                             <option value="" disabled selected hidden>Select Employee Type</option>
                                 @if($type == 1)
@@ -348,6 +333,8 @@
             </form>
         </div>
     </div>
+</div>
+
 
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>

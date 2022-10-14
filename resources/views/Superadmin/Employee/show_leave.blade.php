@@ -7,7 +7,7 @@
             @if(Session::get('alert'))
             <div class="alert alert-{{Session::get('alert')}} alert-dismissible" role="alert">
                 <p>{{Session::get('message')}} </p>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close alertclosecss" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             @endif
         </div>
@@ -30,9 +30,9 @@
                 <div class ="row">
                     <div class="col col-md-12 text-right">
                         @if(request()->has('view_confirmed_leaves'))
-                        <a href="{{route('admin.show_emp_leave')}}" class="btn btn-primary">View Requested Records</a>
+                        <a href="{{route('admin.show_emp_leave')}}" class="btn btn-primary reqleave">View Requested Leaves</a>
                         @else
-                        <a href="{{route('admin.show_emp_leave',['view_confirmed_leaves'])}}" class="btn btn-danger">View Confirmed leaves</a>
+                        <a href="{{route('admin.show_emp_leave',['view_confirmed_leaves'])}}" class="btn btn-danger confleave">View Confirmed leaves</a>
                         @endif
                     </div>
                 </div>

@@ -451,7 +451,7 @@ class EmployeeController extends Controller
     {
         $profile = \App\EmployeeInformation::where('employee_id',Auth::id())->first()->toArray();
           
-        $pdf = PDF::loadView('employee.icard', $profile)->setOptions(['defaultFont' => 'Roboto']);
+        return $pdf = PDF::loadView('employee.icard', $profile)->setOptions(['defaultFont' => 'Roboto']);
         //  return view('employee.icard',compact('pdf'));
     
         return $pdf->download('SmartIt I-Card.pdf');

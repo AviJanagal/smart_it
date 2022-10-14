@@ -73,7 +73,6 @@ class UserController extends Controller
   public function logout(Request $request)
   {
 
-
     $user = \App\User::find($request->user()->id);
     if ($user->save()) {
 
@@ -85,8 +84,6 @@ class UserController extends Controller
     }
   }
 
-
-  
 
   public function get_superadmin()
   {
@@ -101,12 +98,26 @@ class UserController extends Controller
 
   public function get_employee()
   {
-    $get_employee = \App\User::where('role','employee')->get();
+    $get_employee = \App\User::where('role','employee')->with('emp_info')->with('emp_account')->get();
     if ($get_employee) {
-      return response()->json(['status' => true, 'payload' =>  $get_employee]);
+      return response()->json(['status' => true, 'payload' => $get_employee]);
     } else {
       return response()->json(['status' => true, 'payload' => [], 'message' => 'No Data found']);
     }
+  }
+
+
+
+  public function get_single_emp(Request $request)
+  {
+
+    $user = \App\User::where('role','employee')->with('emp_info')->with('emp_account')->find($request->id);
+    if ($user) {
+      return response()->json(['status' => true, 'payload' => $user]);
+    } else {
+      return response()->json(['status' => true, 'payload' => [], 'message' => 'No Data found']);
+    }
+
   }
 
 
@@ -486,8 +497,6 @@ class UserController extends Controller
 
 
 
-
-
   public function get_projects_assigned()
   {
     $get_project = \App\ProjectAssign::get();
@@ -497,4 +506,6 @@ class UserController extends Controller
       return response()->json(['status' => true, 'payload' => [], 'message' => 'No Data found']);
     }
   }
+
+
 }

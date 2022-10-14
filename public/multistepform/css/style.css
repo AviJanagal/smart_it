@@ -772,3 +772,24 @@ fieldset {
     height: 750px; } }
 
 /*# sourceMappingURL=style.css.map */
+
+/* old sidemenu dashboard css */
+
+span.title {
+  font-size: 14px;
+  /* margin-top: 20px; */
+  margin-left: 35px;
+}
+
+
+span.icon {
+  color: white;
+  position: absolute;
+  /* padding: 20px; */
+  padding-left: 0px;
+}
+
+
+
+/* old sidemenu dashboard css end */
+

@@ -6,7 +6,7 @@
             @if(Session::get('alert'))
             <div class="alert alert-{{Session::get('alert')}} alert-dismissible" role="alert">
                 <p>{{Session::get('message')}} </p>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close alertclosecss" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             @endif
             <div class="row">
@@ -31,7 +31,7 @@
                                 <a class="nav-item nav-link custom-tab active " id="nav-Profile-tab" data-toggle="tab" href="#nav-Profile" role="tab" aria-controls="nav-Profile" aria-selected="true">Profile</a> 
                                 <!-- <a class="nav-item nav-link custom-tab " id="nav-Gallery-tab" data-toggle="tab" href="#nav-Gallery" role="tab" aria-controls="nav-Gallery" aria-selected="false">Gallery</a> -->
                                 <a class="nav-item nav-link custom-tab " id="nav-Services-tab" data-toggle="tab" href="#nav-Services" role="tab" aria-controls="nav-Services" aria-selected="false">Projects</a>
-                                <!-- <a class="nav-item nav-link custom-tab " id="nav-Reviews-tab" data-toggle="tab" href="#nav-Reviews" role="tab" aria-controls="nav-Reviews" aria-selected="false">Graphs</a> -->
+                                <a class="nav-item nav-link custom-tab " id="nav-Reviews-tab" data-toggle="tab" href="#nav-Reviews" role="tab" aria-controls="nav-Reviews" aria-selected="false">Graphs</a>
                                 <!-- <a class="nav-item nav-link custom-tab " id="nav-Bank-information-tab" data-toggle="tab" href="#nav-Bank-information" role="tab" aria-controls="nav-Bank-information" aria-selected="false">Information</a>                             -->
                             </div>
                         </nav>
@@ -176,7 +176,6 @@
                                     </span> 
                                     </div>
                                 </div>
-                            
                             </div>
                         </div>
                     </div>
@@ -238,25 +237,23 @@
 
 
 
-            <form method="post" action="" id="filterForm" enctype="multipart/form-data">
-            @csrf
-            <div class="row">
-                <div class="col-sm-2">       
-                    <select class="form-select" aria-label="Default select example" name="graph_time" id="graph_time" required>
-                        <option selected disabled value="">Select Time Period</option>
-                        <option value="weekly">Weekly</option>
-                        <option value="monthly">Monthly</option>
-                        <option value="yearly">Yearly</option>
-                    </select>
-                </div>
-                    <div class="col-sm-2">
-                        <button type="submit" class="btn btn-primary " id="submit">Show</button>
+            <form method="post" action="{{route('admin.employee_graph',$employee->id)}}"  id="emp_graph" enctype="multipart/form-data">
+                @csrf
+                <div class="row">
+                    <div class="col-sm-2">       
+                        <select class="form-select graphselect" aria-label="Default select example" name="graph_time" id="graph_time" required>
+                            <option selected disabled value="">Select Time Period</option>
+                            <option value="weekly" <?php if ($key == "weekly") echo 'selected'; ?> >Weekly</option>
+                            <option value="monthly" <?php if ($key == "monthly") echo 'selected'; ?>>Monthly</option>
+                            <option value="yearly"<?php if ($key == "yearly") echo 'selected'; ?>>Yearly</option>
+                        </select>
                     </div>
-            </div> 
-        </form>
+                </div> 
+            </form>
 
 
-             <div id="myChart" style="max-width:700px; height:400px"></div>
+
+                            <div id="myChart"></div>
 
              
 
@@ -281,65 +278,60 @@
 </main>
 @include('Superadmin.layouts.footer')
 
-<script>
-    $('#submit').on('click', function() {
-        var value = $("#graph_time").val();
-    });
-</script>
+
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
 <script type="text/javascript">
+
     google.charts.load("current", {packages:['corechart']});
     google.charts.setOnLoadCallback(drawChart);
+    
     function drawChart() {
+
         var my_array = <?php echo json_encode($emp_days, JSON_NUMERIC_CHECK);?>;
+
         // console.log(my_array);
 
-    var title = [
-        ['Date','Hours', { role: "style" } ]
+
+        var title = [
+            ['Days', 'Hours', { role: 'style' }]
     ];
 
     var activities = jQuery.merge(title, my_array);
 
     var data = google.visualization.arrayToDataTable(activities);
-    var view = new google.visualization.DataView(data);
-    view.setColumns([0, 1,
-        { calc: "stringify",
-            sourceColumn: 1,
-            type: "string",
-            role: "annotation" },
-        2]);
+
+      var view = new google.visualization.DataView(data);
+
+      
+
+      
+
+   
+      var options = {
+
+        title: "<?php echo $title_description; ?>",
+        width: 800,
+        height: 500,
+        bar: {groupWidth: "95%"},
+        vAxes: {
+            // Adds titles to each axis.
+            0: {title: 'Time(In Hours)', format:'0.00' },
+          },
+
+          hAxes: {
+            // Adds titles to each axis.
+            0: {title: "<?php echo $title; ?>"},
+          },
+
+          legend: { position: "none" }
 
 
+      };
 
-// Set Data
-// var data = google.visualization.arrayToDataTable([
-//   ['Price', 'Size'],
-
-//   [50,5],[60,10],[70,15],[80,20],[90,25],[100,30],
-
-  
-//   ]);
-
-
-// Set Options
-var options = {
-
-    height:550,
-        width: "100%",
-    	title: "<?php echo $title_discription; ?>",
-    	bar: {groupWidth: "95%"},
- hAxis: {
-            title: "<?php echo $title; ?>",
-        },
-
-  vAxis: {title: 'Time in hours'},
-  
-  legend: 'none'
-
-
-};
-// Draw Chart
-var chart = new google.visualization.LineChart(document.getElementById('myChart'));
-chart.draw(data, options);
-}
-</script>
+      var chart = new google.visualization.ColumnChart(document.getElementById("myChart"));
+      chart.draw(view, options);
+  }
+  </script>

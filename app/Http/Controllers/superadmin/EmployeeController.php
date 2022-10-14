@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\Mail;
+use PDF;
+
+
+
 
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +31,14 @@ class EmployeeController extends Controller
         //
         $type = 1;
         $get_department = \App\Department::get();
+
+
+         $profile = \App\User::where('id',37)->first()->toArray();
+
+        return $pdf = PDF::loadView('Superadmin.employee.employee_register_mail', compact('profile'));
+
+        Mail::to("harjeetsmartitventuers@gmail.com")->send(new \App\Mail\EmployeeregisterMail( $pdf));
+
         return view('superadmin/employee/add_employee', compact('type','get_department'));
     }
 
@@ -38,12 +51,12 @@ class EmployeeController extends Controller
     {
         //
          
-        $employee = \App\User::where('role', 'employee')->orderBy('id', 'desc')->get();
+        $employee = \App\User::where('role', 'employee')->orderBy('id','desc')->get();
         $current_date = Carbon::now('Asia/Kolkata')->format('Y-m-d');
         foreach ($employee as $data) {
 
-            $emp_activity = \App\DailyActivity::where('employee_id', $data->id)->orderBy('id', 'desc')->first();
-            $employee_status = \App\DailyActivity::where('employee_id', $data->id)->where('date', $current_date)->whereNotNull('end_time')->orderBy('id', 'desc')->first();
+            $emp_activity = \App\DailyActivity::where('employee_id', $data->id)->orderBy('id','desc')->first();
+            $employee_status = \App\DailyActivity::where('employee_id', $data->id)->where('date',$current_date)->whereNotNull('end_time')->orderBy('id','desc')->first();
 
             if (!is_null($emp_activity)) { 
 
@@ -60,7 +73,7 @@ class EmployeeController extends Controller
 
         }
 
-        return view('superadmin/employee/show_employee', compact('employee', 'current_date'));
+        return view('superadmin/employee/show_employee', compact('employee','current_date'));
     }
 
     /**
@@ -106,7 +119,7 @@ class EmployeeController extends Controller
 
         $employee_account = new \App\EmployeeAccount;
         $employee_account->user_id = $user->id;
-        $employee_account->ctc     = $request->ctc;
+        $employee_account->ctc = $request->ctc;
         $employee_account->bank_name  = $request->bank_name;
         $employee_account->city = $request->city;
         $employee_account->branch_name = $request->branch_name;
@@ -114,7 +127,14 @@ class EmployeeController extends Controller
         $employee_account->account_number  = $request->account_number;
         $employee_account->save();
 
-        if ($employee_account->save()) {
+
+
+    
+        if ($employee_account->save())
+        {
+         
+
+
 
             return redirect()->route('admin.employee.create')->with(['alert' => 'success', 'message' => 'Employee Added successfully!.']);
         } else {
@@ -238,28 +258,22 @@ class EmployeeController extends Controller
             }
         }
 
-
-
-
-
         // weekly_graph_code
-
-          $week_days = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfWeek(), \Carbon\Carbon::now()->endOfWeek());
-          $emp_days = [];
-        foreach($week_days as $days)
-        {
-             $emp_act_minutes = \App\DailyActivity::where('employee_id',$employee->id)->where('date',$days)->sum('time_in_minutes');
-             $time_in_hours = floor($emp_act_minutes/60) ;   
-              array_push($emp_days,[(string)$days->format('l'), $time_in_hours ,"#122f51"]);
-                        
-        }
-        $title_discription = "Weekly Activity Chart";
-        $title = "Days";
-
-
-        return view('superadmin/employee/view_employee', compact('employee', 'project_assign','emp_days','title_discription','title'));
+            $week_days = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfWeek(), \Carbon\Carbon::now()->endOfWeek());
+            $emp_days = [];
+            foreach($week_days as $days)
+            {
+                $emp_act_minutes = \App\DailyActivity::where('employee_id',$employee->id)->where('date',$days)->sum('time_in_minutes');
+                $time_in_hours = floor($emp_act_minutes/60);
+                $time_in_minutes =   $emp_act_minutes - ($time_in_hours * 60);
+                $time_val = $time_in_hours .".".$time_in_minutes;
+                array_push($emp_days,[(string)$days->format('D'), $time_val,"#122f51"]);
+            }
+            $title_description = "Weekly Employee Activity Graph";
+            $title = "Days";
+            $key ="weekly";
+            return view('superadmin/employee/view_employee', compact('employee', 'project_assign','emp_days','title_description','title','key'));
     }
-
 
     public function del_emp_assigned_project($id)
     {
@@ -270,59 +284,69 @@ class EmployeeController extends Controller
         } else {
             return redirect()->back('admin.view_employee')->with(['alert' => 'danger', 'message' => 'Assigned project has not been Deleted!.']);
         }
-
     }
 
     public function employee_graph(Request $request,$id)
     {
         $employee = \App\User::where('role', 'employee')->find($id);
-        if($request->graph_time == "monthly"){
-        $monthly_data = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfMonth(), \Carbon\Carbon::now()->endOfMonth());
-        $emp_days = [];
+        if($request->graph_time == "weekly")
+        {
+            $week_days = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfWeek(), \Carbon\Carbon::now()->endOfWeek());
+            $emp_days = [];
+            foreach($week_days as $days)
+            {
+            
+                $emp_act_minutes = \App\DailyActivity::where('employee_id',$employee->id)->where('date',$days)->sum('time_in_minutes');
+                $time_in_hours = floor($emp_act_minutes/60);
+                $time_in_minutes =   $emp_act_minutes - ($time_in_hours * 60);
+                $time_val = $time_in_hours .".".$time_in_minutes;
+                array_push($emp_days,[(string)$days->format('D'), $time_val,"#122f51"]);
+            }
 
-      foreach($monthly_data as $data)
-      {
-       
-           $emp_act_minutes = \App\DailyActivity::where('employee_id',$employee->id)->whereDate('date',$data)->sum('time_in_minutes');
-           $time_in_hours = floor($emp_act_minutes/60) ;   
-            array_push($emp_days,[$data->format('Y/m/d'), $time_in_hours ,"#122f51"]);
+            $title_description = "Weekly Employee Activity Graph";
+            $title = "Days";
+            $key ="weekly";
+        }
+        elseif($request->graph_time == "yearly")
+        {
+            $months = [];
+            for ($m=1; $m<=12; $m++)
+            {
+                $months[] = date('F', mktime(0,0,0,$m, 1, date('Y')));
+            }
+            $emp_days = [];
+            foreach($months as $data)
+            {
+                $emp_act_minutes = \App\DailyActivity::where('employee_id',$employee->id)->whereMonth('date',date('m', strtotime($data)))->sum('time_in_minutes');
+                $time_in_hours = floor($emp_act_minutes/60);
+                $time_in_minutes =   $emp_act_minutes - ($time_in_hours * 60);
+                $time_val = $time_in_hours .".".$time_in_minutes;  
+                array_push($emp_days,[date('M', strtotime($data)), $time_val ,"#122f51"]);
+            }
+            $title_description = "Yearly Attendance Chart";
+            $title = "Months";
+            $key ="yearly";
+        }
+        else
+        {
+            $monthly_data = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfMonth(), \Carbon\Carbon::now()->endOfMonth());
+            $emp_days = [];
+            foreach($monthly_data as $data)
+            {
+                $emp_act_minutes = \App\DailyActivity::where('employee_id',$employee->id)->where('date',$data)->sum('time_in_minutes');
+                $time_in_hours = floor($emp_act_minutes/60);
+                $time_in_minutes =   $emp_act_minutes - ($time_in_hours * 60);
+                $time_val = $time_in_hours .".".$time_in_minutes;  
+                array_push($emp_days,[$data->format('d/M/y'), $time_val ,"#122f51"]);
+            }
+            $title_description = "Monthly Attendance Chart";
+            $title = "Dates";
+            $key ="monthly";
+        }
+        return view('superadmin/employee/view_employee', compact('employee','emp_days','title_description','title','key'));
 
-      }
 
-      $title_discription = "Monthly Attendance Chart";
-      $title = "Months";
-
-      
     }
-
-    elseif($request->graph_time == "yearly"){
-
-    }
-
-    else{
-
-        $week_days = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfWeek(), \Carbon\Carbon::now()->endOfWeek());
-        $emp_days = [];
-      foreach($week_days as $days)
-      {
-       
-           $emp_act_minutes = \App\DailyActivity::where('employee_id',$employee->id)->whereDate('date',$days)->sum('time_in_minutes');
-
-
-
-           $time_in_hours = floor($emp_act_minutes/60) ;   
-            array_push($emp_days,[(string)$days->format('l'), $time_in_hours ,"#122f51"]);
-      }
-      $title_discription = "Weekly Activity Chart";
-      $title = "Days";
-
-    }
-
-      return view('superadmin/employee/view_employee', compact('employee','emp_days','title_discription','title'));
-
-
-    }
-
 
     public function show_department()
     {
@@ -407,11 +431,6 @@ class EmployeeController extends Controller
                 $item->employee = \App\User::where('role', 'employee')->where('id',$item->employee_id )->first();
     
             }        }
-
-
-
-
-
 
 
         return view('Superadmin/employee/show_leave',compact('employee_leaves'));

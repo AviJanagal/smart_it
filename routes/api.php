@@ -32,9 +32,11 @@ Route::get('get_projects','API\UserController@get_projects');
 Route::post('add_project_assign','API\UserController@add_project_assign');
 Route::post('delete_project_assign','API\UserController@delete_project_assign');
 Route::get('get_projects_assigned','API\UserController@get_projects_assigned');
-
 Route::get('get_superadmin','API\UserController@get_superadmin');
 Route::get('get_employee','API\UserController@get_employee');
+Route::post('get_single_emp','API\UserController@get_single_emp');
+
+
 
 
 
