@@ -65,6 +65,8 @@ class HomeController extends Controller
         }
 
 
+        
+
 
        //return  $current_date;
         $employee_leaves = \App\ApplyLeave::where('start_date', '<=', $current_date)->where('end_date', '>=', $current_date)->where('status','1')->orderBy('start_date','asc')->paginate(3);

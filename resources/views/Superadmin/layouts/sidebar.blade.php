@@ -26,6 +26,9 @@
 			<li class="sidebar-dropdown  ">
 				<a href="{{route('admin.get_project_assign')}}" class="{{ Request::routeIs('admin.get_project_assign') ? 'active' : '' }} "> <i class="fa fa-tasks home-custom " aria-hidden="true"></i><span>Project Assign</span> </a>
 			</li>
+			<li class="sidebar-dropdown  ">
+				<a href="{{route('admin.holidays.index')}}" class="{{ Request::routeIs('admin.holidays.index') ? 'active' : '' }} "> <i class="fa fa-tasks home-custom " aria-hidden="true"></i><span>Holidays</span> </a>
+			</li>
 		</ul>
 	</nav>
 </div>
