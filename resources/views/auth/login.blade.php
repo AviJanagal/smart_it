@@ -18,6 +18,11 @@
             <div class="mainheadingsection">
                 <div class="container-fluid">
                     <div class="row">
+                        <div class="col-md-7">
+                            <div class="leftformsectionbox">
+                                <img src="{{ asset('images/password.gif') }}" />
+                            </div>
+                        </div>
                         <div class="col-md-5">
                             <div class="leftloginwrapper">
                                 <div class="leftloginformcontainer">
@@ -65,11 +70,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-7">
-                            <div class="leftformsectionbox">
-                                <img src="{{ asset('images/smart_it.png') }}" />
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

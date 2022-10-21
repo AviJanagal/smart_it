@@ -1,5 +1,5 @@
-@include('employee.layouts.header')
 @include('employee.layouts.sidebar')
+@include('employee.layouts.header')
 <main class="maintop">
     <div class="headermaintopbarcustom">
       <div class="container-fluid">
@@ -95,8 +95,8 @@
                   <div class="personalinfoboxcustomsetting">
                     <div class="row">
                       <div class="col-md-12">
-                        <div class="haedingbottombordercustomsetting">
-                          <div class="headingpersonalinfo">
+                        <div class="haedingbottomborder">
+                          <div class="headingpersonalinfocustomsetting">
                             <h3>Department Info</h3>
                           </div>
                          

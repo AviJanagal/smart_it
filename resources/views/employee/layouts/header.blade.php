@@ -96,26 +96,7 @@
                     </h6>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="profilebox">
-                    <div class="dropdown-custom2">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <a href="#"> <img src="{{asset('images/dummy.jpg')}}" /></a>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{{route('employee.my_profile') }}">Profile</a>
-                            <!-- <a class="dropdown-item" href="#">Calender</a> -->
-                            <!-- <a class="dropdown-item" href="#">Setting</a> -->
-                            <a class="{{ (request()->is('logout')) ? 'active' : '' }} dropdown-item custom-dropdown" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                <span class="menuname">
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
-                                    Log out
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          
         </div>
     </div>
 </header>

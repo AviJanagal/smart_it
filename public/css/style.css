@@ -11,7 +11,7 @@ h6,
 body {
     margin: 0px;
     padding: 0px;
-    font-family: "Muli", sans-serif;
+    font-family: 'Lato', sans-serif;
 }
 
 * {
@@ -34,11 +34,11 @@ header {
 }
 
 .sidemenubar {
-    position: fixed;
-    width: 280px;
-    height: 100vh;
+    display: flex;
+    /* width: 280px; */
+    /* height: 100vh; */
     background-color: #122f51;
-
+    align-items: center;
 }
 
 .mainlogoimage {
@@ -103,12 +103,6 @@ span.title {
     padding: 30px;
 
 }
-
-main {
-    margin-left: 280px;
-    padding-top: 35px;
-}
-
 .totolEarning {
     padding-top: 41px;
     padding-bottom: 40px;
@@ -724,10 +718,9 @@ table.dataTable.no-footer {
 }
 
 .sidemenubar nav {
-    height: 70vh;
+    /* height: 70vh; */
     overflow: auto;
 }
-
 .btn-stylessav {
     width: 100px !important;
     margin-top: 32px !important;
@@ -1773,13 +1766,13 @@ table.table.table-striped.table-hover.dataTable td {
 }
 
 .leftformsectionboxheading img {
-    width: 71px;
+    width: 300px;
 }
 
 .leftformsectioninnerdata h1 {
     margin-top: 20px;
     font-size: 27px;
-    font-weight: 600;
+    font-weight: 900;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -1789,20 +1782,32 @@ table.table.table-striped.table-hover.dataTable td {
     margin-bottom: 40px;
     color: #c1bebe;
 }
-
+img.imglock {
+    position: absolute;
+    top: 0px;
+    width: 126px;
+    right: 0px;
+    top: 40%;
+}
 .leftformsectionbox {
     padding: 4%;
     position: relative;
-    height: 100vh;
 }
-
 .leftformsectionbox img {
-    width: 100%;
+    width: 91%;
     border-radius: 15px;
-    height: 92vh;
-    background-color: #ffe6e6;
+    background-color: #ffffff;
+    box-shadow: 0 5px 20px -5px rgb(0 0 0 / 7%);
+    height: 80vh;
+    margin-top: 8%;
+    margin-left: 10%;
 }
-
+.btn-check:focus+.btn-primary, .btn-primary:focus {
+    color: #fff;
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    box-shadow: 0 0 0 0.25rem rgb(49 132 253 / 0%);
+}
 .form-check-input:checked {
     background-color: #ac2b7b;
     border-color: #ac2b7b;
@@ -1821,6 +1826,7 @@ input.customchangesemail {
     box-shadow: 0px 0px 19px 19px #00000005;
     border: 0px;
     min-height: 50px !important;
+    padding: 0px 22px;
 }
 
 button.btn.btn-primary.custombuttonchanges {
@@ -1831,20 +1837,29 @@ button.btn.btn-primary.custombuttonchanges {
     border: none;
     font-size: 19px;
     font-weight: 500;
-    margin-top: 45px;
+    margin-top: 9px;
+    background: rgb(241,90,34);
+    background: -moz-linear-gradient(left,  rgba(241,90,34,1) 0%, rgba(33,64,154,1) 100%);
+    background: -webkit-linear-gradient(left,  rgba(241,90,34,1) 0%,rgba(33,64,154,1) 100%);
+    background: linear-gradient(to right,  rgba(241,90,34,1) 0%,rgba(33,64,154,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f15a22', endColorstr='#21409a',GradientType=1 );
+    border-radius: 50px;
+    border-bottom: 3px solid #6e83db;
 }
-
+.row.no-gutters {
+    margin: 0px;
+}
 .leftformsectionbox:before {
     position: absolute;
     content: "";
     top: 0px;
-    right: 0px;
+    left: 0px;
     width: 63%;
-    background-color: #ffffff;
+    background-color: #21409a;
     height: 100%;
     z-index: -1;
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
 }
 
 main.maintopcustomsection {

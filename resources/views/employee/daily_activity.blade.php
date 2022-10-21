@@ -1,5 +1,5 @@
-@include('employee.layouts.header')
 @include('employee.layouts.sidebar')
+@include('employee.layouts.header')
 
 <main class="maintop">
   <div class="mainsectionbox">
@@ -16,7 +16,7 @@
         </div>
         <div class="col-md-12">
           <div class="tattotsylehed">
-            <h4>Select Project</h4>
+            <label class="sl">Select Project</label>
           </div>
         </div>
 
@@ -51,13 +51,17 @@
             </form>
        </div>
 
-      <div class="table-title-add">
-        <div class="row">
-          <div class="col-sm-12">
-            <h2 style="text-align:center;">Today's Activity List </h2>
-          </div>
+  
+      <div class="bank-innersection mb-3">
+        <div class="table-title-add">
+            <div class="row">
+            <div class="col-sm-12">
+            <h2 class="mb-0" style="text-align:center;">Today's Activity List</h2>
+            </div>
+            </div>
         </div>
-      </div>
+
+        </div>
       <div class="customtableinnerbox">
 
       <div class="main-container-inner">
@@ -120,7 +124,7 @@
           </table>
         </div>
       @else
-        <h1 class="nodatafoundheading" >No data found</h1>
+        <h6 class="nodatafoundheading" >No data found</h6>
       @endif 
       </div>
       </div>

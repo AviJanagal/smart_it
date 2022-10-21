@@ -1,5 +1,5 @@
-@include('employee.layouts.header')
 @include('employee.layouts.sidebar')
+@include('employee.layouts.header')
 
 <main class="maintop">
     <div class="mainsectionbox">
@@ -34,7 +34,7 @@
                     <button type="submit" class="btn btn-primary">Search</button>
                 </div>
                 <div class="col-sm-2 mt-2 ml-4">
-                    <span class=""><h6>Total Productivity Time : {{ $total_time}}</h6></span>
+                   <h6>  <span class="totleorotime">Total Productivity Time :</span> {{ $total_time}}</h6>
                 </div>
              
                 </div>

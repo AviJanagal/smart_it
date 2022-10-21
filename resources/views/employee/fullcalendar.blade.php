@@ -44,6 +44,7 @@
 </script>
 </head>
 <body>
+@include('employee.layouts.sidebar')
 	<header class="headertop">
     <div class="container-fluid">
         <div class="row custom-row">
@@ -54,30 +55,11 @@
                     </h6>  
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="profilebox">
-                    <div class="dropdown-custom2">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <a href="#"> <img src="{{asset('images/dummy.jpg')}}" /></a>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <!-- <a class="dropdown-item" href="#">Profile</a> -->
-                            <!-- <a class="dropdown-item" href="{{ route('employee.calender') }}">Calender</a> -->
-                            <!-- <a class="dropdown-item" href="#">Setting</a> -->
-                            <a class="{{ (request()->is('logout')) ? 'active' : '' }} dropdown-item custom-dropdown" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                <span class="menuname">
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
-                                    Log out
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          
         </div>
     </div>
 </header>
-@include('employee.layouts.sidebar')
+
 <body>
     <main class="maintop">
         <div class="mainsectionbox">
@@ -86,7 +68,7 @@
             <div class="table-title-add">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h2 style="text-align:center;">Calender </h2>
+                        <h2 class="mb-0" style="text-align:center;">Calender </h2>
                     </div>
                 </div>
             </div>

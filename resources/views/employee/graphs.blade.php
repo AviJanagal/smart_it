@@ -1,5 +1,5 @@
-@include('employee.layouts.header')
 @include('employee.layouts.sidebar')
+@include('employee.layouts.header')
 
 <main class="maintop">
     <div class="mainsectionbox">
@@ -12,13 +12,15 @@
             @endif
             @include('sweet::alert')
         </div>
-    <div class="bank-innersection">
+    <div class="bank-innersection mb-3">
         <div class="table-title-add">
             <div class="row">
             <div class="col-sm-12">
-            <h2 style="text-align:center;">My Productivity Graph</h2>
+            <h2 class="mb-0" style="text-align:center;">My Productivity Graph</h2>
             </div>
             </div>
+        </div>
+
         </div>
         <form method="post" action="{{ route('employee.graph_time')}}" id="filterForm" enctype="multipart/form-data">
             @csrf
@@ -33,8 +35,6 @@
                 </div>
             </div> 
         </form>
-
-        </div>
         <div class=" chartcustom">
         <div class="main-container-inner">
             <div class="col-sm-12 mb-4 mt-4">

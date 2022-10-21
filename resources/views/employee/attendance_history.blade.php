@@ -1,5 +1,5 @@
-@include('employee.layouts.header')
 @include('employee.layouts.sidebar')
+@include('employee.layouts.header')
 
 <main class="maintop">
     <div class="mainsectionbox">
