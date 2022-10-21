@@ -247,6 +247,7 @@
                             <option value="monthly" <?php if ($key == "monthly") echo 'selected'; ?>>Monthly</option>
                             <option value="yearly"<?php if ($key == "yearly") echo 'selected'; ?>>Yearly</option>
                         </select>
+
                     </div>
                 </div> 
             </form>
@@ -318,12 +319,16 @@
         bar: {groupWidth: "95%"},
         vAxes: {
             // Adds titles to each axis.
-            0: {title: 'Time(In Hours)', format:'0.00' },
+            0: {title: 'Time(In Hours)', format:'0.00',titleFontSize:20},
           },
 
           hAxes: {
             // Adds titles to each axis.
-            0: {title: "<?php echo $title; ?>"},
+            0: {title: "<?php echo $title;?>",titleFontSize:20},
+
+            
+
+
           },
 
           legend: { position: "none" }

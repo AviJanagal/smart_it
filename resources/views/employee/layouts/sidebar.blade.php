@@ -10,7 +10,7 @@
 			</li>                                                     
 
 			<li>                                                         
-				<a href="{{route('employee.attendance_history')}} " class="{{(Route::is('employee.attendance_history'))?'active' : ''}}"> <span class="icon "><i class="fa fa-check" aria-hidden="true"></i></span> <span class="title ">Attendance History</span> </a>
+				<a href="{{route('employee.attendance_history')}} " class="{{in_array(Route::currentRouteName(),['employee.attendance_filter','employee.attendance_history']) ? 'active' : '' }}"> <span class="icon "><i class="fa fa-check" aria-hidden="true"></i></span> <span class="title ">Attendance History</span> </a>
 			</li>
 			<li class="sidebar-dropdown active ">
 				<a href="#" class="{{in_array(Route::currentRouteName(),['employee.daily_activity','employee.all_daily_activities']) ? 'active' : '' }}"> <i class="fa fa-home home-custom " aria-hidden="true"></i><span>Daily Activity</span> <i class="fa fa-angle-right right-custom" aria-hidden="true"></i> </a>

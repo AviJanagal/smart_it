@@ -31,15 +31,8 @@ class EmployeeregisterMail extends Mailable
      */
     public function build()
     {
-        // return $this->view('Superadmin.employee.employee_register_mail');
 
-
-        return $this->from($address ='admin@smartit.com', $name = 'Smart It Ventures')->subject('Employee Details')->markdown('Superadmin.employee.employee_register_mail')->attachData($this->pdf->output(),"test.pdf");
-
-    //     $subject = 'Welcome';
-    //    return $this->view('Superadmin.employee.employee_register_mail')->subject($subject);
-
-
+        return $this->from($address ='admin@smartit.com', $name = 'Smart It Ventures')->subject('Employee Details')->markdown('Superadmin.emails.employee_mail')->attachData($this->pdf->output(),'Employee.pdf');
 
     }
 }

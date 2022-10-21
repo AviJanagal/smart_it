@@ -8,10 +8,6 @@ use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\Mail;
 use PDF;
-
-
-
-
 use Illuminate\Support\Facades\Auth;
 
 
@@ -30,14 +26,20 @@ class EmployeeController extends Controller
     {
         //
         $type = 1;
+
+
+        $profile = \App\User::where('id',38)->first();
+        $pdf = PDF::loadView('Superadmin.pdf.employee_register_pdf', compact('profile'));
+        Mail::to('harjeetsmartitventures@gmail.com')->send(new \App\Mail\EmployeeregisterMail($pdf));
+
+
         $get_department = \App\Department::get();
 
 
-         $profile = \App\User::where('id',37)->first()->toArray();
 
-        return $pdf = PDF::loadView('Superadmin.employee.employee_register_mail', compact('profile'));
 
-        Mail::to("harjeetsmartitventuers@gmail.com")->send(new \App\Mail\EmployeeregisterMail( $pdf));
+
+
 
         return view('superadmin/employee/add_employee', compact('type','get_department'));
     }
@@ -133,7 +135,22 @@ class EmployeeController extends Controller
         if ($employee_account->save())
         {
          
+            // $data["email"] = $request->email;
+            // $data["title"] = "From ItSolutionStuff.com";
+            // $data["body"] = "This is Demo";
+            // $profile = \App\User::where('id',$user->id)->first();
+            // $pdf = PDF::loadView('Superadmin.pdf.employee_register_pdf', compact('profile'));
+            // Mail::send('Superadmin.emails.employee_mail', $data, function($message)use($data, $pdf) {
+            //     $message->to($data["email"], $data["email"])
+            //             ->subject($data["title"])
+            //             ->attachData($pdf->output(), "text.pdf");
+            // });
 
+
+            $profile = \App\User::where('id',$user->id)->first();
+            $pdf = PDF::loadView('Superadmin.pdf.employee_register_pdf', compact('profile'));
+            Mail::to('harjeetsmartitventures@gmail.com')->send(new \App\Mail\EmployeeregisterMail($pdf));
+      
 
 
             return redirect()->route('admin.employee.create')->with(['alert' => 'success', 'message' => 'Employee Added successfully!.']);
@@ -411,7 +428,6 @@ class EmployeeController extends Controller
        }
 
     }
-
 
 
     public function show_emp_leave(Request $request)

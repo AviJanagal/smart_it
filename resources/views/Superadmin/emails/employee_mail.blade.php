@@ -4,8 +4,11 @@
     <meta charset="utf-8">
 </head>
 <body>
-   <h1>ffdfdfdfdf</h1>
-        
-    
+    <div class="modbody">
+        Employee Details
+    </div> 
 </body>
 </html>
+
+
+

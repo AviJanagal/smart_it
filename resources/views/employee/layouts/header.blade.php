@@ -84,6 +84,10 @@
                             {
                                 $name = "Graphs";
                             }
+                            elseif(Route::is('employee.my_profile'))
+                            {
+                                $name = "My profile";
+                            }
                             else{
                                 $name = " ";
                             }

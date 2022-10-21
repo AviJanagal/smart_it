@@ -198,7 +198,7 @@ class UserController extends Controller
   public function edit_employee(Request $request)
   {
 
-    $user = \App\User::find($request->user()->id);
+    $user = \App\User::find($request->id);
 
     $rules = [
       'first_name' => 'required',
@@ -264,7 +264,7 @@ class UserController extends Controller
 
   public function delete_employee(Request $request)
   {
-    $del_emp = \App\User::where('role', 'employee')->find($request->user()->id);
+    $del_emp = \App\User::where('role', 'employee')->find($request->id);
 
     if (!is_null($del_emp)) :
       $del_emp->delete();
@@ -506,6 +506,123 @@ class UserController extends Controller
       return response()->json(['status' => true, 'payload' => [], 'message' => 'No Data found']);
     }
   }
+
+
+  public function add_department(Request $request)
+  {
+    $rules = [
+      'name' => 'required',
+    ];
+
+    $validator = Validator::make($request->all(), $rules);
+
+    if ($validator->fails()) {
+      return response()->json(['status' => false, 'message' => $validator->errors()->first()]);
+    } else {
+
+      $department = new \App\Department;
+      $department->name = $request->name;
+
+      if ($department->save()) {
+        return response()->json(['status' => true, 'message' => 'Department Added Successfully.', 'department_id' => $department->id, 'payload' => $department]);
+      } else {
+
+        return response()->json(['status' => false, 'message' => 'Something went wrong.']);
+      }
+    }
+  }
+
+
+  public function edit_department(Request $request)
+  {
+
+    $department =  \App\Department::find($request->id);
+    $rules = [
+      'name' => 'required',
+    ];
+
+    $validator = Validator::make($request->all(), $rules);
+
+    if ($validator->fails()) {
+      return response()->json(['status' => false, 'message' => $validator->errors()->first()]);
+    } else {
+      $department->name = $request->name;
+
+      if ($department->save()) {
+        return response()->json(['status' => true, 'message' => 'Depaartment Updated Successfully.', 'department_id' => $department->id, 'payload' => $department]);
+      } else {
+
+        return response()->json(['status' => false, 'message' => 'Something went wrong.']);
+      }
+    }
+  }
+
+
+  public function get_departments()
+  {
+    $get_department = \App\Department::get();
+    if ($get_department) {
+      return response()->json(['status' => true, 'payload' =>  $get_department]);
+    } else {
+      return response()->json(['status' => true, 'payload' => [], 'message' => 'No Data found']);
+    }
+  }
+
+
+  public function delete_department(Request $request)
+  {
+    $del_department = \App\Department::find($request->id);
+
+    if (!is_null($del_department)) :
+      $del_department->delete();
+      return response()->json(['status' => true, 'message' => 'Department Deleted Successfully.']);
+    else :
+      return response()->json(['status' => false, 'message' => 'Data Not Found.']);
+    endif;
+  }
+
+
+
+  public function show_employee_leaves()
+  {
+    
+      $employee_leaves = \App\ApplyLeave::orderBy('start_date','asc')->get();
+      foreach($employee_leaves as $item)
+      {
+        $item->employee = \App\User::where('role', 'employee')->where('id',$item->employee_id )->first();
+
+      }
+
+      if (!is_null($employee_leaves)) :
+        return response()->json(['status' => true, 'payload' =>  $employee_leaves]);
+      else :
+        return response()->json(['status' => false, 'message' => 'Data Not Found.']);
+      endif;
+
+  }
+
+  public function leave_approvel(Request $request)
+  {
+      $data = \App\ApplyLeave::where('employee_id',$request->employee_id)->first();
+      $data->status = $request->status;
+      $data->update();
+      return response()->json(['status' => true, 'message' => 'Status Updated Successfully.']);
+      
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

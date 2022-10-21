@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('register','API\UserController@register');
 Route::post('login','API\UserController@login');
 Route::post('add_employee','API\UserController@add_employee')->name('add_employee');
+Route::post('edit_employee','API\UserController@edit_employee');
+Route::post('delete_employee','API\UserController@delete_employee');
 Route::post('add_client','API\UserController@add_client');
 Route::post('edit_client','API\UserController@edit_client');
 Route::post('delete_client','API\UserController@delete_client');
@@ -36,6 +38,16 @@ Route::get('get_superadmin','API\UserController@get_superadmin');
 Route::get('get_employee','API\UserController@get_employee');
 Route::post('get_single_emp','API\UserController@get_single_emp');
 
+Route::post('add_department','API\UserController@add_department');
+Route::post('edit_department','API\UserController@edit_department');
+Route::post('delete_department','API\UserController@delete_department');
+Route::get('get_departments','API\UserController@get_departments');
+
+Route::get('show_employee_leaves','API\UserController@show_employee_leaves');
+Route::post('leave_approvel','API\UserController@leave_approvel');
+
+
+
 
 
 
@@ -47,9 +59,7 @@ Route::post('get_single_emp','API\UserController@get_single_emp');
 Route::group(['middleware' => 'auth:api'], function()
 {
 
-    Route::post('edit_employee','API\UserController@edit_employee');
     Route::post('logout','API\UserController@logout');
-    Route::post('delete_employee','API\UserController@delete_employee');
 
 
 });

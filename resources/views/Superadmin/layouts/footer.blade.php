@@ -39,20 +39,32 @@
 $("#graph_time").change(function(){
     // this.value;
     var graph = $(this).val();
-
-    $.ajax({
-        type: "POST",
-        url: "{{ url('admin/employee_graph') }}",
-        data: graph,
-        success: function(data) {
-
-            $('#emp_graph').submit();
+    $('#emp_graph').submit();
 
 
-           }
-       });
+    // $.ajax({
+    //     type: "POST",
+    //     url: "{{ url('admin/employee_graph') }}",
+    //     data: graph,
+    //     success: function(data) {
 
-    
+    //         $('#emp_graph').submit();
+
+
+    //        }
+    //    });
+
+    //   $.ajax({
+    //   type: "POST",
+    //   url: "{{ url('admin/employee_graph') }}",
+    //   data: $("#emp_graph").serialize(),
+    //   success: function(data) {
+    //     $(graph).html(data)
+    //   }
+    // });
+
+
+   
  });
 
 
@@ -256,7 +268,7 @@ if (selectedTab) {
 
 
 
-  $(function(){
+$(function(){
 $('#leave_status').change(function(){
     var staus_id = $(this).val();
     var employee_id = $("#employe_id").val();
