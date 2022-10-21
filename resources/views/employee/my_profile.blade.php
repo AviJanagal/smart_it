@@ -20,11 +20,11 @@
                   <img src="{{asset('images/profile-image.jpg') }}">
                 </div>
                 <div class="customphoneboxsetting">
-                  <a href="9877664432">
+                  <a href="#">
                     <i class="fa fa-phone" aria-hidden="true"></i>{{auth()->user()->phone_number }} </a>
                 </div>
                 <div class="mailboxcustomsetting">
-                  <a href="aviansh@amartitventures.com" class="custommail">
+                  <a href="#" class="custommail">
                     <i class="fa fa-envelope" aria-hidden="true"></i>{{auth()->user()->email }}  </a>
                 </div>
                 <button type="button" class="custtombuttonsettingdownload"><a href="{{route('employee.download_icard')}}">Download Id Card</a></button>

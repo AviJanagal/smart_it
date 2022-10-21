@@ -14,7 +14,17 @@ class EmployeeController extends Controller
    
     public function index()
     {
-        return view('employee.dashboard');
+        $all_users = \App\User::where('role','employee')->get();
+        foreach($all_users as $users){
+            $users->project_id = \App\DailyActivity::where('employee_id',$users->id)->where('date',(new DateTime)->format('Y-m-d'))->latest()->value('project_id');
+             if($users->project_id === 0){
+                $users->project_name = "Other";
+             }
+             else{
+                $users->project_name = \App\Project::whereId($users->project_id)->value('project_name');
+             }
+        }
+        return view('employee.dashboard',compact('all_users'));
 
     }
 

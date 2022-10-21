@@ -24,29 +24,7 @@
     });
 
 </script>
-  <!-- <script>
-        document.onreadystatechange = function() {
-            if (document.readyState !== "complete") {
 
-
-                setTimeout(function (){
-                document.querySelector(
-                                "body").style.visibility = "hidden";
-                                document.querySelector(
-                                "#loader").style.visibility = "visible";
-                            
-                }, 1000); 
-               
-            } else {
-                  setTimeout(function (){
-                document.querySelector(
-                  "#loader").style.display = "none";
-                document.querySelector(
-                  "body").style.visibility = "visible";
-              }, 1000); 
-            }
-        };
-    </script> -->
  <script>
 	$(".confirm").click(function(){
 		$(".sweet-overlay").empty();
@@ -175,7 +153,6 @@
 		
 		<script>
 			$(document).ready( function () {
-				// $('#myTable').DataTable();
          $("#myTable").DataTable({
                 ordering: false,
             });

@@ -85,6 +85,9 @@
     	bar: {groupWidth: "95%"},
          hAxis: {
             title: "<?php echo $title; ?>",
+             textStyle : {
+                fontSize: 17 // or the number you want
+            }
         },
          vAxis: {
             title: 'Time Taken (Hours)',

@@ -8,7 +8,7 @@
           @if (Session::get('alert'))
           <div class="alert alert-{{ Session::get('alert') }} alert-dismissible" role="alert">
             <p>{{ Session::get('message') }} </p>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close alertclosecss" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           @endif
         </div>
