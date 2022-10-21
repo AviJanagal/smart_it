@@ -49,8 +49,14 @@ Route::group(['as'=>'admin.','prefix' => 'admin','middleware' => ['auth', 'isAdm
    Route::get('edit_assigned_projects/{id}','superadmin\ProjectController@edit_assigned_projects')->name('edit_assigned_projects');
    Route::get('delete_assigned_project/{id}','superadmin\ProjectController@delete_assigned_project')->name('delete_assigned_project');
 
+   Route::resource('holidays','superadmin\HolidaysController');
+
+
 
 });
+
+
+
 
 Route::group(['as'=>'employee.','prefix' => 'employee','middleware' => ['auth', 'employee']], function () {
    Route::resource('employee','employee\EmployeeController');
