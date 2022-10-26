@@ -11,7 +11,7 @@ h6,
 body {
     margin: 0px;
     padding: 0px;
-    font-family: 'Lato', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 * {
@@ -21,23 +21,23 @@ body {
 }
 
 .row.custom-row {
-    border-bottom: 1px solid #f3f3f3;
+    border-bottom: 1px solid #f7f7f7;
 }
 
 header {
-    position: fixed;
+    /* position: fixed; */
     background: #ffffff;
-    border-top-left-radius: 30px;
-    z-index: 9;
-    width: calc(100% - 0px - 309px);
-    margin-left: 280px;
+    /* border-top-left-radius: 30px; */
+    /* z-index: 9; */
+    /* width: calc(100% - 0px - 309px); */
+    /* margin-left: 280px; */
 }
 
 .sidemenubar {
     display: flex;
     /* width: 280px; */
     /* height: 100vh; */
-    background-color: #122f51;
+    background-color: #ffffff;
     align-items: center;
 }
 
@@ -47,15 +47,25 @@ header {
 
 .profilebox img {
     width: 40px;
-    margin-right: 30px;
+    margin-right: 0px;
+    height: 40px;
+}
 
+.show>.btn-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.25rem rgb(130 138 145 / 0%);
+}
+
+.dropdown-menu {
+    left: auto;
+    right: 0px !important;
 }
 
 .profilebox {
-    margin-top: 8px;
-    text-align: center;
+    /* margin-top: 8px; */
+    /* text-align: center; */
     float: right;
-    width: 85%;
+    /* width: 85%; */
+    position: relative;
 }
 
 .bank-innersection h1 {
@@ -72,17 +82,11 @@ header {
 
 .sidemenubar ul li {
     list-style: none;
+    display: inline-block;
 }
 
 span.icon {
-    color: white;
-
     margin-right: 20px;
-}
-
-span.title {
-    color: white;
-    font-size: 14px;
 }
 
 .sidemenubar ul li a {
@@ -91,13 +95,17 @@ span.title {
     padding: 15px;
     margin-bottom: 10px;
     display: block;
-    font-size: 14px;
+}
+
+.dropdown-custom2 .dropdown-toggle::after {
+    content: "";
+    display: none;
 }
 
 .headingbox h6 {
     margin-left: 19px;
     margin-top: 18px;
-
+    font-size: 14px;
 }
 
 .mainsectionbox {
@@ -105,6 +113,7 @@ span.title {
     padding: 30px;
 
 }
+
 .totolEarning {
     padding-top: 41px;
     padding-bottom: 40px;
@@ -169,12 +178,12 @@ span.title {
 
 .viewbuttonbox a {
     text-decoration: none;
-    border: 1px solid #ff5a04;
+    border: 1px solid #f05a22;
     border-radius: 16px;
-    color: #ff5a04;
+    color: #AF2D7D;
     padding: 2px 25px 2px 25px;
+    color: #f05a22;
 }
-
 .artistvendorbox {
     text-align: center;
     display: flex;
@@ -216,23 +225,32 @@ a.vendor1 {
 
 .viewbuttonbox a:hover {
     color: white;
-    background-color: #ff5a04;
+    background-color: #f05a22;
     border: transparent;
 }
-
 .headingbox {
 
 
     padding-bottom: 10px;
 }
 
-.Pendingbox {
+.fc-toolbar.fc-header-toolbar {
+    background: #fff !important;
+}
 
-    background-color: #122f51;
+.Pendingbox {
+    background-color: #ff5a04;
     padding: 10px;
     color: white;
     border-radius: 6px;
-    /* margin-top: 68px; */
+    margin-top: 20px;
+    background: #ffffff;
+    color: #f05a22;
+    padding: 12px 30px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    TEXT-ALIGN: center;
+    /* font-weight: 600!important; */
 }
 
 .Pendingbox.customerheadingbox {
@@ -251,8 +269,8 @@ a.vendor1 {
     padding-left: 30px;
     font-size: 18px;
     margin-top: 7px;
+    font-weight: 600;
 }
-
 .Pendingbox.customerheadingbox h3 {
     margin-top: 0px;
 
@@ -261,15 +279,16 @@ a.vendor1 {
 .textpending p {
     padding-right: 14px;
     padding-top: 4px;
-    font-size: 22px;
-    font-weight: 300;
+    font-size: 19px;
+    font-weight: 500;
 }
 
 .pendingboxinner {
     padding-top: 20px;
-    box-shadow: 0px 3px 20px rgb(0 0 0 / 8%);
     margin-bottom: 14px;
     padding: 24px;
+    box-shadow: 4px -5px 123px -18px rgb(161 170 166 / 22%);
+    background: #fff;
 }
 
 .imgbox2 img {
@@ -288,13 +307,14 @@ a.vendor1 {
 
 .buttonbox2 a {
     text-decoration: none;
-    background-color: #ff5a04;
+  
     padding: 5px 12px 5px 12px;
     color: white;
     width: 100%;
     display: block;
     border-radius: 6px;
     font-size: 12px;
+    background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
 }
 
 .buttonbox2 {
@@ -333,15 +353,26 @@ span.ïcon {
 }
 
 span.app {
-    color: #f15a22;
+    color: #f05a22;
 }
 
 .sidemenubar ul li a:hover,
-.sidemenubar ul li a.active {
-    color: white;
-    background-color: #f05a22;
+.sidemenubar ul li a.active,
+.navbarcustome li.nav-item a.active,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: black;
+    background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
     border-radius: 6px;
+    color: #fff !important;
+}
 
+.sidemenubar ul li a,
+.navbarcustome li.nav-item a {
+    text-decoration: none;
+    color: black;
+    padding: 11px;
+    margin-bottom: 10px;
+    display: block;
 }
 
 /* flow chart css start */
@@ -352,11 +383,100 @@ span.app {
     stroke-width: 1em;
 }
 
-#svg #bar {
-    stroke: #f15a22;
+nav.navbar.navbar-expand-lg.navbar-light.navbarcustome li.nav-item.dropdown.owndropdown a.dropdown-item {
+    padding: 3px 16px;
+    font-size: 15px;
+    background: #f9f9f9;
+    margin-bottom: 2px;
 }
 
-#cont {
+nav.navbar.navbar-expand-lg.navbar-light.navbarcustome .dropdown-menu {
+    padding: 0px;
+    border: 1px solid rgb(0 0 0 / 6%);
+}
+
+textarea#message-text {
+    padding: 10px;
+    width: 100%;
+    font-size: 15px;
+    box-shadow: 0px 0px 4px 2px #0000000a;
+    border: 0px !important;
+    border-radius: 7px;
+}
+
+img.holicon {
+    width: 116px !important;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    background: #fbfbfb !important;
+    border: 0px !important;
+    color: #000;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.table-bordered td {
+    border: 1px solid #dee2e6;
+    border-color: #f3f3f3 !important;
+    border: 1px solid;
+    font-size: 14px;
+    box-shadow: inset 0 0 0 0px var(--bs-table-accent-bg) !important;
+    line-height: 17px;
+    background: white !important;
+}
+
+a.btn.btn-success {
+    background-color: #f05a22;
+    border: none;
+    font-size: 19px;
+    font-weight: 500;
+    margin-top: 0px;
+    background: rgb(241, 90, 34);
+    background: -moz-linear-gradient(left, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    background: -webkit-linear-gradient(left, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f15a22', endColorstr='#21409a', GradientType=1);
+    border-radius: 9px;
+    border-bottom: 3px solid #6e83db;
+    width: 200px;
+}
+
+button.confirm {
+    background-color: #f05a22;
+    border: none;
+    font-size: 19px;
+    font-weight: 500;
+    margin-top: 16px;
+    background: rgb(241, 90, 34);
+    background: -moz-linear-gradient(left, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    background: -webkit-linear-gradient(left, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f15a22', endColorstr='#21409a', GradientType=1);
+    border-radius: 9px;
+    border-bottom: 3px solid #6e83db;
+}
+
+.modal-footer button.btn.btn-secondary {
+    background: red;
+    border: none;
+    font-size: 19px;
+    font-weight: 500;
+    margin-top: 0px;
+    background: #f44336;
+    background: -moz-linear-gradient(left, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f15a22', endColorstr='#21409a', GradientType=1);
+    border-radius: 9px;
+    border-bottom: 3px solid #bd1c52;
+}
+
+#svg #bar {
+    stroke: #f05a22;
+}
+
+/* #cont {
     display: block;
     height: 200px;
     width: 200px;
@@ -364,22 +484,30 @@ span.app {
     border-radius: 100%;
     position: relative;
     text-align: center;
-}
+} */
 
 #cont:after {
-    position: absolute;
-    display: block;
-    height: 160px;
-    width: 160px;
-    left: 50%;
-    top: 50%;
+    /* position: absolute; */
+    /* display: block; */
+    /* height: 99px; */
+    width: 100%;
+    /* left: 50%; */
+    /* top: 45%; */
     content: attr(data-pct)"";
-    margin-top: -80px;
-    margin-left: -80px;
-    border-radius: 100%;
-    line-height: 160px;
-    font-size: 2em;
-    font-weight: 900;
+    /* margin-top: -80px; */
+    /* margin-left: -80px; */
+    /* border-radius: 100%; */
+    /* line-height: 160px; */
+    /* font-size: 2em; */
+    /* font-weight: 900; */
+    /* margin-left: -100px; */
+    text-align: center;
+    font-size: 23px;
+    font-weight: 800;
+}
+
+.flowchart {
+    text-align: center;
 }
 
 .trashrightbox {
@@ -412,14 +540,29 @@ i.fa.fa-eye.eyesclose {
 
 }
 
+.navlogo {
+    width: 212px;
+}
+
+.navbarcustome ul li.nav-item {
+    margin-right: 31px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgb(0 0 0);
+    font-weight: 500;
+    font-size: 15px;
+    padding: 10px 16px;
+}
+
 /* sidebar menu dropdown css start */
 li.sidebar-dropdown i.fa.fa-angle-right {
     float: right;
     font-size: 16px;
     transition: all ease 1s;
     transform: rotate(0deg);
-    color: white;
-    /* margin-right: 1px; */
+    color: black;
+    margin-left: 11px;
     margin-top: 4px;
 }
 
@@ -427,14 +570,12 @@ li.sidebar-dropdown.active i.fa.fa-angle-right {
     transform: rotate(90deg);
 }
 
-i.fa.fa-home.home-custom {
-    color: white;
+.sidemenubar ul li i.fa {
+    color: #000;
 }
 
 li.sidebar-dropdown span {
-    color: white;
     padding-left: 20px;
-    font-size: 14px;
 }
 
 ul.sidenavbarul li a.active,
@@ -464,10 +605,13 @@ ul.sidenavbarul li a {
 }
 
 .mainlogoimage img {
-    width: 149px;
-    /* margin-top: 30px; */
+    width: 191px;
+    margin-top: 7px;
     /* margin-left: 70px; */
-    padding-top: 12px;
+    padding-top: 1px;
+
+    border-radius: 3px;
+    height: 62px;
 }
 
 span.number-custom {
@@ -548,20 +692,30 @@ span.dot.color-custom2 {
     background: #9C1717;
 }
 
+.iconimg img {
+    width: 72px;
+}
+
 .headingbox h6 a {
     text-decoration: none;
 }
 
-.sidemenubar:after {
-    position: absolute;
-    content: "";
-    background-color: #6A6A6A;
-    height: 1005;
-    height: 100%;
-    width: 15px;
-    top: 47px;
-    right: 0px;
-    border-radius: 45px 6px;
+body {
+    background: #ffffff !important;
+}
+
+nav.navbar.navbar-expand-lg.navbar-light.navbarcustome {
+    box-shadow: 4px -5px 123px -18px rgb(161 170 166 / 22%);
+    background: #fff;
+}
+
+.iconimgmy.time img {
+    width: 28%;
+    min-width: 116px;
+}
+
+.navbarcustome li.nav-item.owndropdown a.dropdown-item.active {
+    color: #000 !important;
 }
 
 .imgbox2 img:hover {
@@ -627,27 +781,16 @@ button.dropbtn i.fa.fa-angle-right {
     transform: translateY(0px);
 }
 
-.sidemenubar:before {
-    content: "";
-    position: absolute;
-    right: -24px;
-    top: 0px;
-    width: 27px;
-    background: #122f51;
-    height: 42px;
-    z-index: -1;
-}
 
 button.dropdown-toggle.dropdown-custom {
-    background-color: #f05a22;
+    background-color: whitesmoke;
     border: none;
-    border-radius: 20px;
+    border-radius: 8px;
 }
-
 
 .dropdown-toggle::after {
     display: inline-block;
-    margin-left: -0.745em;
+    margin-left: 0.255em;
     vertical-align: 0.255em;
     content: "";
     border-top: 0.3em solid;
@@ -672,6 +815,8 @@ button.dropdown-toggle.dropdown-custom {
 
 .dropdown-custom2 {
     float: right;
+    position: relative;
+    top: -5px;
 }
 
 .service {
@@ -698,9 +843,11 @@ button.dropdown-toggle.dropdown-custom {
 }
 
 table.dataTable thead>tr>th {
-    background: #ebebeb !important;
+    background: #fbfbfb !important;
     border: 0px !important;
     color: #000;
+    font-size: 14px;
+    white-space: nowrap;
 }
 
 table.dataTable tbody th,
@@ -720,13 +867,10 @@ table.dataTable.no-footer {
     border: 0px solid rgba(0, 0, 0, 0.3) !important;
 }
 
-.sidemenubar nav {
-    /* height: 70vh; */
-    overflow: auto;
-}
+
 .btn-stylessav {
     width: 100px !important;
-    margin-top: 32px !important;
+    margin-top: 37px !important;
     float: none !important;
 }
 
@@ -783,9 +927,35 @@ input.form-control-file.custom-control.custom-inner {
     padding-bottom: 26px;
 }
 
+.fc .fc-row .fc-content-skeleton table,
+.fc .fc-row .fc-content-skeleton td,
+.fc .fc-row .fc-helper-skeleton td {
+    background: 0 0;
+    border-color: #e2e2e2 !important;
+}
+
+span.totleorotime {
+    font-size: 13px;
+}
+
+.Pendingbox.calender {
+    box-shadow: 0px 0px 19px 19px #00000005;
+    padding: 12px !important;
+    background: #fff;
+}
+
 label.inputlabel {
     margin-bottom: 12px;
     font-size: 14px;
+    font-weight: 500;
+}
+
+button.swal2-confirm.swal2-styled.anchorcls {
+    background: #2840a2;
+}
+
+button.swal2-confirm.swal2-styled.anchorcls a {
+    color: #fff;
 }
 
 button.btn.btn-danger.custom-innerbutton {
@@ -794,17 +964,9 @@ button.btn.btn-danger.custom-innerbutton {
     margin-right: 40px;
 
     border-radius: 10px;
-    background-color: #f15a22;
-    width: 15%;
+    background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);    width: 15%;
     display: block;
     padding: 12px;
-}
-
-button.btn.btn-danger.custom-innerbutton.btn-stylessav.btnclient {
-    max-width: 200px;
-    width: 100%;
-    margin: 0px auto 20px;
-    display: block;
 }
 
 .custom-control-lg {
@@ -826,13 +988,13 @@ button.btn.btn-danger.custom-innerbutton.btn-stylessav.btnclient {
 
 .mainheadinglink ul li a {
     text-decoration: none;
-    color: #f15a22;
+    color: black;
     font-weight: 600;
     font-size: 20px;
 }
 
 a.custom-color.active {
-    color: #000;
+    color: #f05a22;
 }
 
 .mainheadinglink {
@@ -880,7 +1042,7 @@ a.custom-color.active {
     display: block;
     width: 20%;
     padding: 10px 20px 10px 20px;
-    background-color: #f15a22;
+    background-color: #f05a22;
     border-radius: 20px;
     font-size: 20px;
     text-decoration: none;
@@ -916,7 +1078,7 @@ a.custom-color.active {
 
 .custom-savebutton button {
     float: right;
-    background-color: #f15a22;
+    background-color: #AF2D7D;
     display: block;
     padding: 12px 30px 12px 30px;
     border-radius: 20px;
@@ -1011,8 +1173,8 @@ p.text-address {
 }
 
 thead.inner-tablecolor {
-    background: #cad7e6;
-    color: black;
+    background: #AF2D7D;
+    color: white;
 }
 
 .table-innerdata {
@@ -1023,8 +1185,8 @@ thead.inner-tablecolor {
 .bank-innersection {
     text-align: center;
     box-shadow: 0px 0px 19px 19px #00000005;
-    padding: 15px;
-    margin-top: 20px;
+    /* padding: 15px; */
+    /* margin-top: 20px; */
 }
 
 .bank-innersection h3 {
@@ -1134,22 +1296,22 @@ nav.custom-nav {
     left: -9999px;
 }
 
-.mystatusbtn [type="radio"]:checked+label,
-.mystatusbtn [type="radio"]:not(:checked)+label {
+.mystatusbtn [type="radio"]:checked+label, .mystatusbtn [type="radio"]:not(:checked)+label {
     position: relative;
-    padding-left: 33px;
+    padding-left: 32px;
     cursor: pointer;
     line-height: 20px;
     display: inline-block;
     color: #666;
     font-size: 20px;
-    top: 10px;
-    padding-right: 20px;
+    top: 4px;
+    padding-right: 111px;
     font-weight: 600;
 }
 
 .mystatusbtn [type="radio"]:checked+label {
-    color: #f05a22;
+    color:#f05a22;
+    ;
 }
 
 .mystatusbtn [type="radio"]:checked+label:before,
@@ -1301,7 +1463,7 @@ table.table th i {
 table.table td:last-child i {
     opacity: 0.9;
     font-size: 16px;
-    /* margin: 0 5px; */
+    margin: 0 5px;
 }
 
 table.table td a {
@@ -1526,8 +1688,8 @@ nav.custom-nav {
 }
 
 .nav-tabs .nav-link.custom-tab.active {
-    background: #f15a22;
-    color: black;
+    background: #f05a22;
+    color: #fff;
 }
 
 .nav-tabs .nav-link.custom-tab1.active {
@@ -1639,12 +1801,38 @@ span.custompriceheading {
     margin-right: 5px;
 }
 
+button.btn.btn-danger.custom-apply {
+    width: 144px;
+    display: block;
+    padding: 9px;
+    border: none;
+    font-size: 19px;
+    font-weight: 500;
+    margin-top: 9px;
+    background: rgb(241, 90, 34);
+    background: -moz-linear-gradient(left, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    background: -webkit-linear-gradient(left, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f15a22', endColorstr='#21409a', GradientType=1);
+    border-radius: 9px;
+    border-bottom: 3px solid #6e83db;
+    color: #fff;
+    margin: 5px auto 0px;
+    float: left;
+}
+
+i.fa.fa-envelope-o.iconenvlop {
+    color: #354195;
+}
+
 .table-title-add h2 {
-    background: #cad7e6;
-    color: black;
+    background: #ffffff;
+    color: #f05a22;
     padding: 16px 30px;
     margin-bottom: 15px;
     font-size: 20px;
+    font-size: 19px;
+    font-weight: 600;
 }
 
 span.custombookingheading {
@@ -1658,10 +1846,12 @@ a.boxdatainfo {
 }
 
 .tattotsylehed h4 {
-    font-size: 16px;
+    font-size: 21px;
     margin-bottom: 10px;
-    color: #f15a22;
+    color: #ff5a04;
+    font-weight: 600;
 }
+
 .dataTables_info {
     font-size: 13px;
     padding: 12px !important;
@@ -1685,8 +1875,8 @@ a.paginate_button {
 }
 
 .faqheading h4 {
-    background: #cad7e6;
-    color: black;
+    background: #ac2b7b;
+    color: #fff;
     padding: 16px 30px;
     margin-bottom: 15px;
     font-size: 20px;
@@ -1719,7 +1909,7 @@ select#select_user_type {
     float: right;
     margin-right: 40px;
     border-radius: 10px;
-    background-color: #f15a22;
+    background-color: #AF2D7D;
     display: block;
     padding: 12px;
     width: 100px !important;
@@ -1752,9 +1942,29 @@ select#select_user_type {
 }
 
 table.table.table-striped.table-hover.dataTable td {
-    border-color: #f7f7f7 !important;
+    border-color: #f3f3f3 !important;
     border: 1px solid;
     font-size: 14px;
+    box-shadow: inset 0 0 0 0px var(--bs-table-accent-bg);
+    line-height: 35px;
+}
+
+select#myProject {
+    padding: 10px;
+    width: 100%;
+    font-size: 15px;
+    box-shadow: 0px 0px 4px 2px #0000000a;
+    border: 0px !important;
+    border-radius: 7px;
+}
+
+select#graph_time {
+    padding: 10px;
+    width: 100%;
+    font-size: 15px;
+    box-shadow: 0px 0px 4px 2px #0000000a;
+    border: 0px !important;
+    border-radius: 7px;
 }
 
 /* log in css */
@@ -1769,13 +1979,13 @@ table.table.table-striped.table-hover.dataTable td {
 }
 
 .leftformsectionboxheading img {
-    width: 300px;
+    width: 170px;
 }
 
 .leftformsectioninnerdata h1 {
     margin-top: 20px;
     font-size: 27px;
-    font-weight: 900;
+    font-weight: 600;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -1785,32 +1995,19 @@ table.table.table-striped.table-hover.dataTable td {
     margin-bottom: 40px;
     color: #c1bebe;
 }
-img.imglock {
-    position: absolute;
-    top: 0px;
-    width: 126px;
-    right: 0px;
-    top: 40%;
-}
+
 .leftformsectionbox {
     padding: 4%;
     position: relative;
+    height: 100vh;
 }
+
 .leftformsectionbox img {
-    width: 91%;
+    width: 100%;
     border-radius: 15px;
-    background-color: #ffffff;
-    box-shadow: 0 5px 20px -5px rgb(0 0 0 / 7%);
-    height: 80vh;
-    margin-top: 8%;
-    margin-left: 10%;
+
 }
-.btn-check:focus+.btn-primary, .btn-primary:focus {
-    color: #fff;
-    background-color: #0b5ed7;
-    border-color: #0a58ca;
-    box-shadow: 0 0 0 0.25rem rgb(49 132 253 / 0%);
-}
+
 .form-check-input:checked {
     background-color: #ac2b7b;
     border-color: #ac2b7b;
@@ -1823,46 +2020,40 @@ label.customchangesuser {
 }
 
 input.customchangesemail {
+    margin-bottom: 24px;
     padding: 10px;
     font-weight: 400;
-    margin-bottom: 24px;
     box-shadow: 0px 0px 19px 19px #00000005;
     border: 0px;
-    min-height: 50px !important;
-    padding: 0px 22px;
+    min-height: 49px !important;
+    padding-left: 46px;
+    appearance: revert;
+    height: 55px;
+    border-radius: 74px;
 }
 
 button.btn.btn-primary.custombuttonchanges {
     width: 100%;
     display: block;
     padding: 15px;
-    background-color: #f05a22;
+    background-color: #ff614d;
     border: none;
     font-size: 19px;
     font-weight: 500;
-    margin-top: 9px;
-    background: rgb(241,90,34);
-    background: -moz-linear-gradient(left,  rgba(241,90,34,1) 0%, rgba(33,64,154,1) 100%);
-    background: -webkit-linear-gradient(left,  rgba(241,90,34,1) 0%,rgba(33,64,154,1) 100%);
-    background: linear-gradient(to right,  rgba(241,90,34,1) 0%,rgba(33,64,154,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f15a22', endColorstr='#21409a',GradientType=1 );
-    border-radius: 50px;
-    border-bottom: 3px solid #6e83db;
+    margin-top: 45px;
 }
-.row.no-gutters {
-    margin: 0px;
-}
+
 .leftformsectionbox:before {
     position: absolute;
     content: "";
     top: 0px;
-    left: 0px;
+    right: 0px;
     width: 63%;
-    background-color: #21409a;
+    /* background-color: #25409f; */
     height: 100%;
     z-index: -1;
-    border-bottom-left-radius: 0px;
-    border-top-left-radius: 0px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
 }
 
 main.maintopcustomsection {
@@ -1949,6 +2140,8 @@ p.customnumberinfo {
     margin-bottom: 50px;
 }
 
+
+
 .imagecirclebox img {
     border-radius: 50%;
     width: 100px;
@@ -2014,193 +2207,546 @@ h5.customnamesetting {
 
 /* new update css in dashboard */
 .mainheadingtop span {
-    color: #f15a22;
+    color: #f05a22;
 }
 
 .mainheadingtop {
     margin-top: 10px;
-    margin-bottom: 52px;
+    margin-bottom: 22px;
+}
+
+.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-top {
+    right: auto !important;
+}
+
+.datepicker table tr td {
+    padding: 11px;
+    font-size: 11px;
+}
+
+.datepicker table tr td.active.active,
+.datepicker table tr td span.active.active,
+.datepicker table tr td span.active {
+    background: #f05a22 !important;
+}
+
+.datepicker table tr td.active,
+.datepicker table tr td.active:hover,
+.datepicker table tr td.active.disabled,
+.datepicker table tr td.active.disabled:hover {
+    background-color: #006dcc;
+    background-image: -moz-linear-gradient(top, #08c, #04c);
+    background-image: -ms-linear-gradient(top, #08c, #04c);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#08c), to(#04c));
+    background-image: -webkit-linear-gradient(top, #f05a22, #f05a22);
+    background-image: -o-linear-gradient(top, #08c, #04c);
+    background-image: linear-gradient(top, #08c, #04c);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0088cc', endColorstr='#0044cc', GradientType=0);
+    border-color: #04c #04c #002a80;
+    border-color: rgba(0, 0, 0, .1) rgba(0, 0, 0, .1) rgba(0, 0, 0, .25);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .25);
 }
 
 .mainheadingbox {
-    box-shadow: 0px 3px 10px -2px rgb(161 170 166 / 80%);
-    padding: 12px;
+    box-shadow: 4px -5px 123px -18px rgb(161 170 166 / 22%);
+    padding: 20px 12px 30px;
     text-align: center;
     border-radius: 10px;
+    background: #fff;
 }
 
 /* multiple form css */
 
-* {
-    box-sizing: border-box;
-}
-.tab{
-    display: none;
-    width: 100%;
-    height: 50%;
-    margin: 0px auto;
-}
-.current{
-    display: inline-block;
+#regForm {
+    background-color: #ffffff;
+    margin: 100px auto;
+    padding: 40px;
+    width: 70%;
+    min-width: 300px;
 }
 
+/* Style the input fields */
+input {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway;
+    border: 1px solid #aaaaaa;
+}
+
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+    background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+    display: none;
+}
 
 /* Make circles that indicate the steps of the form: */
 .step {
-    height: 20px;
-    width: 20px;
-    cursor: pointer;
+    height: 15px;
+    width: 15px;
     margin: 0 2px;
-    color: #fff;
     background-color: #bbbbbb;
     border: none;
     border-radius: 50%;
     display: inline-block;
-    opacity: 0.8;
-    padding: 5px
+    opacity: 0.5;
 }
 
+/* Mark the active step: */
 .step.active {
     opacity: 1;
-    background-color: #4CAF50;
 }
 
+/* Mark the steps that are finished and valid: */
 .step.finish {
-    background-color: #4CAF50;
+    background-color: #04AA6D;
 }
 
 .error {
-    color: #f00;
-}
-
-  .error{
     color: red;
-  }
+}
 
 /* multiple form css end */
 
-.jqueryvalidationerror label.error{ 
 
-    color: #dc3545;
-         font-size: 14px;
+.modal-content.customchanges {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 650px;
+    height: 500px;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1pxsolidrgba(0, 0, 0, .2);
+    border-radius: .3rem;
+    outline: 0;
+}
+
+/* .chartcustom {
+    margin-top: 192px;
+    width: 1200px;
+} */
+
+
+.cal-custom {
+    height: 100px;
+    width: 800px;
+    margin-left: 102px;
+    max-width: 653px;
+    margin: auto;
+    margin-top: 25px;
 }
 
 
-/* employee graph css */
-
-select#graph_time {
-    margin-top: 30px;
-    margin-left: 20px;
+a.fc-day-number {
+    text-decoration: none;
+    color: #000000;
+    font-size: 15px;
+    width: 100%;
 }
 
-/* employee graph css end */
+.fc-center h2 {
+    color: #fa5603;
+    font-size: 20px;
+}
 
+.fc-basic-view .fc-body .fc-row {
+    min-height: 45px !important;
+    height: 45px !important;
+}
 
+.fc-scroller.fc-day-grid-container {
+    height: auto !important;
+}
 
-/*  alert close button css */
+th.fc-day-header.fc-widget-header span {
+    font-size: 25px;
+}
 
-button.close.alertclosecss {
-    /* margin-left: 15px; */
-    color: #155724;
-    /* font-weight: bold; */
-    /* float: right; */
+.fc-row.fc-week.fc-widget-content.fc-rigid td {
+    padding: 10px;
+    height: 20px !important;
+    background: #fff;
+}
+
+button.fc-today-button.fc-button.fc-state-default.fc-corner-left.fc-corner-right.fc-state-disabled {
+    background: rgb(255, 255, 255);
+    color: black;
+    font-weight: 600;
+    font-size: 17px;
+    border: 1px solid #c7c7c7;
+    text-transform: capitalize;
+}
+
+button.fc-today-button.fc-button.fc-state-default.fc-corner-left.fc-corner-right {
+    background: rgb(255, 255, 255);
+    color: black;
+    font-weight: 800;
+    font-size: 17px;
+}
+
+th.fc-day-header.fc-widget-header {
+    text-decoration: none;
+    color: #000000;
+    font-size: 15px;
+    padding: 15px;
+    background: #f9f9f9;
+}
+
+a.fc-day-grid-event.fc-h-event.fc-event.fc-start.fc-end.fc-draggable.fc-resizable {
+    background: #ff6000;
+    border: 0px;
+    padding: 3px;
+    font-weight: 400;
+}
+
+td.fc-day.fc-widget-content.fc-mon.fc-today {
+    background: #f9b58c52;
+}
+
+.fc-toolbar.fc-header-toolbar {
+    background: #d7d7d745;
+    /* margin-top: 10px; */
+    padding-top: 15px;
+    padding: 16px 20px;
+    border-radius: 9px;
+    box-shadow: 0px 0px 19px 19px #00000005;
+}
+
+.fc-toolbar.fc-header-toolbar {
+    margin-bottom: 0em;
+}
+
+.fc-button-group button {
+    background: #fff;
+    font-weight: 700;
+    border: 1px solid #9b9b9b45;
+}
+
+button#dropdownMenuButton {
+    background: #ffffff;
+    border: 0px;
+    padding: 0px;
+}
+
+button#dropdownMenuButton img {
+    border: 2px solid #000000;
+    border-radius: 39px;
+}
+
+.fc-state-active,
+.fc-state-down {
+    background-color: #ccc;
+    background-image: none;
+    box-shadow: inset 0 2px 4px rgb(0 0 0 / 0%), 0 1px 2px rgb(0 0 0 / 5%);
+}
+
+.fc-state-active,
+.fc-state-down {
+    box-shadow: inset 0 0px 0px rgb(0 0 0 / 15%), 0 1px 2px rgb(0 0 0 / 5%) !important;
+}
+
+.fc-button-group button {
+    border-radius: 93px;
+}
+
+.Pendingbox.calender {
+    background-color: #ff5a04;
+    padding: 10px;
+    color: white;
+    border-radius: 6px;
+    margin-top: 25px;
+    background: #ffffff;
+    color: #f05a22;
+    padding: 16px 30px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* .fc-unthemed .fc-content,
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-list-heading td,
+.fc-unthemed .fc-list-view,
+.fc-unthemed .fc-popover,
+.fc-unthemed .fc-row,
+.fc-unthemed tbody,
+.fc-unthemed td,
+.fc-unthemed th,
+.fc-unthemed thead {
+    border-color: #ddd;
+    height: 42px;
     font-size: 23px;
-    cursor: pointer;
-    border-color: transparent;
-    background-color: transparent;
-    position: absolute;
-    /* margin-left: 0px; */
-    right: 15px;
-    top: 10px;
+    padding-top: 6px;
+} */
+.table-bordered {
+    border: 0px solid #dee2e6 !important;
 }
 
-/* alert close button end */
-
-
-/* employee  Modal css  */
-
-.reqleave{
-    background-color: #122f51;
+h6.btncheckincheckout {
+    width: 144px;
+    display: block;
+    padding: 9px;
     border: none;
-
+    font-size: 19px;
+    font-weight: 500;
+    margin-top: 9px;
+    background: rgb(241, 90, 34);
+    background: -moz-linear-gradient(left, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    background: -webkit-linear-gradient(left, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f15a22', endColorstr='#21409a', GradientType=1);
+    border-radius: 9px;
+    border-bottom: 3px solid #6e83db;
+    color: #fff;
+    margin: 19px auto 0px;
 }
 
-.reqleave:hover {
+.bank-innersection input {
+    padding: 10px;
+    width: 100%;
+    font-size: 15px;
+    box-shadow: 0px 0px 4px 2px #0000000a;
+    border: 0px !important;
+    border-radius: 7px;
+}
+
+button.btn.btn-primary {
     background-color: #f05a22;
     border: none;
+    font-size: 19px;
+    font-weight: 500;
+    margin-top: 0px;
+    background: rgb(241, 90, 34);
+    background: -moz-linear-gradient(left, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    background: -webkit-linear-gradient(left, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f15a22', endColorstr='#21409a', GradientType=1);
+    border-radius: 9px;
+    border-bottom: 3px solid #6e83db;
+}
 
+.dataTables_filter label {
+    display: flex;
+    font-size: 14px;
+}
+
+.dataTables_filter label input[type="search"] {
+    padding: 10px;
+    width: 100%;
+    font-size: 15px;
+    box-shadow: 0px 0px 4px 2px #0000000a !important;
+    border: 0px !important;
+    border-radius: 7px;
+    margin-right: 11px;
+    margin-left: 13px;
+}
+
+.dataTables_filter label {
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+}
+
+.dataTables_length label {
+    font-size: 14px;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+th.fc-day-header.fc-widget-header span {
+    font-size: 16px;
+}
+
+.fc-unthemed .fc-content,
+.fc-unthemed .fc-divider,
+.fc-unthemed .fc-list-heading td,
+.fc-unthemed .fc-list-view,
+.fc-unthemed .fc-popover,
+.fc-unthemed .fc-row,
+.fc-unthemed tbody,
+.fc-unthemed td,
+.fc-unthemed th,
+.fc-unthemed thead {
+    border-color: #f5f5f5;
+}
+
+
+
+.notificationinnerbox {
+    display: flex;
 
 }
 
-.confleave{
-    background-color: #122f51;
-    border: none;
-
+.notificationmainsection {
+    margin-top: 30px;
 }
 
-.confleave:hover {
-    background-color: #f05a22;
-    border: none;
-
-
+.notificationimgbox img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
 }
 
-.modal-dialog.moddialogue{
+.notificationtime {
 
-    max-width: 600px;
-
-
+    margin-left: auto;
 }
 
-.modheader{
-
-    background-color: lightblue;
-
+.notificationtextbox p {
+    margin-top: 20px;
+    margin-left: 12px;
 }
 
-.modtitle{
-
-    font-weight: bold;
+.notificationtime h6 {
+    margin-top: 10px;
+    color: #747373;
+    margin-right: 13px;
 }
 
-.empmodbody {
-    font-weight: bold;
+.notificationinnerbox {
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 19px 19px #00000005;
+    border-radius: 10px;
     padding: 10px;
 }
 
-.modbody{
-   display: flex;
+/* new profile css start */
+.mainheadingtopbarcustom {
+    background-color: #21409a;
+    color: white;
+    height: 91px;
 }
 
-.leave_startdate{
-
-    margin-top: 11px;
-    margin-left: 10px;
+.profileimgboxcustomsetting img {
+    width: 200px;
+    height: 200px;
+    box-shadow: 0px 0px 19px 19px #00000003;
+    border-radius: 100px;
 }
 
-
-.leave_enddate{
-
-    margin-top: 11px;
-    margin-left: 10px;
+.mailboxcustomsetting a {
+    color: #706e71;
 }
 
-.leave_desc{
-
-    margin-top: 11px;
-    margin-left: 10px;
+.mailboxcustomsetting a i {
+    color: #21409a;
+    margin-right: 10px;
 }
 
-.leave_status{
-
-    margin-top: 11px;
-    margin-left: 10px;
-    margin-bottom: auto;
+.customphoneboxsetting a {
+    color: #706e71;
 }
 
+.customphoneboxsetting a i {
+    color: #21409a;
+    margin-right: 8px;
+}
 
+.customphoneboxsetting {
+    margin-bottom: 10px;
+    margin-top: 17px;
+}
 
+.personalinfoboxcustomsetting {
+    box-shadow: 0px 0px 19px 19px #00000005;
+    padding: 23px;
+    margin-top: 25px;
+}
 
-/* employee  Modal css end */
+.headingpersonalinfo h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
 
+.headingpersonalinfocustomsetting h3 {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
 
+.haedingbottombordercustomsetting {
+
+    border-bottom: 1px solid #d5d5d5;
+
+}
+
+button.custtombuttonsettingdownload a {
+    color: #21409a;
+    font-weight: bold;
+    margin-top: 27px;
+    display: block;
+}
+
+.personalinfoboxcustomsetting p {
+    font-size: 15px;
+}
+
+.innerboxinfocustomsetting h6 {
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.innerboxinfocustomsetting {
+    margin-top: 23px;
+    margin-bottom: unset;
+}
+
+.innerboxinfocustomsetting h6 {
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+button.custtombuttonsettingdownload {
+    border: none;
+    cursor: pointer;
+}
+
+.maincustomsetting {
+
+    margin-top: -67px;
+}
+
+.headingmaincustomsetting h1 {
+    color: white;
+}
+
+.headingmaincustomsetting {
+    margin-bottom: 40px;
+}
+
+.col-md-12.custompadding {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.profilesectionleftcustomsetting {
+    text-align: center;
+}
+.customnavbarsettings {
+    margin-left: auto;
+}
+.confleave {
+    background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+}
+.reqleave {
+    background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+}
+.projectbtnsetting {
+    margin-top: 25px !important;
+    float: left !important;
+}
+.btn-stylessav {
+    margin-top: 35px !important;
+}

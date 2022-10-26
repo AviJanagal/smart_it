@@ -607,15 +607,17 @@ fieldset {
     .actions ul li {
       margin-left: 10px; }
       .actions ul li:first-child a {
-        background: #f8f8f8;
-        color: #999; }
+        background: #ffffff;
+        color: #f05a22;
+        border: 1px solid;
+      }
         .actions ul li:first-child a:hover {
           background-color: #dfdfdf; }
       .actions ul li a {
         width: 150px;
         height: 50px;
         color: #fff;
-        background: #122f51;
+        background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
         align-items: center;
         -moz-align-items: center;
         -webkit-align-items: center;
@@ -633,7 +635,8 @@ fieldset {
         -o-border-radius: 5px;
         -ms-border-radius: 5px; }
         .actions ul li a:hover {
-          background-color: #122f51; }
+          background-color: #122f51;
+         }
 
 .content {
   overflow: hidden; }
@@ -745,7 +748,9 @@ fieldset {
     padding: 78px 0; }
 
   .actions ul li a {
-    width: 100px; }
+    width: 100px; 
+    
+  }
 
   .steps ul li {
     padding-right: 0px; } }
