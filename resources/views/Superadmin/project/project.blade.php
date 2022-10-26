@@ -62,7 +62,7 @@
               </div>
               <div class="col-md-5">
                 @if($type == 1)
-                <button type="submit" class="btn btn-danger custom-innerbutton btn-stylessav">Save</button>
+                <button type="submit" class="btn btn-danger custom-innerbutton projectbtnsetting">Save</button>
                 @else
                 <button type="submit" class="btn btn-danger custom-innerbutton btn-stylessav">Update</button>
                 @endif

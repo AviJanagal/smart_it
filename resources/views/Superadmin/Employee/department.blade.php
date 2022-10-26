@@ -13,7 +13,7 @@
           @endif
         </div>
         <div class="col-md-12">
-            <div class="faqheading">
+        <div class="tattotsylehed">
             @if($type == 1)
             <h4>Enter Department Details</h4>
             @else

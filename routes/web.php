@@ -50,6 +50,8 @@ Route::group(['as'=>'admin.','prefix' => 'admin','middleware' => ['auth', 'isAdm
    Route::get('delete_assigned_project/{id}','superadmin\ProjectController@delete_assigned_project')->name('delete_assigned_project');
 
    Route::resource('holidays','superadmin\HolidaysController');
+   Route::resource('leave','superadmin\LeavesController');
+
 
 
 

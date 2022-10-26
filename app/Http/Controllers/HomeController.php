@@ -52,7 +52,7 @@ class HomeController extends Controller
         }
 
 
-        $projects = \App\ProjectAssign::whereNull('deadline')->orderBy('id','desc')->paginate(3);
+        $projects = \App\ProjectAssign::whereNull('deadline')->orderBy('id','desc')->paginate(6);
         $get_projects = \App\Project::orderBy('id','desc')->get();
         foreach($projects as $data)
         {
@@ -69,7 +69,7 @@ class HomeController extends Controller
 
 
        //return  $current_date;
-        $employee_leaves = \App\ApplyLeave::where('start_date', '<=', $current_date)->where('end_date', '>=', $current_date)->where('status','1')->orderBy('start_date','asc')->paginate(3);
+        $employee_leaves = \App\ApplyLeave::where('start_date', '<=', $current_date)->where('end_date', '>=', $current_date)->where('status','1')->orderBy('start_date','asc')->paginate(6);
         foreach($employee_leaves as $item)
         {
             $item->employee = \App\User::where('role', 'employee')->where('id',$item->employee_id )->first();

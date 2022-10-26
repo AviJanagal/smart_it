@@ -25,22 +25,22 @@
 <header class="headertop">
     <div class="container-fluid">
         <div class="row custom-row">
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
                 <div class="headingbox">
                     <h6>
                         <a href="#"> <span class="app">Application </span></a><span class="ïcon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span><span class="dash">Dashboard</span>
                     </h6>
                 </div>
-            </div>
-            <div class="col-md-6">
+            </div> -->
+            <!-- <div class="col-md-6">
                 <div class="profilebox">
                     <div class="dropdown-custom2">
                         <button class="dropdown-toggle dropdown-custom" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <a href="#"> <img src="{{asset('images/userimage2.png')}}" /></a>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-custom" aria-labelledby="dropdownMenuButton1">
-                            <!-- <li><a class="dropdown-item " href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Setting</a></li> -->
+                            <li><a class="dropdown-item " href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Setting</a></li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
@@ -53,7 +53,7 @@
                         </ul>
 					</div>
 				</div>
-            </div>
+            </div> -->
         </div>
     </div>
 </header>
@@ -184,7 +184,7 @@
                     <div class="col-md-10">
                         <div class="form-group custom-from">
                             <label for="Name" class="inputlabel multiformlabel"> Department</label>
-                            <select id="department" class="form-select " name="department">
+                            <select id="department" class="form-select departmentclasssetting" name="department">
                             <option value="" disabled selected hidden>Select Department</option>
                                 @if($type == 1)
                                 @foreach($get_department as $list)
