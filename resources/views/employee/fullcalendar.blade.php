@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Dashboard</title>
+	<title>Smart IT</title>
 
 	<!-- Bootstrap -->
 	<link rel="icon" href="{{ asset('images/smart_it.png') }}" type="image/png" sizes="16x16">
@@ -26,22 +26,22 @@
     <script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/moment.min.js'></script>
     <script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/jquery.min.js'></script>
     <script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/fullcalendar.min.js'></script>
-<script>
-  $(document).ready(function() {
-    $('#calendar').fullCalendar({
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,basicWeek,basicDay'
-      },
-      navLinks: true, // can click day/week names to navigate views
-      editable: true,
-      eventLimit: true, // allow "more" link when too many events
-      events: <?php echo json_encode($holidays); ?>
+	<script>
+	$(document).ready(function() {
+		$('#calendar').fullCalendar({
+		header: {
+			left: 'prev,next today',
+			center: 'title',
+			right: 'month,basicWeek,basicDay'
+		},
+		navLinks: true, // can click day/week names to navigate views
+		editable: true,
+		eventLimit: true, // allow "more" link when too many events
+		events: <?php echo json_encode($holidays); ?>
 
-    });
-  });
-</script>
+		});
+	});
+	</script>
 </head>
 <body>
 @include('employee.layouts.sidebar')
@@ -51,7 +51,7 @@
             <div class="col-md-6">
                 <div class="headingbox">
                     <h6>   
-                        <a href="#"> <span class="app">Application </span></a><span class="ïcon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span><span class="dash">Calender</span>
+                        <a href="#"> <span class="app">Application </span></a><span class="ïcon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span><span class="dash">Calendar</span>
                     </h6>  
                 </div>
             </div>
@@ -68,7 +68,7 @@
             <div class="table-title-add">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h2 class="mb-0" style="text-align:center;">Calender </h2>
+                        <h2 class="mb-0" style="text-align:center;">Calendar </h2>
                     </div>
                 </div>
             </div>

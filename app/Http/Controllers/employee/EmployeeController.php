@@ -71,7 +71,7 @@ class EmployeeController extends Controller
                 $minutes = floor(($init / 60) % 60);
                 $minute = (int) ($minutes);
                 if($hour !== 0 ){
-                    $total = $hours."hrs".$minute."min";
+                    $total = $hours." hrs ".$minute." min";
                 }else{
                     $total = $minute." min";
                 }
@@ -104,7 +104,7 @@ class EmployeeController extends Controller
                     $minutes = floor(($init / 60) % 60);
                     $minute = (int) ($minutes);
                     if($hour !== 0 ){
-                        $total = $hours."hrs".$minutes."min";
+                        $total = $hours."hrs ".$minutes."min ";
                     }else{
                         $total = $minutes." min";
                     }
@@ -191,7 +191,7 @@ class EmployeeController extends Controller
             $total_time =  $minute." min";
         }
         else{
-            $total_time = $hours." hour". $minute." min";
+            $total_time = $hours." hrs". $minute." min";
         }
         return view('employee.all_daily_activities',compact('all_daily_activities','total_time','month_status'));
     }
@@ -211,32 +211,11 @@ class EmployeeController extends Controller
             ->when(!empty($date), function ($query) use ($date) {
                 $query->where('employee_id',Auth::id())->whereDate('created_at',$date)->get();
             })
+            ->when(empty($year) && empty($month) && empty($date), function ($query) use ($date) {
+                $query->where('employee_id',Auth::id())->whereMonth('created_at', \Carbon\Carbon::now()->month)->get();
+            })
             ->get();
-     
-        // if(!empty($year) && !empty($month) && !empty($date)){
-        //      $my_attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereMonth('created_at', $month)->whereDate('created_at',$date)->get();
-        // }
-        // elseif(!empty($year) && !empty($month) && empty($date)){
-        //      $my_attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereMonth('created_at', $month)->get();
-        // }
-        // elseif(!empty($year) && empty($month) && empty($date)){
-        //      $my_attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereYear('created_at',$year)->get();
-        // }
-        // elseif(!empty($year) && empty($month) && !empty($date)){
-        //      $my_attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereDate('created_at',$date)->get();
-        // }
-        // elseif(empty($year) && !empty($month) && !empty($date)){
-        //      $my_attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereMonth('created_at', $month)->whereDate('created_at',$date)->get();
-        // }
-        // elseif(empty($year) && !empty($month) && empty($date)){
-        //     $my_attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereMonth('created_at', $month)->get();
-        // }
-        // elseif(empty($year) && empty($month) && !empty($date)){
-        //      $my_attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereDate('created_at',$date)->get();
-        // }
-        // else{
-        //     $my_attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereMonth('created_at', \Carbon\Carbon::now()->month)->get();
-        // }
+    
         $year_status = $request->year;
         $month_status = $request->month;
         $date_status = $request->date;
@@ -250,32 +229,6 @@ class EmployeeController extends Controller
         (!empty($request->month))?  $month = date("m", strtotime($request->month)):  $month = "" ;
         (!empty($request->date))? $date = date("Y-m-d", strtotime($request->date)) : $date = "" ;
 
-        // return $all_daily_activities = \App\DailyActivity::select(DB::raw("daily_activities.* "))
-        //     ->when(!empty($year), function ($query) use ($year) {
-        //         $query->where('employee_id',Auth::id())->whereYear('created_at',$year)->get();
-        //     })
-        //     ->when(!empty($month), function ($query) use ($month) {
-        //         $query->where('employee_id',Auth::id())->whereMonth('created_at', $month)->get();
-        //     })
-        //     ->when(!empty($date), function ($query) use ($date) {
-        //         $query->where('employee_id',Auth::id())->whereDate('created_at',$date)->get();
-        //     })
-        //     ->sum('time_in_minutes');
-
-        //     $total_mins = \App\DailyActivity::select("*")
-        //     ->when(!empty($year), function ($query) use ($year) {
-        //         $query->where('employee_id',Auth::id())->whereYear('created_at',$year)->where('project_id','!=',0)->sum('time_in_minutes');
-        //     })
-        //     ->when(!empty($month), function ($query) use ($month) {
-        //         $query->where('employee_id',Auth::id())->whereMonth('created_at', $month)->where('project_id','!=',0)->sum('time_in_minutes');
-        //     })
-        //     ->when(!empty($date), function ($query) use ($date) {
-        //         $query->where('employee_id',Auth::id())->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
-        //     })
-        //     ->where('project_id','!=',0)->sum('time_in_minutes');
-
-     
-     
         if(!empty($year) && !empty($month) && !empty($date)){
              $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereMonth('created_at', $month)->whereDate('created_at',$date)->get();
              $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereMonth('created_at', $month)->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
@@ -318,7 +271,7 @@ class EmployeeController extends Controller
             $total_time =  $minute." min";
         }
         else{
-            $total_time = $hours." hour". $minute." min";
+            $total_time = $hours." hrs". $minute." min";
         }
 
         return view('employee.all_daily_activities',compact('all_daily_activities','month_status','date_status','year_status','total_time'));
@@ -395,8 +348,8 @@ class EmployeeController extends Controller
 
 
     public function Chartjs(){
-        $holidays = \App\Calender::get()->toArray();
-        $holidays_list = \App\Calender::get();
+        $holidays = \App\Calender::whereDate('date', '>=', \Carbon\Carbon::now())->get()->toArray();
+        $holidays_list = \App\Calender::whereDate('date', '>=', \Carbon\Carbon::now())->get();
         return view('employee.fullcalendar',['holidays' => $holidays,'holidays_list' => $holidays_list]);
     }
     

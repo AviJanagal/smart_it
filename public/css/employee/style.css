@@ -2369,11 +2369,12 @@ th.fc-day-header.fc-widget-header span {
     font-size: 25px;
 }
 
-.fc-row.fc-week.fc-widget-content.fc-rigid td {
-    padding: 10px;
+/* .fc-row.fc-week.fc-widget-content.fc-rigid td{
+    padding: 10px 10px;
     height: 20px !important;
-    background: #fff;
-}
+    margin-bottom:10px;
+    
+} */
 
 button.fc-today-button.fc-button.fc-state-default.fc-corner-left.fc-corner-right.fc-state-disabled {
     background: rgb(255, 255, 255);
@@ -2679,12 +2680,12 @@ th.fc-day-header.fc-widget-header span {
 
 }
 
-button.custtombuttonsettingdownload a {
+/* button.custtombuttonsettingdownload a {
     color: #21409a;
     font-weight: bold;
     margin-top: 27px;
     display: block;
-}
+} */
 
 .personalinfoboxcustomsetting p {
     font-size: 15px;
@@ -2706,10 +2707,10 @@ button.custtombuttonsettingdownload a {
     font-weight: 500;
 }
 
-button.custtombuttonsettingdownload {
+/* button.custtombuttonsettingdownload {
     border: none;
     cursor: pointer;
-}
+} */
 
 .maincustomsetting {
 
@@ -2732,3 +2733,17 @@ button.custtombuttonsettingdownload {
 .profilesectionleftcustomsetting {
     text-align: center;
 }
+
+.custtombuttonsettingdownload {
+    padding: 12px 18px;
+    border-radius: 10px;
+    background-color: #263f97;
+    color: white !important;
+    border: none;
+    cursor: pointer;
+    margin-top: 27px;
+}
+ .custtombuttonsettingdownload a{
+    color:rgb(255, 255, 255);
+
+ }

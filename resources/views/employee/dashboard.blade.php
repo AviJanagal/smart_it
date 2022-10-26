@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="col-md-12 mt-4">
-                    <div class="row">
+                    <div class="row" id="mDiv">
                         <div class="col-md-4">
                             <div class="Pendingbox">
                                 <!-- <h3>Pending </h3> -->
@@ -95,7 +95,7 @@
                                         <!-- endphp -->
                                         @if(count($my_attendance) > 0)
                                         <div class="table-wrapper p-0">
-                                            <table class="datatable table table-bordered table-striped table-hover">
+                                            <table class="datatable table table-bordered table-striped table-hover myTable nav-tabContent" id="myTable">
                                                 <thead>
                                                     <tr>
                                                         <th>Id</th>
@@ -115,7 +115,7 @@
 														// Converting time to hours/minutes/seconds..
 														$startTime = strtotime($attendance->start_time); if(!is_null($attendance->end_time)){ $endTime = strtotime($attendance->end_time); $init = $endTime - $startTime; $hours = floor($init / 3600); $hour = (int) ($hours); $minutes = floor(($init
                                                         / 60) % 60); $minute = (int) ($minutes); } //End converting time to hours/minutes/seconds.. ?> @if(!is_null($attendance->end_time)) @if($hour !== 0 )
-                                                        <td>{{$hour}} hour {{$minute}} min</td>
+                                                        <td>{{$hour}} hrs {{$minute}} min</td>
                                                         @else
                                                         <td>{{$minute}} min</td>
                                                         @endif @else
@@ -167,7 +167,7 @@
                                  
                                         @if(count($all_users) > 0)
                                         <div class="table-wrapper p-0">
-                                            <table class="datatable table table-bordered table-striped table-hover">
+                                            <table class="datatable table table-bordered table-striped table-hover myTable1" id="myTable1">
                                                 <thead>
                                                     <tr>
                                                         <th>Id</th>
@@ -229,12 +229,11 @@
                                  
                                         @if(count($all_users) > 0)
                                         <div class="table-wrapper p-0">
-                                            <table class="datatable table table-bordered table-striped table-hover">
+                                            <table class="datatable table table-bordered table-striped table-hover myTable2" id="myTable2">
                                                 <thead>
                                                     <tr>
                                                         <th>Id</th>
                                                         <th>Colleague Name</th>
-                                                        <th>Project Name</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -242,9 +241,7 @@
                                                     <tr>
                                                         <td>{{$users->id}}</td>
                                                         <td>{{$users->first_name}}</td>
-                                                        <td>{{(!empty($users->project_name)) ? $users->project_name : "Pending"}}</td>
                                                       
-                                                       
                                                     </tr>
                                                     @endforeach
                                                 </tbody>

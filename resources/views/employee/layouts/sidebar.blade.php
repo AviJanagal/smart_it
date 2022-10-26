@@ -18,7 +18,7 @@
           <a class="nav-link {{in_array(Route::currentRouteName(),['employee.attendance_filter','employee.attendance_history']) ? 'active' : '' }}" href="{{route('employee.attendance_history')}} ">Attendance History</a>
         </li>
         <li class="nav-item dropdown owndropdown">
-          <a class="nav-link dropdown-toggle {{in_array(Route::currentRouteName(),['employee.daily_activity','employee.all_daily_activities']) ? 'active' : '' }}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Daily Activity </a>
+          <a class="nav-link dropdown-toggle {{in_array(Route::currentRouteName(),['employee.daily_activity','employee.all_daily_activities','employee.activity_filter']) ? 'active' : '' }}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Daily Activity </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item {{(Route::is('employee.daily_activity'))?'active' : ''}}" href="{{route('employee.daily_activity') }}">Add</a>
             <a class="dropdown-item {{(Route::is('employee.all_daily_activities'))?'active' : ''}}" href="{{route('employee.all_daily_activities') }}">All Time Activity</a>
@@ -28,7 +28,7 @@
           <a class="nav-link {{in_array(Route::currentRouteName(),['employee.graph_time','employee.graphs']) ? 'active' : '' }}" href="{{route('employee.graphs')}} ">Productivity Graph</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{(Route::is('employee.calender'))?'active' : ''}}" href="{{ route('employee.calender') }}"> Calender</a>
+          <a class="nav-link {{(Route::is('employee.calender'))?'active' : ''}}" href="{{ route('employee.calender') }}"> Calendar</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {{(Route::is('employee.apply_leave'))?'active' : ''}}" href="{{ route('employee.apply_leave') }}"> Apply Leave</a>
