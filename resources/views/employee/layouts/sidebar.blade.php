@@ -3,7 +3,7 @@
 <div class="row">
 <div class="col-md-12">
   <nav class="navbar navbar-expand-lg navbar-light navbarcustome">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="{{route('employee.employee.index')}}">
       <img class="navlogo" src="{{asset('images/smart_it.png')}}" />
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,9 +35,9 @@
         </li>
       </ul>
     </div>
-	<div class="profilebox">
+	<div class="profilebox" >
         <div class="dropdown-custom2">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn  dropdown-toggle" type="button" id="{{(Route::is('employee.my_profile'))?'dropdownMenuButton2' : 'dropdownMenuButton'}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <a href="#">
               <img src="{{asset('images/dummy.jpg')}}" />
             </a>

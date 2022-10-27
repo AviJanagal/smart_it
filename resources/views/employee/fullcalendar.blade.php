@@ -42,10 +42,25 @@
 		});
 	});
 	</script>
+	 <!-- <style>
+        body {
+            animation: fadeInAnimation ease 1s;
+            animation-iteration-count: 0.5;
+            animation-fill-mode: forwards;
+        }
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style> -->
 </head>
 <body>
 @include('employee.layouts.sidebar')
-	<header class="headertop">
+<header class="headertop">
     <div class="container-fluid">
         <div class="row custom-row">
             <div class="col-md-6">
@@ -55,7 +70,6 @@
                     </h6>  
                 </div>
             </div>
-          
         </div>
     </div>
 </header>
@@ -74,10 +88,9 @@
             </div>
         </div>
  <div class="row">
-    <div class="col-sm-7">
-        <div id='calendar' class="cal-custom"></div>
-    </div>
-   	
+	<div class="col-sm-7">
+		<div id='calendar' class="cal-custom"></div>
+	</div>
 					<div class="col-md-5">
 						<div class="row">
 							<div class="col-md-12">

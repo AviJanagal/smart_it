@@ -24,7 +24,13 @@ class EmployeeController extends Controller
                 $users->project_name = \App\Project::whereId($users->project_id)->value('project_name');
              }
         }
-        return view('employee.dashboard',compact('all_users'));
+        $on_leave_employees = \App\Leave::whereDate('created_at', \Carbon\Carbon::today())->get();
+        foreach($on_leave_employees as $employees){
+            $employees->first_name = \App\User::where('id',$employees->employee_name)->value('first_name');
+            $employees->last_name = \App\User::where('id',$employees->employee_name)->value('last_name');
+            
+        }
+        return view('employee.dashboard',compact('all_users','on_leave_employees'));
 
     }
 
@@ -191,7 +197,7 @@ class EmployeeController extends Controller
             $total_time =  $minute." min";
         }
         else{
-            $total_time = $hours." hrs". $minute." min";
+            $total_time = $hours." hrs ". $minute." min";
         }
         return view('employee.all_daily_activities',compact('all_daily_activities','total_time','month_status'));
     }
@@ -271,7 +277,7 @@ class EmployeeController extends Controller
             $total_time =  $minute." min";
         }
         else{
-            $total_time = $hours." hrs". $minute." min";
+            $total_time = $hours." hrs ". $minute." min";
         }
 
         return view('employee.all_daily_activities',compact('all_daily_activities','month_status','date_status','year_status','total_time'));

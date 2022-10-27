@@ -285,7 +285,7 @@ a.vendor1 {
 .pendingboxinner {
     padding-top: 20px;
     margin-bottom: 14px;
-    padding: 24px;
+    padding: 19px;
     box-shadow: 4px -5px 123px -18px rgb(161 170 166 / 22%);
     background: #fff;
 }
@@ -540,6 +540,7 @@ i.fa.fa-eye.eyesclose {
 
 .navlogo {
     width: 212px;
+
 }
 
 .navbarcustome ul li.nav-item {
@@ -2441,6 +2442,13 @@ button#dropdownMenuButton img {
     border-radius: 39px;
 }
 
+button#dropdownMenuButton2 img {
+    border: 2px solid #ff5a04;
+    border-radius: 39px;
+    background: white;
+
+}
+
 .fc-state-active,
 .fc-state-down {
     background-color: #ccc;
@@ -2743,7 +2751,78 @@ th.fc-day-header.fc-widget-header span {
     cursor: pointer;
     margin-top: 27px;
 }
- .custtombuttonsettingdownload a{
-    color:rgb(255, 255, 255);
 
+.custtombuttonsettingdownload a {
+    color: rgb(255, 255, 255);
+
+}
+
+
+
+
+
+
+
+
+.OurServicesinnersectionbox {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 24px 15px rgb(0 0 0 / 4%);
+    overflow: hidden;
+    height: 40vh;
+    padding: 20px;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+
+}
+
+::-webkit-scrollbar-thumb {
+    background: #faab57;
+    border-radius: 10px;
+    opacity: 0;
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #faab57;
+    opacity: 1;
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 1px solid #ddd;
+}
+
+.customheadingclass {
+    color: #f05a22;
+    margin-bottom: 20px;
+}
+
+.fc-basic-view .fc-day-number,
+.fc-basic-view .fc-week-number {
+    padding: 0px !important;
+}
+
+.OurServicesinnersectionbox:hover {
+    overflow: auto;
+    transition: all ease 1s;
+}
+
+
+
+/* body {
+     animation: fadeInAnimation ease 1s;
+     animation-iteration-count: 1;
+     animation-fill-mode: forwards;
  }
+
+ @keyframes fadeInAnimation {
+     0% {
+         opacity: 0;
+     }
+
+     100% {
+         opacity: 1;
+     }
+ } */

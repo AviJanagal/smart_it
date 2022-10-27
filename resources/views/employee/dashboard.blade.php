@@ -56,10 +56,12 @@
                                     <img class="holicon" src="{{ asset('images/holiday.gif') }}" />
                                 </div>
                                 <div class="flowchart">
-                                    <h3>3</h3>
+                                <?php
+                                    $my_total_leaves = \App\Leave::where('employee_name',Auth::id())->whereYear('created_at', date('Y'))->count();
+                                ?>
+                                    <h3>{{$my_total_leaves}}</h3>
                                     <!-- <div id="coent" class="ceontent" data-pct="2"></div> -->
                                 </div>
-
                                 <h6>
                                     My Total leaves
                                 </h6>
@@ -71,12 +73,10 @@
 
                 <div class="col-md-12 mt-4">
                     <div class="row" id="mDiv">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="Pendingbox">
                                 <!-- <h3>Pending </h3> -->
-                                <div class="textpending">
-                                    <p>Today's Attendance</p>
-                                </div>
+                               
                             </div>
                             <nav>
                                 <div class="nav nav-tabs custom-maintab1" id="nav-tab" role="tablist">
@@ -90,12 +90,17 @@
                             <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane fade active show" id="nav-Artist1" role="tabpanel" aria-labelledby="nav-Artist-tab1">
                                     <div class="pendingboxinner">
+                                         <div class="textpending customheadingclass">
+                                    <p>Today's Attendance</p>
+                                </div>
                                         <!-- php	 -->
                                         @php $my_attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereDate('created_at', \Carbon\Carbon::today())->get(); @endphp
                                         <!-- endphp -->
                                         @if(count($my_attendance) > 0)
+                                        <div class="OurServicesinnersectionbox">
                                         <div class="table-wrapper p-0">
-                                            <table class="datatable table table-bordered table-striped table-hover myTable nav-tabContent" id="myTable">
+
+                                            <table class="table">
                                                 <thead>
                                                     <tr>
                                                         <th>Id</th>
@@ -126,6 +131,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                        </div>
 
                                         @else
                                         <h6>Pending</h6>
@@ -145,12 +151,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="Pendingbox">
                                 <!-- <h3>Pending </h3> -->
-                                <div class="textpending">
-                                    <p>Colleagues Working On Project</p>
-                                </div>
+                               
                             </div>
                             <nav>
                                 <div class="nav nav-tabs custom-maintab1" id="nav-tab" role="tablist">
@@ -164,10 +168,13 @@
                             <div class="tab-content" id="nav-tabContents">
                                 <div class="tab-pane fade active show" id="nav-Artist1" role="tabpanel" aria-labelledby="nav-Artist-tab1">
                                     <div class="pendingboxinner">
-                                 
+                                  <div class="textpending customheadingclass">
+                                    <p>Colleagues Working On Project</p>
+                                </div>
                                         @if(count($all_users) > 0)
+                                        <div class="OurServicesinnersectionbox">
                                         <div class="table-wrapper p-0">
-                                            <table class="datatable table table-bordered table-striped table-hover myTable1" id="myTable1">
+                                            <table class="table" id="">
                                                 <thead>
                                                     <tr>
                                                         <th>Id</th>
@@ -188,6 +195,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
+                                        </div>
 
                                         @else
                                         <h6>Pending</h6>
@@ -207,12 +215,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="Pendingbox">
                                 <!-- <h3>Pending </h3> -->
-                                <div class="textpending">
-                                    <p>Colleagues On Holidays</p>
-                                </div>
+                               
                             </div>
                             <nav>
                                 <div class="nav nav-tabs custom-maintab1" id="nav-tab" role="tablist">
@@ -226,10 +232,14 @@
                             <div class="tab-content" id="nav-tabContents">
                                 <div class="tab-pane fade active show" id="nav-Artist1" role="tabpanel" aria-labelledby="nav-Artist-tab1">
                                     <div class="pendingboxinner">
-                                 
-                                        @if(count($all_users) > 0)
+                                  <div class="textpending customheadingclass">
+                                    <p>Colleagues On Holiday</p>
+                                </div>
+                                        @if(count($on_leave_employees) > 0)
+                                        <div class="OurServicesinnersectionbox">
+                                           
                                         <div class="table-wrapper p-0">
-                                            <table class="datatable table table-bordered table-striped table-hover myTable2" id="myTable2">
+                                            <table class="table " id="">
                                                 <thead>
                                                     <tr>
                                                         <th>Id</th>
@@ -237,19 +247,20 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($all_users as $users)
+                                                    @foreach($on_leave_employees as $employees)
                                                     <tr>
-                                                        <td>{{$users->id}}</td>
-                                                        <td>{{$users->first_name}}</td>
+                                                        <td>{{$employees->id}}</td>
+                                                        <td>{{$employees->first_name}} {{$employees->last_name}}</td>
                                                       
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
+                                        </div>
 
                                         @else
-                                        <h6>Pending</h6>
+                                            <h6>No data found</h6>
                                         @endif
                                     </div>
                                 </div>
@@ -273,6 +284,5 @@
     </div>
 </main>
 
-		
-
+	
 @include('employee.layouts.footer')
