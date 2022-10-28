@@ -72,12 +72,21 @@ class HomeController extends Controller
 
 
        //return  $current_date;
-        $employee_leaves = \App\ApplyLeave::where('start_date', '<=', $current_date)->where('end_date', '>=', $current_date)->where('status','1')->orderBy('start_date','asc')->paginate(6);
-        foreach($employee_leaves as $item)
+        // $employee_leaves = \App\ApplyLeave::where('start_date', '<=', $current_date)->where('end_date', '>=', $current_date)->where('status','1')->orderBy('start_date','asc')->paginate(6);
+        // foreach($employee_leaves as $item)
+        // {
+        //     $item->employee = \App\User::where('role', 'employee')->where('id',$item->employee_id )->first();
+
+        // }
+
+          $employee_leaves = \App\Leave::where('date',$current_date)->orderBy('id','desc')->paginate(6);
+          foreach($employee_leaves as $item)
         {
             $item->employee = \App\User::where('role', 'employee')->where('id',$item->employee_id )->first();
 
         }
+
+
 
 
 

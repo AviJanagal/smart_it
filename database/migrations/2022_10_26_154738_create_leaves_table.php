@@ -17,6 +17,7 @@ class CreateLeavesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('users')->onDelete('cascade');
+            $table->date('date');
             $table->timestamps();
         });
     }

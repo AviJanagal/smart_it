@@ -120,7 +120,7 @@ a{
               </table>
               <table width="100%" style="border-spacing:0; padding-top: 12px;">
                 <tr>
-                  <td style="text-align: center;">
+                  <td style="">
                     <h4 style="text-align: center; color: black;margin-top: 2px;">Employee Name</h4>
                     <h4 style="text-align: center; color: black;margin-top: 2px;">Email</h4>
                     <h4 style="text-align: center; color: black;margin-top: 2px;">Phone Number</h4>
