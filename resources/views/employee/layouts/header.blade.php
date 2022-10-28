@@ -22,58 +22,57 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/css/datepicker.min.css" rel="stylesheet">
 
-    
 </head>
 
 <body>
  
 	<header class="headertop">
-    <div class="container-fluid">
-        <div class="row custom-row">
-            <div class="col-md-6">
-                <div class="headingbox">
-                    <h6>   
-                        @php 
-                            if(Route::is('employee.attendance_history'))
-                            {
-                                $name = "Attendance History";
-                            }
-                            elseif(Route::is('employee.employee.index'))
-                            {
-                                $name = "Dashboard";
-                            }
-                            elseif(Route::is('employee.daily_activity'))
-                            {
-                                $name = "Daily Activity";
-                            }
-                            elseif(Route::is('employee.all_daily_activities'))
-                            {
-                                $name = "All Time Activity";
-                            }
-                            elseif(Route::is('employee.apply_leave'))
-                            {
-                                $name = "Apply Leave";
-                            }
-                            elseif(Route::is('employee.graphs') || Route::is('employee.graph_time'))
-                            {
-                                $name = "Graphs";
-                            }
-                            elseif(Route::is('employee.my_profile'))
-                            {
-                                $name = "My profile";
-                            }
-                            else{
-                                $name = " ";
-                            }
-                        @endphp
-                        <a href="#"> <span class="app">Application </span></a><span class="ïcon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span><span class="dash">{{$name}}</span>
-                    </h6>
+        <div class="container-fluid">
+            <div class="row custom-row">
+                <div class="col-md-6">
+                    <div class="headingbox">
+                        <h6>   
+                            <?php
+                                if(Route::is('employee.attendance_history'))
+                                {
+                                    $name = "Attendance History";
+                                }
+                                elseif(Route::is('employee.employee.index'))
+                                {
+                                    $name = "Dashboard";
+                                }
+                                elseif(Route::is('employee.daily_activity'))
+                                {
+                                    $name = "Daily Activity";
+                                }
+                                elseif(Route::is('employee.all_daily_activities'))
+                                {
+                                    $name = "All Time Activity";
+                                }
+                                elseif(Route::is('employee.apply_leave'))
+                                {
+                                    $name = "Apply Leave";
+                                }
+                                elseif(Route::is('employee.graphs') || Route::is('employee.graph_time'))
+                                {
+                                    $name = "Graphs";
+                                }
+                                elseif(Route::is('employee.my_profile'))
+                                {
+                                    $name = "My profile";
+                                }
+                                else{
+                                    $name = " ";
+                                }
+                            ?>
+                            <a href="#"> <span class="app">Application </span></a><span class="ïcon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span><span class="dash">{{$name}}</span>
+                        </h6>
+                    </div>
                 </div>
+            
             </div>
-          
         </div>
-    </div>
-</header>
+    </header>
 
 	
 

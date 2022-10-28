@@ -25,13 +25,13 @@
             <form data-toggle="validator">
               @csrf         
               <?php
-              $projects_ids = \App\ProjectAssign::where('developer_id',auth()->user()->id)->pluck('project_id');
-              if($projects_ids){
-                $projects = \App\Project::whereIn('id', $projects_ids)->get();
-              }
+                $projects_ids = \App\ProjectAssign::where('developer_id',auth()->user()->id)->pluck('project_id');
+                if($projects_ids){
+                  $projects = \App\Project::whereIn('id', $projects_ids)->get();
+                }
               ?>
             <select class="form-select col-md-4"  name="project_id" id="myProject" {{($type == "1") ? "disabled" : " "}} required>
-                <option selected value="" disabled>Select Project</option>
+                <option selected value="" disabled>Select </option>
                @if($projects_ids){
                 @foreach ($projects as $project)
 									<option value="{{$project->id}}">{{$project->project_name}}</option>
@@ -55,13 +55,13 @@
       <div class="bank-innersection mb-3">
         <div class="table-title-add">
             <div class="row">
-            <div class="col-sm-12">
-            <h2 class="mb-0" style="text-align:center;">Today's Activity List</h2>
-            </div>
+              <div class="col-sm-12">
+                <h2 class="mb-0" style="text-align:center;">Today's Activity List</h2>
+              </div>
             </div>
         </div>
-
-        </div>
+      </div>
+      
       <div class="customtableinnerbox">
 
       <div class="main-container-inner">
