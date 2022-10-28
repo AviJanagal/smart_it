@@ -232,7 +232,7 @@
                     <div class="form-group custom-from">
                     <label for="Name" class="inputlabel multiformlabel">Image</label>
                                 @if($type == 1)
-                                <input type="file" class="form-control imageinputcss" name="image" id="image"  placeholder="image" required >
+                                <input type="file" class="form-control imageinputcss" name="image" id="image"  placeholder="image">
                                 @else
                                     <!-- @if(!is_null($employee->emp_info->image))
                                     <img src="{{ asset($employee->emp_info->image) }}" width="50" height="50">
@@ -339,7 +339,7 @@
                         <div class="col-md-8">
                             <div class="form-group custom-from">
                                 <label for="Name" class="inputlabel multiformlabel"> Account Number </label>
-                                <input class="form-control  @error('account_number') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_account->account_number : ''; ?>" type="text" id="account_number" name="account_number" placeholder="Account Number" required  />
+                                <input class="form-control  @error('account_number') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_account->account_number : ''; ?>" type="number" id="account_number" name="account_number" placeholder="Account Number" required  />
                                 @error('account_number')
                                 <span class="invalid-feedback errorcorrectmessage" role="alert">
                                     <strong>{{ $message }}</strong>

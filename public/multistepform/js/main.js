@@ -12,7 +12,7 @@
             employee_id: "required",
             department: "required",
             designation: "required",
-            image: "required",
+            // image: "required",
             employee_type: "required",
             ctc: "required",
             bank_name: "required",
@@ -40,7 +40,7 @@
             employee_id: "Employee Id is required",
             department: "Department is required",
             designation: "Designation is required",
-            image: "Image is required",
+            // image: "Image is required",
             employee_type: "Employee Type is required",
             date_of_joining: "Date Of Joining is required",
             ctc: "CTC is required",
@@ -64,7 +64,12 @@
                 required: "Password is required",
                 minlength: "Password should be minimum 8 characters",
                 maxlength: "Password should be maximum 16 characters",
-            }
+            },
+            account_number: {
+                required: "Account number is requied",
+                digits: "Only numbers are allowed in this field"
+            },
+
         },
         onfocusout: function(element) {
             $(element).valid();
@@ -128,11 +133,6 @@
     $("input[type='file']").change(function () {
         $('#val').text(this.value.replace(/C:\\fakepath\\/i, ''))
     })
-
-
-
-    
-
 
 
 })(jQuery);
