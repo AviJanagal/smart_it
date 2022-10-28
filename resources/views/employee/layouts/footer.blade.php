@@ -1,10 +1,10 @@
 <script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/9681e38096.js" crossorigin="anonymous"></script>
-<script src="{{ asset('js/circle-progress.min.js') }}"></script>
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- <script type="text/javascript" src="{{ asset('js/dataTables.min.js') }}"></script> -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -12,7 +12,7 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
-  <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+ 
   
 
 <script type="text/javascript">
@@ -74,7 +74,7 @@
           success: function(result)
           {
             if(result.message == false){
-              Swal.fire('Alert !','Please Enter Your daily Activity to Check out your attendance','Danger');
+              Swal.fire('Alert !','Please Complete Your daily Activity to Check out your attendance','Danger');
               $(".swal2-confirm").addClass('anchorcls');
               $('.anchorcls').html('<a href="{{route("employee.daily_activity")}}">Go to Activity</a>')
             }
@@ -327,17 +327,7 @@
         }
       </script>
 
-      <script>
-        CKEDITOR.replace("discription");
-        $("form").submit(function (e) {
-            var messageLength = CKEDITOR.instances["discription"].getData().replace(/<[^>]*>/gi, "").length;
-            if (!messageLength) {
-                $("#ckModel").modal("show");
-                e.preventDefault();
-            }
-        });
-
-      </script>
+    
 
 
 	

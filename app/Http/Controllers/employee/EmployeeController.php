@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\employee;
 use App\Http\Controllers\Controller;
 use App\Mail\ApplyLeaveMail;
-use App\{DailyActivity,Project,Leave,User,EmployeeAttendance,Calender,EmployeeInformation};
+use App\{DailyActivity,Project,Leave,User,EmployeeAttendance,Calender,EmployeeInformation,ApplyLeave};
 use Carbon\{Carbon,CarbonPeriod};
 use PDF,DB,DateTime,DateInterval,DatePeriod,Mail,Auth;
 use Illuminate\Http\Request;
@@ -25,8 +25,8 @@ class EmployeeController extends Controller
         }
         $on_leave_employees = Leave::whereDate('created_at', Carbon::today())->get();
         foreach($on_leave_employees as $employees){
-            $employees->first_name = User::where('id',$employees->employee_name)->value('first_name');
-            $employees->last_name = User::where('id',$employees->employee_name)->value('last_name');
+            $employees->first_name = User::where('id',$employees->employee_id)->value('first_name');
+            $employees->last_name = User::where('id',$employees->employee_id)->value('last_name');
             
         }
         return view('employee.dashboard',compact('all_users','on_leave_employees'));
@@ -384,15 +384,18 @@ class EmployeeController extends Controller
 
     
     public function my_profile(){
-        $profile = EmployeeInformation::where('employee_id',Auth::id())->first();
+        $profile = EmployeeInformation::where('user_id',Auth::id())->first();
+        $profile->department_name = \App\Department::whereId($profile->department)->value('name');
         return view('employee.my_profile',compact('profile'));
     }
 
     public function download_icard()
     {
-        $imagePath = public_path("images/profile_img222.jpg");
+        $emp_img = EmployeeInformation::where('user_id',Auth::id())->value('image');
+        // $imagePath = public_path("images/profile_img222.jpg");
+        $imagePath = $emp_img;
         $image = "data:image/png;base64,".base64_encode(file_get_contents($imagePath));
-        $profile = EmployeeInformation::where('employee_id',Auth::id())->first();
+        $profile = EmployeeInformation::where('user_id',Auth::id())->first();
         $profile->image = $image;
         
         $pdf = PDF::loadView('employee.icard', compact('profile'))->setOptions(['defaultFont' => 'Roboto']);

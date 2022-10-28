@@ -56,10 +56,10 @@
                                     <img class="holicon" src="{{ asset('images/holiday.gif') }}" />
                                 </div>
                                 <div class="flowchart">
-                                <?php
-                                    $my_total_leaves = \App\Leave::where('employee_name',Auth::id())->whereYear('created_at', date('Y'))->count();
+                              <?php
+                                    $my_total_leaves = \App\Leave::where('employee_id',Auth::id())->whereYear('created_at', date('Y'))->count();
                                 ?>
-                                    <h3>{{$my_total_leaves}}</h3>
+                                    <h3>{{$my_total_leaves}}</h3> 
                                     <!-- <div id="coent" class="ceontent" data-pct="2"></div> -->
                                 </div>
                                 <h6>
@@ -73,7 +73,7 @@
 
                 <div class="col-md-12 mt-4">
                     <div class="row" id="mDiv">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="Pendingbox">
                                 <!-- <h3>Pending </h3> -->
                                
@@ -161,7 +161,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="Pendingbox">
                                 <!-- <h3>Pending </h3> -->
                                

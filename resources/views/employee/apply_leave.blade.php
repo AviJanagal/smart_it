@@ -116,3 +116,15 @@
 </main>
 
 @include('employee.layouts.footer') 
+ <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace("discription");
+    $("form").submit(function (e) {
+        var messageLength = CKEDITOR.instances["discription"].getData().replace(/<[^>]*>/gi, "").length;
+        if (!messageLength) {
+            $("#ckModel").modal("show");
+            e.preventDefault();
+        }
+    });
+
+</script>
