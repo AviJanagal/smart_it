@@ -77,7 +77,7 @@
                 <fieldset>
                     <div class="col-md-12">
                         <div class="form-group custom-from">
-                            <label for="first_name" class="inputlabel multiformlabel">First Name</label>
+                            <label for="first_name" class="inputlabel multiformlabel ">First Name</label>
                             <input class="form-control @error('first_name') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->first_name : ''; ?>" type="text"  id="first_name" name="first_name" placeholder="First Name" required  />
                             @error('first_name')
                             <span class="invalid-feedback errorcorrectmessage" role="alert">

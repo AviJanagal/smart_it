@@ -30,9 +30,9 @@ class EmployeeController extends Controller
         $type = 1;
 
 
-        $profile = \App\User::where('id',38)->first();
-        $pdf = PDF::loadView('Superadmin.pdf.employee_register_pdf', compact('profile'));
-        Mail::to('harjeetsmartitventures@gmail.com')->send(new \App\Mail\EmployeeregisterMail($pdf));
+        // $profile = \App\User::where('id',3)->first();
+        // return $pdf = PDF::loadView('Superadmin.pdf.employee_register_pdf', compact('profile'));
+        // Mail::to('harjeetsmartitventures@gmail.com')->send(new \App\Mail\EmployeeregisterMail($pdf));
 
 
         $get_department = \App\Department::get();
@@ -169,7 +169,7 @@ class EmployeeController extends Controller
 
             $profile = \App\User::where('id',$user->id)->first();
             $pdf = PDF::loadView('Superadmin.pdf.employee_register_pdf', compact('profile'));
-            Mail::to('harjeetsmartitventures@gmail.com')->send(new \App\Mail\EmployeeregisterMail($pdf));
+            Mail::to($user->email)->send(new \App\Mail\EmployeeregisterMail($pdf));
       
 
 

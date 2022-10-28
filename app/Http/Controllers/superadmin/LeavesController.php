@@ -4,6 +4,8 @@ namespace App\Http\Controllers\superadmin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 
 
@@ -17,7 +19,8 @@ class LeavesController extends Controller
     public function index()
     {
         //
-        $leaves = \App\Leave::orderBy('id','desc')->get();
+        $current_date = Carbon::now('Asia/Kolkata')->format('Y-m-d');
+        $leaves = \App\Leave::where('date',$current_date)->orderBy('id','desc')->get();
         $leave_name = \App\Leave::pluck('employee_id');
         $employee = \App\User::where('role','employee')->whereNotIn('id',$leave_name)->orderBy('id','desc')->get();
         $type = 1;
@@ -59,8 +62,11 @@ class LeavesController extends Controller
       foreach ($request->employee_id as  $val) {
         $leave = new \App\Leave;
         $leave->employee_id = $val;
+        $leave->date = $request->date;
+
         $leave->save();
     }
+
         if ($leave->save())
         {
             return redirect()->route('admin.leave.index')->with(['alert' => 'success','message' => 'Leave has been Added Successfully!.']);
@@ -101,7 +107,8 @@ class LeavesController extends Controller
     {
         //
         $leave =  \App\Leave::find($id);
-        $leaves = \App\Leave::orderBy('id','desc')->get();
+        $current_date = Carbon::now('Asia/Kolkata')->format('Y-m-d');
+        $leaves = \App\Leave::where('date',$current_date)->orderBy('id','desc')->get();
         $employee = \App\User::where('role','employee')->orderBy('id','desc')->get();
         $type = 2;
 
@@ -136,6 +143,8 @@ class LeavesController extends Controller
         foreach ($request->employee_id as  $val) {
             $leave =  \App\Leave::find($id);
             $leave->employee_id = $val;
+            $leave->date = $request->date;
+
             $leave->save();
         }
         if ($leave->save())

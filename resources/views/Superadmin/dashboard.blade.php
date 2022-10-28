@@ -396,7 +396,7 @@
 										@endif
 										<p>{{$data->employee->email}}</p>
 									</div>
-									<div class="buttonbox2"> <a href="">{!! date('d M Y', strtotime($data->start_date)) !!}</a> </div>
+									<div class="buttonbox2"> <a href="">{!! date('d M Y', strtotime($data->date)) !!}</a> </div>
 								</div>
 								@endforeach
 								<div class="viewbuttonbox"> <a href="{{route('admin.show_emp_leave',['view_confirmed_leaves'])}}">View More</a></div>

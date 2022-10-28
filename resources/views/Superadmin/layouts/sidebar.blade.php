@@ -59,7 +59,7 @@
             <a class="dropdown-item {{(Route::is('admin.employee.index'))?'active' : ''}}" href="{{route('admin.employee.index')}}">Add New Employee</a>
             <a class="dropdown-item {{(Route::is('admin.employee.create'))?'active' : ''}}" href="{{route('admin.employee.create')}}">Employee List</a>
 			<a class="dropdown-item {{(Route::is('admin.show_department'))?'active' : ''}}" href="{{route('admin.show_department')}}">Department </a>
-            <a class="dropdown-item {{(Route::is('admin.show_emp_leave'))?'active' : ''}}" href="{{route('admin.show_emp_leave')}}">Leaves</a>
+            <a class="dropdown-item {{(Route::is('admin.show_emp_leave'))?'active' : ''}}" href="{{route('admin.show_emp_leave')}}">Leave Requests</a>
 
           </div>
         </li>

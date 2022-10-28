@@ -169,13 +169,12 @@ label {
 
   label.error {
     position: absolute;
-    right: 92px;
     /* display: block; */
     font-size: 11px;
     color: #ff0000;
     /* bottom: 50px; */
     top: 50px;
-    /* left: 65px; */
+    left: 25%;
     display: inline-flex;
 }
   label.error i {
@@ -813,4 +812,11 @@ span.icon {
 .imageinputcss {
   opacity: 1!important;
   height: 38px!important;
+}
+#dob-error {
+  left: 28%!important;
+  
+}
+#ctc-error {
+  left: 30%;
 }

@@ -52,6 +52,17 @@
                 </div>
               </div> 
 
+              <div class="col-md-7">
+                <div class="form-group custom-from">
+                  <label for="Name" class="inputlabel">Date</label>
+                  <input class="form-control custom-control @error('date') is-invalid @enderror" value="<?php echo $type == 2 ? $leave->date : ''; ?>" type="date" id="leave_date" name="date" placeholder=" Date" required />
+                  @error('date')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
+                </div>
+              </div>
               <div class="col-md-5">
                 @if($type == 1)
                 <button type="submit" class="btn btn-danger custom-innerbutton btn-stylessav">Add</button>
@@ -79,6 +90,7 @@
               <tr>
                 <th>Id</th>
                 <th>Employee Name</th>
+                <th>Date</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -87,6 +99,7 @@
               <tr>
                 <td>{{$item->id}}</td>
                 <td>{{ $item->first_name }}</td>
+                <td>{{ $item->date }}</td>
                 <td class="btn-td">
                   <a href="{{route('admin.leave.edit',$item->id)}}" class="edit"><i class="fa fa-pencil"></i></a>
                   <a class="delete" onclick="deletedata('{{route('admin.leave.show',$item->id)}}');"><i class="fa fa-trash"></i></a>
