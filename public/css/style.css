@@ -548,7 +548,7 @@ i.fa.fa-eye.eyesclose {
 
 .navbar-light .navbar-nav .nav-link {
     color: rgb(0 0 0);
-    font-weight: 500;
+    font-weight: 600;
     font-size: 15px;
     padding: 10px 16px;
 }
@@ -962,10 +962,13 @@ button.btn.btn-danger.custom-innerbutton {
     margin-right: 40px;
 
     border-radius: 10px;
-    background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);    width: 15%;
+    background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    width: 15%;
     display: block;
     padding: 12px;
     border: transparent;
+    border-radius: 9px;
+    border-bottom: 3px solid #6e83db;
 
 }
 
@@ -2819,4 +2822,11 @@ button.custtombuttonsettingdownload {
 .modalclosespan {
     font-size: 38px;
     color: #f05a22;
+}
+.logouthovercss {
+    padding: 0px 41px 0px 0px;
+    font-size: 21px;
+}
+.logouthovercss:hover {
+    background: #fff;
 }

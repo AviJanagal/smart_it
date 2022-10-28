@@ -234,7 +234,13 @@ class EmployeeController extends Controller
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;
-        $user->password = \Hash::make($request->password);
+        if($user->password == $request->password)
+        {
+            $user->password = $request->password;
+        }
+        else{
+            $user->password = \Hash::make($request->password);
+        }
         $user->phone_number  = $request->phone_number;
         $user->role = "employee";
         $user->save();

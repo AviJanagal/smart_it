@@ -50,7 +50,11 @@
                                 <div class="col-md-12 custom-col">
                                     <div class="leftbox">
                                         <div class="custom-imagebox">
+                                            @if(!is_null($employee) && !is_null($employee->emp_info) && !is_null($employee->emp_info->image) )
+                                            <img src="{{asset($employee->emp_info->image)}}" /> 
+                                            @else
                                             <img src="{{asset('images/profile-image.jpg')}}">
+                                            @endif
                                         </div>
                                         <h3></h3>
                                     </div>

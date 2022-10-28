@@ -252,10 +252,13 @@
 								@if(count($employee) > 0)
 								@foreach($employee as $item)
 								<div class="imgbox2">
-								@if(!is_null($item) && !is_null($item->emp_info))
-									<a href=""> <img src="{{asset($item->emp_info->image)}}" /> </a>
+									@if(!is_null($item) && !is_null($item->emp_info->image))
+									<a href=""><img src="{{asset($item->emp_info->image)}}" /></a>
+
 									@else
-									<a href=""> <img src="{{asset('images/profile-image.jpg')}}" /> </a>
+
+									 <img src="{{asset('images/profile-image.jpg')}}" />
+
 									@endif
 									<div class="textbox2">
 										<h6>{{ucfirst($item->first_name)}}&nbsp;{{ucfirst($item->last_name)}}</h6>
@@ -318,10 +321,11 @@
 								@foreach( $projects as $data)
 								<div class="imgbox2">
 								@if(!is_null($data->image))
-									<a href=""> <img src="{{asset($data->image)}}" /> </a>
-									@else
-									<a href=""> <img src="{{asset('images/profile-image.jpg')}}" /> </a>
-									@endif
+						
+								<a href=""> <img src="{{asset($data->image)}}" /> </a>
+								@else
+								<a href=""> <img src="{{asset('images/profile-image.jpg')}}" /> </a>
+								@endif
 									
 									<div class="textbox2">
 									@if(!is_null($data))
@@ -336,7 +340,6 @@
 								@else
 								<h4>No data found</h4>
 								@endif
-
 							</div>
 
 
@@ -379,7 +382,8 @@
 								@foreach( $employee_leaves as $data)
 								<div class="imgbox2">
 
-								@if(!is_null($data->employee) && !is_null($data->employee->emp_info))
+								@if(!is_null($data->employee) && !is_null($data->employee->emp_info->image))
+
 									<a href=""> <img src="{{asset($data->employee->emp_info->image)}}" /> </a>
 									@else
 									<a href=""> <img src="{{asset('images/profile-image.jpg')}}" /> </a>
@@ -436,10 +440,10 @@
 									@if(count($employee_absent) > 0)
 								@foreach( $employee_absent as $data)
 								<div class="imgbox2">
-								@if(!is_null($data->emp_info))
-									<a href=""> <img src="{{asset($data->emp_info->image)}}" /> </a>
+								@if(!is_null($data->emp_info->image))
+									<a href=""> <img src="{{asset($data->emp_info->image)}}"/> </a>
 									@else
-									<a href=""> <img src="{{asset('images/profile-image.jpg')}}" /> </a>
+									 <img src="{{asset('images/profile-image.jpg')}}">
 									@endif
 									
 									<div class="textbox2">
@@ -478,13 +482,4 @@
         </div>
     </div>
 </main>
-
-
-
-
-
-
-
-
-
 @include('Superadmin.layouts.footer')
