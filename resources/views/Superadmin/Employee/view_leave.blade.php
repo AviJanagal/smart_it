@@ -3,8 +3,8 @@
         <div class="modal-content">
             <div class="modal-header  modheader text-center">
                 <h5 class="modal-title w-100  modtitle">Employee Leave Status</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    <!-- <span aria-hidden="true">&times;</span> -->
+                <button type="button" class="close modalclosecss" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="modalclosespan">&times;</span>
                 </button>
             </div>
             <div class="modal-body">

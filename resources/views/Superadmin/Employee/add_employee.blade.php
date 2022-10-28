@@ -63,9 +63,9 @@
         <div class="container">
             <div class="container-fluid">
                 @if($type == 1)
-                <h2 style=" margin-bottom:20px; color:#122f51;">Add Employee </h2>
+                <h2 style=" margin-bottom:20px; color:#f05a22;">Add Employee </h2>
                 @else
-                <h2 style=" margin-bottom:20px; color:#122f51;">Update Employee </h2>
+                <h2 style=" margin-bottom:20px; color:#f05a22;">Update Employee </h2>
                 @endif
                 @if($type == 1)
                     <form role="form" class="signup-form" id="signup-form" autocomplete="off" data-toggle="validator" action="{{route('admin.employee.store')}}" method="post" enctype="multipart/form-data">
@@ -81,7 +81,7 @@
                             <label for="first_name" class="inputlabel multiformlabel">First Name</label>
                             <input class="form-control @error('first_name') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->first_name : ''; ?>" type="text"  id="first_name" name="first_name" placeholder="First Name" required  />
                             @error('first_name')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="invalid-feedback errorcorrectmessage" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
@@ -92,7 +92,7 @@
                             <label for="last_name" class="inputlabel multiformlabel">Last Name</label>
                             <input class="form-control  @error('last_name') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->last_name : ''; ?>" type="text" id="last_name" name="last_name" placeholder="Last Name" required  />
                             @error('last_name')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="invalid-feedback errorcorrectmessage" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
@@ -103,7 +103,7 @@
                             <label for="email" class="form-label">Email</label>
                             <input autocomplete="false" class="form-control @error('email') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->email : ''; ?>" type="email" id="email"  name="email" placeholder="Email"/>
                             @error('email')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="invalid-feedback errorcorrectmessage" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
@@ -114,7 +114,7 @@
                             <label for="password" class="inputlabel multiformlabel"> Password</label>
                             <input autocomplete="false" class="form-control  @error('password') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->password : ''; ?>" type="password" id="password"  name="password" placeholder=" Password" required/>
                             @error('password')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="invalid-feedback errorcorrectmessage" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
@@ -125,7 +125,7 @@
                             <label for="phone_number" class="inputlabel multiformlabel"> Phone Number</label>
                             <input class="form-control  @error('phone_number') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->phone_number : ''; ?>" type="number" id="phone_number" name="phone_number" placeholder=" Mobile Number" required/>
                             @error('phone_number')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="invalid-feedback errorcorrectmessage" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
@@ -141,8 +141,8 @@
                         <div class="form-group custom-from">
                             <label for="dob" class="inputlabel multiformlabel" class="form-label multiformlabel "> Date of Birth</label>
                             <input class="form-control  @error('dob') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_info->dob : ''; ?>" type="date" id="dob" name="dob" placeholder="D-O-B" required/>
-                            @error('name')
-                            <span class="invalid-feedback" role="alert">
+                            @error('dob')
+                            <span class="invalid-feedback errorcorrectmessage" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
@@ -175,7 +175,7 @@
                             <label for="Name" class="inputlabel multiformlabel"> Employee Id</label>
                             <input class="form-control  @error('service_name') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_info->employee_id : ''; ?>" type="text" id="employee_id" name="employee_id" placeholder="Employee Id" required  />
                             @error('email')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="invalid-feedback errorcorrectmessage" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
@@ -207,27 +207,49 @@
                             <label for="Name" class="inputlabel multiformlabel"> Designation</label>
                             <input class="form-control  @error('service_name') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_info->designation : ''; ?>" type="text" id="designation"  name="designation" placeholder="Designation" required  />
                             @error('email')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="invalid-feedback errorcorrectmessage" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
                     </div>
-                    <div class="col-md-10">
+
+
+
+                    <!-- <div class="col-md-10">
                         <div class="form-group custom-from">
                             <label for="Name" class="inputlabel multiformlabel"> Job Title</label>
                             <input class="form-control  @error('service_name') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_info->job_title : ''; ?>" type="text" id="job_title" name="job_title" placeholder="Job Title " required  />
                             @error('name')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="invalid-feedback errorcorrectmessage" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
-                    </div>
+                    </div> -->
+
+
+                    <div class="col-md-10">
+                    <div class="form-group custom-from">
+                    <label for="Name" class="inputlabel multiformlabel">Image</label>
+                                @if($type == 1)
+                                <input type="file" class="form-control imageinputcss" name="image" id="image"  placeholder="image" required >
+                                @else
+                                    <!-- @if(!is_null($employee->emp_info->image))
+                                    <img src="{{ asset($employee->emp_info->image) }}" width="50" height="50">
+                                    @endif -->
+                                <input type="file" class="form-control imageinputcss" name="image">
+                                @endif
+                            </div>
+                        </div>
+
+
+
+
                     <div class="col-md-10">
                         <div class="form-group custom-from">
                             <label for="Name" class="inputlabel multiformlabel"> Employee Type</label>
-                            <select id="employee_type" class="form-select" name="employee_type">
+                            <select id="employee_type" class="form-select departmentclasssetting" name="employee_type">
                             <option value="" disabled selected hidden>Select Employee Type</option>
                                 @if($type == 1)
                                 <option value="Full-Time">Full-Time</option>
@@ -248,7 +270,7 @@
                             <label for="Name" class="inputlabel multiformlabel"> Date of Joining</label>
                             <input class="form-control  @error('service_name') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_info->date_of_joining : ''; ?>" type="date" id="date_of_joining" name="date_of_joining" placeholder="Date Of Joining" required  />
                             @error('name')
-                            <span class="invalid-feedback" role="alert">
+                            <span class="invalid-feedback errorcorrectmessage" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
@@ -265,7 +287,7 @@
                                 <label for="Name" class="inputlabel multiformlabel"> CTC</label>
                                 <input class="form-control  @error('service_name') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_account->ctc : ''; ?>" type="text" id="ctc" name="ctc" placeholder="CTC" required  />
                                 @error('email')
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback errorcorrectmessage" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
@@ -276,7 +298,7 @@
                                 <label for="Name" class="inputlabel multiformlabel"> Bank Name</label>
                                 <input class="form-control  @error('service_name') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_account->bank_name : ''; ?>" type="text" id="bank_name" name="bank_name" placeholder="Bank Name" required  />
                                 @error('email')
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback errorcorrectmessage" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
@@ -287,7 +309,7 @@
                                 <label for="Name" class="inputlabel multiformlabel"> City</label>
                                 <input class="form-control  @error('service_name') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_account->city : ''; ?>" type="text" id="city" name="city" placeholder="City" required  />
                                 @error('name')
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback errorcorrectmessage" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
@@ -298,7 +320,7 @@
                                 <label for="Name" class="inputlabel multiformlabel"> Branch Name</label>
                                 <input class="form-control  @error('service_name') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_account->branch_name : ''; ?>" type="text" id="branch_name" name="branch_name" placeholder="Branch Name" required  />
                                 @error('name')
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback errorcorrectmessage" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
@@ -309,7 +331,7 @@
                                 <label for="Name" class="inputlabel multiformlabel"> IFSC Code</label>
                                 <input class="form-control  @error('service_name') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_account->ifsc_code : ''; ?>" type="text" id="ifsc_code" name="ifsc_code" placeholder="IFSC Code" required  />
                                 @error('name')
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback errorcorrectmessage" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
@@ -320,7 +342,7 @@
                                 <label for="Name" class="inputlabel multiformlabel"> Account Number </label>
                                 <input class="form-control  @error('account_number') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_account->account_number : ''; ?>" type="text" id="account_number" name="account_number" placeholder="Account Number" required  />
                                 @error('account_number')
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback errorcorrectmessage" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror

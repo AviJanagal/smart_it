@@ -611,8 +611,11 @@ fieldset {
         color: #f05a22;
         border: 1px solid;
       }
-        .actions ul li:first-child a:hover {
-          background-color: #dfdfdf; }
+      .actions ul li:first-child a:hover {
+        background-color: #f05a22;
+        color: white;
+        border: transparent;
+    }
       .actions ul li a {
         width: 150px;
         height: 50px;
@@ -798,3 +801,16 @@ span.icon {
 
 /* old sidemenu dashboard css end */
 
+.departmentclasssetting {
+  margin-bottom: 0px;
+}
+
+.errorcorrectmessage {
+  position: absolute;
+  left: 42%;
+  top: 69%;
+}
+.imageinputcss {
+  opacity: 1!important;
+  height: 38px!important;
+}

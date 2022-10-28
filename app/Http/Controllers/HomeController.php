@@ -62,6 +62,9 @@ class HomeController extends Controller
             $developer = \App\User::where('role','employee')->find($data->developer_id);
             $data->first_name = $developer->first_name.' '.$developer->last_name;
             $data->email = $developer->email;
+            $data->image = $developer->emp_info->image;
+
+
         }
 
 
@@ -76,11 +79,13 @@ class HomeController extends Controller
 
         }
 
+
+
           $employee_present = \App\User::where('role', 'employee')->orderBy('id', 'desc')->pluck('id')->toArray();
           $absent_employees = \App\EmployeeAttendance::where('date',$current_date)->whereNotNull('start_time')->orderBy('id','desc')->pluck('employee_id')->toArray();
         
            $array_diff= array_diff($employee_present, $absent_employees);
-            $item = array_values($array_diff);
+           $item = array_values($array_diff);
 
            $employee_absent = \App\User::where('role', 'employee')->whereIn('id',$item)->get();
 

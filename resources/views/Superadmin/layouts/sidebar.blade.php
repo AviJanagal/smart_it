@@ -37,7 +37,7 @@
 
 
 
- <div class="sidemenubarwrapper ">
+<div class="sidemenubarwrapper ">
 <div class="container-fluid">
 <div class="row">
 <div class="col-md-12">
@@ -88,7 +88,7 @@
             </a>
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="{{ route('employee.my_profile') }}">Profile</a>
+            <!-- <a class="dropdown-item" href="{{ route('employee.my_profile') }}">Profile</a> -->
             <!-- <a class="dropdown-item" href="#">Calender</a> -->
             <!-- <a class="dropdown-item" href="#">Setting</a> -->
             <a class="{{ (request()->is('logout')) ? 'active' : '' }} dropdown-item custom-dropdown" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">

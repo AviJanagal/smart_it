@@ -136,6 +136,7 @@ a{
 
                   </td>
                   <td style="text-align: center;">
+                  @if(!is_null($profile))
                     <h4 style="text-align: center; color: black; margin-top: 2px;">: {{ucfirst($profile->first_name)}} &nbsp;{{ucfirst($profile->last_name)}}</h4>
                     <h4 style="text-align: center; color: black;margin-top: 2px;">: {{$profile->email}}</h4>
                     <h4 style="text-align: center; color: black;margin-top: 2px;">: {{$profile->phone_number}}</h4>
@@ -146,7 +147,7 @@ a{
                     <h4 style="text-align: center; color: black;margin-top: 2px;">: {{$profile->emp_info->designation}}</h4>
                     <h4 style="text-align: center; color: black;margin-top: 2px;">: {{$profile->emp_info->employee_type}}</h4>
                     <h4 style="text-align: center; color: black;margin-top: 2px;">: {{$profile->emp_info->date_of_joining}}</h4>
-
+                    @endif
                     <!-- <h4 style="text-align: center; color: black;margin-top: 2px;">
                       <span style="font-size: 19px;">:o</span>+ve
                     </h4> -->
