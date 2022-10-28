@@ -458,9 +458,13 @@ class EmployeeController extends Controller
     public function download_icard()
     {
         $emp_img = EmployeeInformation::where('user_id',Auth::id())->value('image');
-        // $imagePath = public_path("images/profile_img222.jpg");
-        $imagePath = $emp_img;
-        $image = "data:image/png;base64,".base64_encode(file_get_contents($imagePath));
+        if(!is_null($emp_img)){
+            $imagePath = $emp_img;
+            $image = "data:image/png;base64,".base64_encode(file_get_contents($imagePath));
+        }else{
+            $imagePath = public_path("images/profile-image.jpg");
+            $image = "data:image/png;base64,".base64_encode(file_get_contents($imagePath));
+        }
         $profile = EmployeeInformation::where('user_id',Auth::id())->first();
         $profile->image = $image;
         
@@ -470,7 +474,7 @@ class EmployeeController extends Controller
         return $pdf->download('SmartIt I-Card.pdf');
     }
 
-    
+
 
 
 

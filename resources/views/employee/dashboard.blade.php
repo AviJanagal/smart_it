@@ -98,7 +98,7 @@
                                         @php $my_attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereDate('created_at', \Carbon\Carbon::today())->get(); @endphp
                                         <!-- endphp -->
                                         @if(count($my_attendance) > 0)
-                                        <span>Total time : {{$my_total_time}}</span>
+                                        <span class="customtoaltime">Total time : <h6>{{$my_total_time}}</h6></span>
                                         <div class="OurServicesinnersectionbox">
                                         <div class="table-wrapper p-0">
 

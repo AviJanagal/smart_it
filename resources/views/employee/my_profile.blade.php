@@ -17,7 +17,7 @@
             <div class="col-md-4">
               <div class="profilesectionleftcustomsetting">
                 <div class="profileimgboxcustomsetting">
-                  <img src="{{$profile->image}}">
+                  <img src="{{(!is_null($profile->image))? $profile->image : asset('images/profile-image.jpg')}}">
                 </div>
                 <div class="customphoneboxsetting">
                   <a href="#">

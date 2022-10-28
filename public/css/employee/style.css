@@ -2758,6 +2758,24 @@ th.fc-day-header.fc-widget-header span {
 
 }
 
+.customtoaltime {
+    float: right;
+    position: absolute;
+    right: 77px;
+    top: 84px;
+    display: flex;
+    font-size: 13px;
+
+}
+
+.totaltimeactivity {
+
+    right: 20p;
+
+    position: absolute;
+    right: 25px;
+    top: 26px;
+}
 
 
 
