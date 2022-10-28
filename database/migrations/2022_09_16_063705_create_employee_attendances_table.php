@@ -19,6 +19,7 @@ class CreateEmployeeAttendancesTable extends Migration
             $table->foreign('employee_id')->references('id')->on('users')->onDelete('cascade');
             $table->time('start_time')->nullable();
             $table->time('end_time')->nullable();
+            $table->integer('time_in_minutes')->nullable();
             $table->date('date')->nullable();
             $table->timestamps();
         });

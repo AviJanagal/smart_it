@@ -91,12 +91,14 @@
                                 <div class="tab-pane fade active show" id="nav-Artist1" role="tabpanel" aria-labelledby="nav-Artist-tab1">
                                     <div class="pendingboxinner">
                                          <div class="textpending customheadingclass">
-                                    <p>Today's Attendance</p>
-                                </div>
+                                            <p>Today's Attendance</p>
+                                        </div>
+                                        
                                         <!-- php	 -->
                                         @php $my_attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereDate('created_at', \Carbon\Carbon::today())->get(); @endphp
                                         <!-- endphp -->
                                         @if(count($my_attendance) > 0)
+                                        <span>Total time : {{$my_total_time}}</span>
                                         <div class="OurServicesinnersectionbox">
                                         <div class="table-wrapper p-0">
 
@@ -175,7 +177,7 @@
 														-->
                                 </div>
                             </nav>
-                            <div class="tab-content" id="nav-tabContents">
+                            <div class="tab-content" >
                                 <div class="tab-pane fade active show" id="nav-Artist1" role="tabpanel" aria-labelledby="nav-Artist-tab1">
                                     <div class="pendingboxinner">
                                   <div class="textpending customheadingclass">
@@ -239,7 +241,7 @@
 														-->
                                 </div>
                             </nav>
-                            <div class="tab-content" id="nav-tabContents">
+                            <div class="tab-content" >
                                 <div class="tab-pane fade active show" id="nav-Artist1" role="tabpanel" aria-labelledby="nav-Artist-tab1">
                                     <div class="pendingboxinner">
                                   <div class="textpending customheadingclass">

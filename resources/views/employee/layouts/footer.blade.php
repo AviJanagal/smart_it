@@ -189,15 +189,18 @@
         viewMode: "months",
         minViewMode: "months",
         autoclose: true,
+        orientation: "left",
     });
     $("#yearPicker").datepicker({
         format: "yyyy",
         viewMode: "years",
         minViewMode: "years",
         autoclose: true,
+        orientation: "left",
     });
     $("#datePicker").datepicker({
         autoclose: true,
+         orientation: "left",
     });
 
   });
