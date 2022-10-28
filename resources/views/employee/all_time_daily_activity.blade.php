@@ -26,7 +26,7 @@
         <div class="main-container-inner">
         @if(count($all_daily_activities) > 0)
                 <div class="table-wrapper p-0">
-                    <table class=" datatable table table-bordered table-striped table-hover " id="myTable">
+                    <table class=" datatable table table-bordered table-striped table-hover " id="myDtTable">
                     <thead>
                     <tr>
                         <th>Id</th>

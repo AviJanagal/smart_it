@@ -39,7 +39,7 @@
     border-spacing: 0;
     font-family: sans-serif;
     color: #4a4a4a;
-}
+  }
         .three-columns{
 			text-align: center;
 			font-size: 0;
