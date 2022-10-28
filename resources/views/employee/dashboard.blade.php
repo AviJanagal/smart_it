@@ -117,9 +117,19 @@
                                                         <td>{{($attendance->end_time !== null) ? \Carbon\Carbon::parse($attendance->end_time)->format('g:i A') : "Pending"}}</td>
 
                                                         <?php
-														// Converting time to hours/minutes/seconds..
-														$startTime = strtotime($attendance->start_time); if(!is_null($attendance->end_time)){ $endTime = strtotime($attendance->end_time); $init = $endTime - $startTime; $hours = floor($init / 3600); $hour = (int) ($hours); $minutes = floor(($init
-                                                        / 60) % 60); $minute = (int) ($minutes); } //End converting time to hours/minutes/seconds.. ?> @if(!is_null($attendance->end_time)) @if($hour !== 0 )
+                                                            // Converting time to hours/minutes/seconds..
+                                                            $startTime = strtotime($attendance->start_time);
+                                                            if (!is_null($attendance->end_time)) {
+                                                                $endTime = strtotime($attendance->end_time);
+                                                                $init = $endTime - $startTime;
+                                                                $hours = floor($init / 3600);
+                                                                $hour = (int) $hours;
+                                                                $minutes = floor(($init / 60) % 60);
+                                                                $minute = (int) $minutes;
+                                                            } 
+                                                            //End converting time to hours/minutes/seconds..
+                                                        ?>
+                                                        @if(!is_null($attendance->end_time)) @if($hour !== 0 )
                                                         <td>{{$hour}} hrs {{$minute}} min</td>
                                                         @else
                                                         <td>{{$minute}} min</td>

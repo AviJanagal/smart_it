@@ -1,53 +1,57 @@
 <?php
- $begin = new DateTime('first day of january');
-        $end = new DateTime('last day of december');
-        $end = $end->modify('+1 day');
-        $interval = new DateInterval('P1D');
-        $daterange = new DatePeriod($begin, $interval, $end);
 
-        // getting all sunday dates
-        foreach ($daterange as $date) {
-            $sunday = date('w', strtotime($date->format("Y-m-d")));
-            if ($sunday == 0) {
-                $sundays[] = $date->format("Y-m-d");
-            } else {
-                echo'';
-            }
-        }
-        
-        // // getting all saturday dates
-        foreach ($daterange as $date) {
-            $saturday = date('w', strtotime($date->format("Y-m-d")));
-            if ($saturday == 6) {
-                $saturdays[] = $date->format("Y-m-d");
-            } else {
-                echo'';
-            }
-        }
-       
-        // //  merge saturdays and sundays
-        $all_sat_sun =  array_merge($saturdays, $sundays);
+$begin = new DateTime('first day of january');
+$end = new DateTime('last day of december');
+$end = $end->modify('+1 day');
+$interval = new DateInterval('P1D');
+$daterange = new DatePeriod($begin, $interval, $end);
 
-        // // getting holidays from admin
-        $custom_holidays = \App\Calender::whereYear('date', \Carbon\Carbon::now())->pluck('date')->toArray();
-        $all_holidays =array_unique(array_merge($all_sat_sun, $custom_holidays));
+// getting all sunday dates
+foreach ($daterange as $date) {
+    $sunday = date('w', strtotime($date->format("Y-m-d")));
+    if ($sunday == 0) {
+        $sundays[] = $date->format("Y-m-d");
+    } else {
+        echo '';
+    }
+}
 
+// // getting all saturday dates
+foreach ($daterange as $date) {
+    $saturday = date('w', strtotime($date->format("Y-m-d")));
+    if ($saturday == 6) {
+        $saturdays[] = $date->format("Y-m-d");
+    } else {
+        echo '';
+    }
+}
 
-        // // getting all dates in a year
-        $dateRange = CarbonPeriod::create(\Carbon\Carbon::now()->startOfYear(),\Carbon\Carbon::now());
-        $all_dates_in_year = array_map(fn ($date) => $date->format('Y-m-d'), iterator_to_array($dateRange));
+// //  merge saturdays and sundays
+$all_sat_sun = array_merge($saturdays, $sundays);
 
+// // getting holidays from admin
+$custom_holidays = \App\Calender::whereYear('date', \Carbon\Carbon::now())
+    ->pluck('date')
+    ->toArray();
+$all_holidays = array_unique(array_merge($all_sat_sun, $custom_holidays));
 
-        // // total holidays to employee
-        $working_days_count = count(array_unique(array_diff($all_dates_in_year,$all_holidays)));
-        $working_days = array_values(array_unique(array_diff($all_dates_in_year,$all_holidays)));
-       
-        // // employee total attendance  .
-        $employee_total_attendance = \App\EmployeeAttendance::distinct()->where('employee_id',Auth::id())->whereNotNull('end_time')->pluck('date');
-        $employee_total_attendance_count = $employee_total_attendance->count();
+// // getting all dates in a year
+$dateRange = CarbonPeriod::create(\Carbon\Carbon::now()->startOfYear(), \Carbon\Carbon::now());
+$all_dates_in_year = array_map(fn($date) => $date->format('Y-m-d'), iterator_to_array($dateRange));
 
-        // // holidays that employee ne lyeaa
-        $employee_holidays = $working_days_count-$employee_total_attendance_count;
+// // total holidays to employee
+$working_days_count = count(array_unique(array_diff($all_dates_in_year, $all_holidays)));
+$working_days = array_values(array_unique(array_diff($all_dates_in_year, $all_holidays)));
 
-        // // employee holiday dates
-        $employee_holiday_dates = array_values(array_unique(array_diff($working_days,$employee_total_attendance->toArray())));
+// // employee total attendance  .
+$employee_total_attendance = \App\EmployeeAttendance::distinct()
+    ->where('employee_id', Auth::id())
+    ->whereNotNull('end_time')
+    ->pluck('date');
+$employee_total_attendance_count = $employee_total_attendance->count();
+
+// // holidays that employee ne lyeaa
+$employee_holidays = $working_days_count - $employee_total_attendance_count;
+
+// // employee holiday dates
+$employee_holiday_dates = array_values(array_unique(array_diff($working_days, $employee_total_attendance->toArray())));
