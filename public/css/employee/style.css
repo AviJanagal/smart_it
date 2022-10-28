@@ -244,7 +244,7 @@ a.vendor1 {
     padding: 10px;
     color: white;
     border-radius: 6px;
-    margin-top: 20px;
+    margin-top: 2px;
     background: #ffffff;
     color: #f05a22;
     padding: 12px 30px;
@@ -2445,6 +2445,7 @@ button#dropdownMenuButton img {
 button#dropdownMenuButton2 img {
     border: 2px solid #ff5a04;
     border-radius: 39px;
+    box-shadow: 1px 2px 2px 1px;
     background: white;
 
 }
@@ -2768,7 +2769,7 @@ th.fc-day-header.fc-widget-header span {
     background: #FFFFFF;
     box-shadow: 0px 0px 24px 15px rgb(0 0 0 / 4%);
     overflow: hidden;
-    height: 40vh;
+    height: 31vh;
     padding: 20px;
 }
 
@@ -2786,6 +2787,7 @@ th.fc-day-header.fc-widget-header span {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #faab57;
+
     opacity: 1;
 }
 

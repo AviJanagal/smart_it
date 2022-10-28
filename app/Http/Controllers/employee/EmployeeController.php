@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\employee;
 use App\Http\Controllers\Controller;
 use App\Mail\ApplyLeaveMail;
-use Carbon\Carbon;
-use Carbon\CarbonPeriod;
+use App\{DailyActivity,Project,Leave,User,EmployeeAttendance,Calender,EmployeeInformation,ApplyLeave};
+use Carbon\{Carbon,CarbonPeriod};
 use PDF,DB,DateTime,DateInterval,DatePeriod,Mail,Auth;
-
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -14,20 +13,20 @@ class EmployeeController extends Controller
    
     public function index()
     {
-        $all_users = \App\User::where('role','employee')->get();
+        $all_users = User::where('role','employee')->get();
         foreach($all_users as $users){
-            $users->project_id = \App\DailyActivity::where('employee_id',$users->id)->where('date',(new DateTime)->format('Y-m-d'))->latest()->value('project_id');
+            $users->project_id = DailyActivity::where('employee_id',$users->id)->where('date',(new DateTime)->format('Y-m-d'))->latest()->value('project_id');
              if($users->project_id === 0){
                 $users->project_name = "Other";
              }
              else{
-                $users->project_name = \App\Project::whereId($users->project_id)->value('project_name');
+                $users->project_name = Project::whereId($users->project_id)->value('project_name');
              }
         }
-        $on_leave_employees = \App\Leave::whereDate('created_at', \Carbon\Carbon::today())->get();
+        $on_leave_employees = Leave::whereDate('created_at', Carbon::today())->get();
         foreach($on_leave_employees as $employees){
-            $employees->first_name = \App\User::where('id',$employees->employee_name)->value('first_name');
-            $employees->last_name = \App\User::where('id',$employees->employee_name)->value('last_name');
+            $employees->first_name = User::where('id',$employees->employee_id)->value('first_name');
+            $employees->last_name = User::where('id',$employees->employee_id)->value('last_name');
             
         }
         return view('employee.dashboard',compact('all_users','on_leave_employees'));
@@ -36,14 +35,14 @@ class EmployeeController extends Controller
 
     public function log_in_time()
     {
-        $is_valid = \App\EmployeeAttendance::where('employee_id',Auth::id())->where('date',(new DateTime)->format('Y-m-d'))->where('end_time',null)->first();
+        $is_valid = EmployeeAttendance::where('employee_id',Auth::id())->where('date',(new DateTime)->format('Y-m-d'))->where('end_time',null)->first();
         if(!$is_valid){
-            $employee = new \App\EmployeeAttendance;
+            $employee = new EmployeeAttendance;
             $employee->employee_id = Auth::id();
             $employee->start_time = (new DateTime)->format('H:i:s');
             $employee->date = (new DateTime)->format('Y-m-d');
             if($employee->save()){               
-                return response()->json(['status' => true,'message' => \Carbon\Carbon::parse($employee->start_time)->format('g:i A')]);
+                return response()->json(['status' => true,'message' => Carbon::parse($employee->start_time)->format('g:i A')]);
             }
             else{
                 return response()->json(['status' => false,'message' => ' Something went wrong']);
@@ -53,16 +52,16 @@ class EmployeeController extends Controller
     }
 
     public function default_log_in_time(){
-        $default_time = \App\EmployeeAttendance::where('employee_id',Auth::id())->where('date',(new DateTime)->format('Y-m-d'))->latest()->first();
+        $default_time = EmployeeAttendance::where('employee_id',Auth::id())->where('date',(new DateTime)->format('Y-m-d'))->latest()->first();
         if(isset($default_time) && !is_null($default_time) && !empty($default_time)){
             if(!is_null($default_time->start_time)){
-                $log_in_time = \Carbon\Carbon::parse($default_time->start_time)->format('g:i A');
+                $log_in_time = Carbon::parse($default_time->start_time)->format('g:i A');
             }
             else{
                 $log_in_time = null;
             }
             if(!is_null($default_time->end_time)){
-                $log_out_time = \Carbon\Carbon::parse($default_time->end_time)->format('g:i A');
+                $log_out_time = Carbon::parse($default_time->end_time)->format('g:i A');
             }
             else{
                 $log_out_time = null;
@@ -94,9 +93,9 @@ class EmployeeController extends Controller
     }
 
     public function log_out_time(){
-        $can_logout = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at', \Carbon\Carbon::today())->whereNotNull('start_time')->latest()->first();
+        $can_logout = DailyActivity::where('employee_id',Auth::id())->whereDate('created_at', Carbon::today())->whereNotNull('start_time')->latest()->first();
         if($can_logout && !is_null($can_logout->end_time)){
-            $logout = \App\EmployeeAttendance::where('employee_id',Auth::id())->where('date',(new DateTime)->format('Y-m-d'))->whereNotNull('start_time')->whereNull('end_time')->latest()->first();
+            $logout = EmployeeAttendance::where('employee_id',Auth::id())->where('date',(new DateTime)->format('Y-m-d'))->whereNotNull('start_time')->whereNull('end_time')->latest()->first();
             if($logout){
                 $logout->end_time = (new DateTime)->format('H:i:s');
                 if($logout->save()){
@@ -115,7 +114,7 @@ class EmployeeController extends Controller
                         $total = $minutes." min";
                     }
                     
-                    return response()->json(['status' => true,'message' => \Carbon\Carbon::parse($logout->end_time)->format('g:i A'), 'total' => $total]);
+                    return response()->json(['status' => true,'message' => Carbon::parse($logout->end_time)->format('g:i A'), 'total' => $total]);
                 }
                 else{
                     return response()->json(['status' => false,'message' => ' Something went wrong']);
@@ -128,13 +127,13 @@ class EmployeeController extends Controller
     }
 
     public function attendance_history(){
-        $my_attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereMonth('created_at', \Carbon\Carbon::now()->month)->get();
+        $my_attendance = EmployeeAttendance::where('employee_id',Auth::id())->whereMonth('created_at', Carbon::now()->month)->get();
         $month_status = date('F');
         return view('employee.attendance_history',compact('my_attendance','month_status'));
     }
 
     public function daily_activity(){
-        $is_valid = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at', \Carbon\Carbon::today())->latest()->first();
+        $is_valid = DailyActivity::where('employee_id',Auth::id())->whereDate('created_at', Carbon::today())->latest()->first();
         if($is_valid){
             if(is_null($is_valid->end_time)){
                 $type = 1;
@@ -149,12 +148,12 @@ class EmployeeController extends Controller
         else{
             $type = 2;
         }
-        $total_daily_activity = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at', \Carbon\Carbon::today())->get();
+        $total_daily_activity = DailyActivity::where('employee_id',Auth::id())->whereDate('created_at', Carbon::today())->get();
         return view('employee.daily_activity',compact('type','total_daily_activity'));
     }
 
     public function add_daily_activity(Request $request){
-        $daily_activity = new \App\DailyActivity;
+        $daily_activity = new DailyActivity;
         $daily_activity->project_id = $request->project_id;
         $daily_activity->start_time = (new DateTime)->format('H:i:s');
         $daily_activity->employee_id = Auth::id();
@@ -171,7 +170,7 @@ class EmployeeController extends Controller
     }
 
     public function finish_daily_activity(){
-        $finish_activity = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at', \Carbon\Carbon::today())->latest()->first();
+        $finish_activity = DailyActivity::where('employee_id',Auth::id())->whereDate('created_at', Carbon::today())->latest()->first();
         $finish_activity->end_time = (new DateTime)->format('H:i:s');
         $startTime = strtotime($finish_activity->start_time);
         $endTime = strtotime($finish_activity->end_time);
@@ -187,8 +186,8 @@ class EmployeeController extends Controller
     }
 
     public function all_daily_activities(){
-        $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', \Carbon\Carbon::now()->month)->get();
-        $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', \Carbon\Carbon::now()->month)->where('project_id','!=',0)->sum('time_in_minutes');
+        $all_daily_activities = DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', Carbon::now()->month)->get();
+        $total_mins = DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', Carbon::now()->month)->where('project_id','!=',0)->sum('time_in_minutes');
         $month_status = date('F');
         $hours = floor($total_mins/60) ;
         $minute = $total_mins%60 ;
@@ -207,7 +206,7 @@ class EmployeeController extends Controller
         (!empty($request->month))?  $month = date("m", strtotime($request->month)):  $month = "" ;
         (!empty($request->date))? $date = date("Y-m-d", strtotime($request->date)) : $date = "" ;
        
-        $my_attendance = \App\EmployeeAttendance::select("*")
+        $my_attendance = EmployeeAttendance::select("*")
             ->when(!empty($year), function ($query) use ($year) {
                 $query->where('employee_id',Auth::id())->whereYear('created_at',$year)->get();
             })
@@ -218,7 +217,7 @@ class EmployeeController extends Controller
                 $query->where('employee_id',Auth::id())->whereDate('created_at',$date)->get();
             })
             ->when(empty($year) && empty($month) && empty($date), function ($query) use ($date) {
-                $query->where('employee_id',Auth::id())->whereMonth('created_at', \Carbon\Carbon::now()->month)->get();
+                $query->where('employee_id',Auth::id())->whereMonth('created_at', Carbon::now()->month)->get();
             })
             ->get();
     
@@ -236,36 +235,36 @@ class EmployeeController extends Controller
         (!empty($request->date))? $date = date("Y-m-d", strtotime($request->date)) : $date = "" ;
 
         if(!empty($year) && !empty($month) && !empty($date)){
-             $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereMonth('created_at', $month)->whereDate('created_at',$date)->get();
-             $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereMonth('created_at', $month)->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
+             $all_daily_activities = DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereMonth('created_at', $month)->whereDate('created_at',$date)->get();
+             $total_mins = DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereMonth('created_at', $month)->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
         }
         elseif(!empty($year) && !empty($month) && empty($date)){
-             $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereMonth('created_at', $month)->get();
-             $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereMonth('created_at', $month)->where('project_id','!=',0)->sum('time_in_minutes');
+             $all_daily_activities = DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereMonth('created_at', $month)->get();
+             $total_mins = DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereMonth('created_at', $month)->where('project_id','!=',0)->sum('time_in_minutes');
         }
         elseif(!empty($year) && empty($month) && empty($date)){
-             $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->get();
-             $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->where('project_id','!=',0)->sum('time_in_minutes');
+             $all_daily_activities = DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->get();
+             $total_mins = DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->where('project_id','!=',0)->sum('time_in_minutes');
         }
         elseif(!empty($year) && empty($month) && !empty($date)){
-             $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereDate('created_at',$date)->get();
-             $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
+             $all_daily_activities = DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereDate('created_at',$date)->get();
+             $total_mins = DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',$year)->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
         }
         elseif(empty($year) && !empty($month) && !empty($date)){
-             $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', $month)->whereDate('created_at',$date)->get();
-             $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', $month)->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
+             $all_daily_activities = DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', $month)->whereDate('created_at',$date)->get();
+             $total_mins = DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', $month)->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
         }
         elseif(empty($year) && !empty($month) && empty($date)){
-            $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', $month)->get();
-            $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', $month)->where('project_id','!=',0)->sum('time_in_minutes');
+            $all_daily_activities = DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', $month)->get();
+            $total_mins = DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', $month)->where('project_id','!=',0)->sum('time_in_minutes');
         }
         elseif(empty($year) && empty($month) && !empty($date)){
-             $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->get();
-             $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
+             $all_daily_activities = DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->get();
+             $total_mins = DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
         }
         else{
-            $all_daily_activities = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', \Carbon\Carbon::now()->month)->get();
-            $total_mins = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', \Carbon\Carbon::now()->month)->where('project_id','!=',0)->sum('time_in_minutes');
+            $all_daily_activities = DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', Carbon::now()->month)->get();
+            $total_mins = DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at', Carbon::now()->month)->where('project_id','!=',0)->sum('time_in_minutes');
         }
         $year_status = $request->year;
         $month_status = $request->month;
@@ -284,10 +283,10 @@ class EmployeeController extends Controller
     }
 
     public function graphs(){
-        $week_dates = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfWeek(), \Carbon\Carbon::now()->endOfWeek());
+        $week_dates = CarbonPeriod::create(Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek());
         $result = [];
         foreach($week_dates as $date){
-          $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
+          $minutes = DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
           $hours = floor($minutes/60) ;
           $minutes = $minutes%60 ;
           array_push($result,[(string)$date->format('l'), $hours.".".$minutes ,"#122f51"]);
@@ -301,10 +300,10 @@ class EmployeeController extends Controller
 
     public function graph_time(Request $request){
         if($request->graph_time == "monthly"){
-            $month_dates = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfMonth(), \Carbon\Carbon::now()->endOfMonth());
+            $month_dates = CarbonPeriod::create(Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth());
             $result = [];
             foreach($month_dates as $date){
-                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
+                $minutes = DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
                 $hours = floor($minutes/60) ;
                 $minutes = $minutes%60 ;
                 array_push($result,[$date->format('Y/m/d'), $hours.".".$minutes ,"#122f51"]);
@@ -320,7 +319,7 @@ class EmployeeController extends Controller
                 $month[] = date('F', mktime(0,0,0,$m, 1, date('Y')));
             }
             foreach($month as $month){
-                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at',date('m',strtotime($month)))->whereYear('created_at', date('Y'))->where('project_id','!=',0)->sum('time_in_minutes');
+                $minutes = DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at',date('m',strtotime($month)))->whereYear('created_at', date('Y'))->where('project_id','!=',0)->sum('time_in_minutes');
                 $hours = floor($minutes/60) ;
                 $minutes = $minutes%60 ;
                 array_push($result,[date('F',strtotime($month)), $hours.".".$minutes ,"#122f51"]);
@@ -331,10 +330,10 @@ class EmployeeController extends Controller
             $type = $request->graph_time;
         }
         else{
-            $week_dates = \Carbon\CarbonPeriod::create(\Carbon\Carbon::now()->startOfWeek(), \Carbon\Carbon::now()->endOfWeek());
+            $week_dates = CarbonPeriod::create(Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek());
             $result = [];
             foreach($week_dates as $date){
-                $minutes = \App\DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
+                $minutes = DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
                 $hours = floor($minutes/60) ;
                 $minutes = $minutes%60 ;
                 array_push($result,[(string)$date->format('l'), $hours.".".$minutes ,"#122f51"]);
@@ -354,13 +353,13 @@ class EmployeeController extends Controller
 
 
     public function Chartjs(){
-        $holidays = \App\Calender::whereDate('date', '>=', \Carbon\Carbon::now())->get()->toArray();
-        $holidays_list = \App\Calender::whereDate('date', '>=', \Carbon\Carbon::now())->get();
+        $holidays = Calender::whereDate('date', '>=', Carbon::now())->get()->toArray();
+        $holidays_list = Calender::whereDate('date', '>=', Carbon::now())->get();
         return view('employee.fullcalendar',['holidays' => $holidays,'holidays_list' => $holidays_list]);
     }
     
     public function apply_leave(){
-        $leaves = \App\ApplyLeave::where('employee_id',Auth::id())->whereDate('start_date', '>=', \Carbon\Carbon::now())->get();
+        $leaves = ApplyLeave::where('employee_id',Auth::id())->whereDate('start_date', '>=', Carbon::now())->get();
         return view('employee.apply_leave',compact('leaves'));
     }
 
@@ -370,7 +369,7 @@ class EmployeeController extends Controller
             return back();
         }
         else{
-            $leave = new \App\ApplyLeave;
+            $leave = new ApplyLeave;
             $leave->employee_id = Auth::id();
             $leave->start_date = $request->start_date;
             $leave->end_date = $request->end_date;
@@ -385,15 +384,18 @@ class EmployeeController extends Controller
 
     
     public function my_profile(){
-        $profile = \App\EmployeeInformation::where('employee_id',Auth::id())->first();
+        $profile = EmployeeInformation::where('user_id',Auth::id())->first();
+        $profile->department_name = \App\Department::whereId($profile->department)->value('name');
         return view('employee.my_profile',compact('profile'));
     }
 
     public function download_icard()
     {
-        $imagePath = public_path("images/profile_img222.jpg");
+        $emp_img = EmployeeInformation::where('user_id',Auth::id())->value('image');
+        // $imagePath = public_path("images/profile_img222.jpg");
+        $imagePath = $emp_img;
         $image = "data:image/png;base64,".base64_encode(file_get_contents($imagePath));
-        $profile = \App\EmployeeInformation::where('employee_id',Auth::id())->first();
+        $profile = EmployeeInformation::where('user_id',Auth::id())->first();
         $profile->image = $image;
         
         $pdf = PDF::loadView('employee.icard', compact('profile'))->setOptions(['defaultFont' => 'Roboto']);
@@ -456,12 +458,12 @@ class EmployeeController extends Controller
     //     $all_sat_sun =  array_merge($saturdays, $sundays);
 
     //     // getting holidays from admin
-    //     $custom_holidays = \App\Calender::whereYear('date', \Carbon\Carbon::now())->pluck('date')->toArray();
+    //     $custom_holidays = Calender::whereYear('date', Carbon::now())->pluck('date')->toArray();
     //     $all_holidays =array_unique(array_merge($all_sat_sun, $custom_holidays));
 
 
     //     // getting all dates in a year
-    //     $dateRange = CarbonPeriod::create(\Carbon\Carbon::now()->startOfYear(),\Carbon\Carbon::now()->endOfYear());
+    //     $dateRange = CarbonPeriod::create(Carbon::now()->startOfYear(),Carbon::now()->endOfYear());
     //     $all_dates_in_year = array_map(fn ($date) => $date->format('Y-m-d'), iterator_to_array($dateRange));
 
 
@@ -472,7 +474,7 @@ class EmployeeController extends Controller
        
 
     //     // employee total attendance  .
-    //     $employee_total_attendance = \App\EmployeeAttendance::distinct()->where('employee_id',Auth::id())->whereNotNull('end_time')->pluck('date');
+    //     $employee_total_attendance = EmployeeAttendance::distinct()->where('employee_id',Auth::id())->whereNotNull('end_time')->pluck('date');
     //     $employee_total_attendance_count = $employee_total_attendance->count();
 
     //     // holidays that employee ne lyeaa
@@ -539,18 +541,18 @@ class EmployeeController extends Controller
 
 
         // $dates = [
-        //         (string)new \Carbon\Carbon('first Sunday  of '.date("F").''.date("Y").''),
-        //         (string)new \Carbon\Carbon('second Sunday  of '.date("F").''.date("Y").''),
-        //         (string)new \Carbon\Carbon('third Sunday  of '.date("F").''.date("Y").''),
-        //         (string)new \Carbon\Carbon('fourth Sunday  of '.date("F").''.date("Y").''),
+        //         (string)new Carbon('first Sunday  of '.date("F").''.date("Y").''),
+        //         (string)new Carbon('second Sunday  of '.date("F").''.date("Y").''),
+        //         (string)new Carbon('third Sunday  of '.date("F").''.date("Y").''),
+        //         (string)new Carbon('fourth Sunday  of '.date("F").''.date("Y").''),
         //     ];
         
-        // $holidays = \App\Calender::whereMonth('date', \Carbon\Carbon::now())->pluck('date')->toArray();
+        // $holidays = Calender::whereMonth('date', Carbon::now())->pluck('date')->toArray();
         // $data =  array_merge($dates, $holidays);
         // print_r($data) ;
         // echo "</br>";
 
-        //  $attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereNotIn('date',$data)->whereNotNull('end_time')->get();
+        //  $attendance = EmployeeAttendance::where('employee_id',Auth::id())->whereNotIn('date',$data)->whereNotNull('end_time')->get();
         
         // $dates = 
         // return $present = $dates->count();

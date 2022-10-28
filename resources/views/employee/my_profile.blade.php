@@ -17,7 +17,7 @@
             <div class="col-md-4">
               <div class="profilesectionleftcustomsetting">
                 <div class="profileimgboxcustomsetting">
-                  <img src="{{asset('images/profile-image.jpg') }}">
+                  <img src="{{$profile->image}}">
                 </div>
                 <div class="customphoneboxsetting">
                   <a href="#">
@@ -105,8 +105,9 @@
                       <div class="col-md-6">
                         <div class="innerboxinfocustomsetting">
                           <h6>Department</h6>
+                        
                           <p>
-                            <span>{{$profile->department}}</span>
+                            <span>{{$profile->department_name}}</span>
                           </p>
                         </div>
                       </div>

@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
 
 	<meta charset="utf-8">
@@ -153,19 +152,19 @@
                             <label for="gender" class="inputlabel multiformlabel" class="form-label multiformlabel">Gender</label>
                             <div class="form-check form-check-inline custom-button custom-buttonbox mystatusbtn ml-0 multiformradio">
                                 @if($type == 1)
-                                <input class="form-control" type="radio" name="gender" value="male" id="rad1" checked>
-                                <label class="radiomultiformtext" for="rad1">Male</label>
+                                    <input class="form-control" type="radio" name="gender" value="male" id="rad1" checked>
+                                    <label class="radiomultiformtext" for="rad1">Male</label>
                                 @else
-                                <input class="form-control" id="rad1" type="radio" name="gender" value="male" @if($employee->emp_info->gender == "male") checked @endif>
-                                <label class="radiomultiformtext" for="rad1">Male</label>
+                                    <input class="form-control" id="rad1" type="radio" name="gender" value="male" @if($employee->emp_info->gender == "male") checked @endif>
+                                    <label class="radiomultiformtext" for="rad1">Male</label>
                                 @endif
 
                                 @if($type == 1)
-                                <input class="form-control" id="rad2" type="radio" name="gender" value="female">
-                                <label class="radiomultiformtext" for="rad2">Female</label>
+                                    <input class="form-control" id="rad2" type="radio" name="gender" value="female">
+                                    <label class="radiomultiformtext" for="rad2">Female</label>
                                 @else
-                                <input class="form-control" id="rad2" type="radio" name="gender" value="female"  @if($employee->emp_info->gender == "female") checked @endif>
-                                <label class="radiomultiformtext" for="rad2">Female</label>
+                                    <input class="form-control" id="rad2" type="radio" name="gender" value="female"  @if($employee->emp_info->gender == "female") checked @endif>
+                                    <label class="radiomultiformtext" for="rad2">Female</label>
                                 @endif
                             </div>
                         </div>

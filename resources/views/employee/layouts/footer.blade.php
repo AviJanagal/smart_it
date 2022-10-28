@@ -1,10 +1,10 @@
 <script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/9681e38096.js" crossorigin="anonymous"></script>
-<script src="{{ asset('js/circle-progress.min.js') }}"></script>
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- <script type="text/javascript" src="{{ asset('js/dataTables.min.js') }}"></script> -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -12,7 +12,7 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
-  <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+ 
   
 
 <script type="text/javascript">
@@ -25,13 +25,14 @@
 
 </script>
 
- <script>
+<script>
 	$(".confirm").click(function(){
-		$(".sweet-overlay").empty();
-		$(".sweet-overlay").remove();
-		$(".showSweetAlert ").remove();
-});
+    $(".sweet-overlay").empty();
+    $(".sweet-overlay").remove();
+    $(".showSweetAlert ").remove();
+  });
  </script>
+
 <script>
 	function logInTime()
 	{
@@ -47,107 +48,98 @@
             dataType : 'json',
             success: function(result)
             {
-				$(".total_hours").attr("data-pct","Pending");
-				$("#cont").attr("data-pct"," ");
-				$("#cont").attr("data-pct",result.message);
-				$(".content").attr("data-pct"," ");
-				$(".content").attr("data-pct","00:00");
-				$('#checkIn').off('click');
-                Swal.fire('Success!','Check-in !','success')
-				$("#nav-tabContent").load(location.href + " #nav-tabContent");
+              $(".total_hours").attr("data-pct","Pending");
+              $("#cont").attr("data-pct"," ");
+              $("#cont").attr("data-pct",result.message);
+              $(".content").attr("data-pct"," ");
+              $(".content").attr("data-pct","00:00");
+              $('#checkIn').off('click');
+              Swal.fire('Success!','Check-in !','success')
+              $("#nav-tabContent").load(location.href + " #nav-tabContent");
             }
         }); 
-	}
+  }
 
 	function logOutTime()
 	{
-		// alert(id);
 		$.ajax
-        ({
-            url:"{{ route('employee.log_out_time') }}",
-            type: "POST",
-            data: 
-            {
-                _token: '{{csrf_token()}}' 
-            },
-            dataType : 'json',
-            success: function(result)
-            {
-				// alert(result.total);
-			if(result.message == false){
-				Swal.fire('Alert !','Please Enter Your daily Activity to Check out your attendance','Danger');
-                $(".swal2-confirm").addClass('anchorcls');
-                $('.anchorcls').html('<a href="{{route("employee.daily_activity")}}">Go to Activity</a>')
-                
-			}else{
-				$(".content").attr("data-pct"," ");
-				$(".content").attr("data-pct",result.message);
-				$(".total_hours").attr("data-pct",result.total);
-				// $('#checkIn').off('click');
-                Swal.fire('Success!','Check-out!','success');
-				$("#nav-tabContent").load(location.href + " #nav-tabContent");
-			}
+      ({
+          url:"{{ route('employee.log_out_time') }}",
+          type: "POST",
+          data: 
+          {
+              _token: '{{csrf_token()}}' 
+          },
+          dataType : 'json',
+          success: function(result)
+          {
+            if(result.message == false){
+              Swal.fire('Alert !','Please Complete Your daily Activity to Check out your attendance','Danger');
+              $(".swal2-confirm").addClass('anchorcls');
+              $('.anchorcls').html('<a href="{{route("employee.daily_activity")}}">Go to Activity</a>')
             }
-        }); 
+            else{
+              $(".content").attr("data-pct"," ");
+              $(".content").attr("data-pct",result.message);
+              $(".total_hours").attr("data-pct",result.total);
+              Swal.fire('Success!','Check-out!','success');
+              $("#nav-tabContent").load(location.href + " #nav-tabContent");
+            }
+          }
+      }); 
 	}
 </script>
 
 <script>
-    $( document ).ready(function() {
-		$.ajax
-        ({
-            url:"{{ route('employee.default_log_in_time') }}",
-            type: "GET",
-            data: 
-            {
-                _token: '{{csrf_token()}}' 
-            },
-            dataType : 'json',
-            success: function(result)
-            {
-				$(".total_hours").attr("data-pct",result.total);
-				if(result.logIn != null){
-					$("#cont").attr("data-pct"," ");
-					$("#cont").attr("data-pct",result.logIn);
-				}
-				else{
-					
-					
-				}
-				if(result.logOut != null){
-					$(".content").attr("data-pct"," ");
-					$(".content").attr("data-pct",result.logOut);
-				}
-				else{
-				
-				}
-            }
-        }); 
-	});
+    $(document).ready(function () {
+      $.ajax({
+          url: "{{ route('employee.default_log_in_time') }}",
+          type: "GET",
+          data: {
+              _token: "{{csrf_token()}}",
+          },
+          dataType: "json",
+          success: function (result) {
+              $(".total_hours").attr("data-pct", result.total);
+              if (result.logIn != null) {
+                  $("#cont").attr("data-pct", " ");
+                  $("#cont").attr("data-pct", result.logIn);
+              } else {
+              }
+              if (result.logOut != null) {
+                  $(".content").attr("data-pct", " ");
+                  $(".content").attr("data-pct", result.logOut);
+              } else {
+              }
+          },
+      });
+    });
+
 </script>
 
         
     <script>
             
-		$( "#myformVal" ).validate({
-			rules: {
-				project_id: {
-					required: true,
-				},
-				}
-			});
+		$("#myformVal").validate({
+      rules: {
+          project_id: {
+              required: true,
+          },
+      },
+    });
+
 	</script>
 	
 	 <!-- Delete modal jQuery-->
 
-        <script>
-            function deleteData(url) {
-                $("#deleteForm").attr("action", url);
-                $("#myModal").modal('show');
-            }
-        </script>
+    <script>
+        function deleteData(url) {
+            $("#deleteForm").attr("action", url);
+            $("#myModal").modal('show');
+        }
+    </script>
 
-        <!-- Delete modal jQuery end -->
+    <!-- Delete modal jQuery end -->
 
 		<!-- dataTables -->
 		
@@ -156,66 +148,62 @@
          $("#myTable").DataTable({
                 ordering: false,
             });
-			} );
+			});
 		</script>
 
 		<!-- end dataTables -->
 
+    <script>
+      jQuery(function ($) {
+          $(".sidebar-dropdown > a").click(function () {
+              $(".sidebar-submenu").slideDown(200);
+              if ($(this).parent().hasClass("active")) {
+                  $(".sidebar-dropdown").removeClass("active");
+                  $(this).parent().removeClass("active");
+              } else {
+                  $(".sidebar-dropdown").removeClass("active");
+                  $(this).next(".sidebar-submenu").slideUp(200);
+                  $(this).parent().addClass("active");
+              }
+          });
+      });
 
-		
-	
-		 <script>
-		
-		    jQuery(function ($) {
-                $(".sidebar-dropdown > a").click(function () {
-                    $(".sidebar-submenu").slideDown(200);
-                    if ($(this).parent().hasClass("active")) {
-                        $(".sidebar-dropdown").removeClass("active");
-                        $(this).parent().removeClass("active");
-                    } else {
-                        $(".sidebar-dropdown").removeClass("active");
-                        $(this).next(".sidebar-submenu").slideUp(200);
-                        $(this).parent().addClass("active");
-                    }
-                });
-            });
-	   
-		 </script>
+    </script>
 
 		 <!-- getting project description model -->
 		<script>
-			$('#myProject').on('change', function() {
-				var projectName = $('#myProject :selected').text();
-				$("#DescModal").modal('show');
+			$("#myProject").on("change", function () {
+          var projectName = $("#myProject :selected").text();
+          $("#DescModal").modal("show");
+          $("#recipient-name").val(projectName);
+          var projectId = $("#myProject").val();
+          $("#project_id").val(projectId);
+      });
 
-				$('#recipient-name').val(projectName);
-				var projectId = $('#myProject').val();
-				$('#project_id').val(projectId);
-			});
 
 		</script>
 <!--end getting project description model -->
 
 <script>
-$(document).ready(function(){
-	// var year = new Date().getFullYear()
-  $("#monthPicker").datepicker({
-     format: "MM",
-     viewMode: "months", 
-     minViewMode: "months",
-     autoclose:true
-  });   
-  $("#yearPicker").datepicker({
-     format: "yyyy",
-     viewMode: "years", 
-     minViewMode: "years",
-     autoclose:true
-  });   
-  $("#datePicker").datepicker({
-     
-     autoclose:true
-  });   
-})
+
+  $(document).ready(function () {
+    $("#monthPicker").datepicker({
+        format: "MM",
+        viewMode: "months",
+        minViewMode: "months",
+        autoclose: true,
+    });
+    $("#yearPicker").datepicker({
+        format: "yyyy",
+        viewMode: "years",
+        minViewMode: "years",
+        autoclose: true,
+    });
+    $("#datePicker").datepicker({
+        autoclose: true,
+    });
+
+  });
 
 
 </script>
@@ -332,25 +320,14 @@ $(document).ready(function(){
 
 
      <script>
-            function showMailModel(text) {
-                // alert(text)
-                $("#mailModel").modal('show');
-                var value = $("#desc_"+text).val();
-                $('#mailDesc').html(value);
-            }
-        </script>
+        function showMailModel(text) {
+            $("#mailModel").modal('show');
+            var value = $("#desc_"+text).val();
+            $('#mailDesc').html(value);
+        }
+      </script>
 
-      <script>
-        CKEDITOR.replace( 'discription' );
-        $("form").submit( function(e) {
-            var messageLength = CKEDITOR.instances['discription'].getData().replace(/<[^>]*>/gi, '').length;
-            if( !messageLength ) {
-                // alert( 'Please enter a message' );
-                $("#ckModel").modal('show');
-                e.preventDefault();
-            }
-        });
-    </script>
+    
 
 
 	

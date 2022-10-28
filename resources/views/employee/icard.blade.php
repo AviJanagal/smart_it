@@ -155,7 +155,7 @@ a{
 								</td>
 								<td style="text-align: center;">
 									<h4 style="text-align: center; color: white;       margin-top: 2px;">:  SMIT/{{auth()->user()->id}}</h4>
-									<h4 style="text-align: center; color: white;      margin-top: 2px;" >:  {{$profile->dob}}</h4> 
+									<h4 style="text-align: center; color: white;      margin-top: 2px;" >:  {{\Carbon\Carbon::parse($profile->dob)->format('d-m-Y')}}</h4> 
 									<h4 style="text-align: center; color: white;      margin-top: 2px;" >: {{ucfirst($profile->gender)}}</h4>
 									<h4 style="text-align: center; color: white;      margin-top: 2px;" >: {{auth()->user()->phone_number}}</h4>
 								
