@@ -86,7 +86,7 @@
       <div class="table-title-add">
         <div class="row">
           <div class="col-sm-12">
-            <h2 style="text-align:center;">Assigned projects List </h2>
+            <h2 style="text-align:center;">Assigned Projects List </h2>
           </div>
         </div>
       </div>

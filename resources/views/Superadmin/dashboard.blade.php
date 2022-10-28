@@ -207,7 +207,7 @@
                         <div class="col-md-4">
 						<div class="mainheadingbox">
                                 <div class="iconimg">
-                                    <img class="holicon" src="{{ asset('images/holiday.gif') }}" />
+                                    <img class="holicon" src="{{ asset('images/total_projects.gif') }}"/>
                                 </div>
                                 <div class="flowchart">
                                     <h3>{{$total_projects}}</h3>
@@ -226,7 +226,7 @@
                 <div class="col-md-12 mt-4">
                     <div class="row">
 					
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="Pendingbox">
 							<h3>Available Employees</h3>
                             </div>
@@ -252,6 +252,11 @@
 								@if(count($employee) > 0)
 								@foreach($employee as $item)
 								<div class="imgbox2">
+								@if(!is_null($item) && !is_null($item->emp_info))
+									<a href=""> <img src="{{asset($item->emp_info->image)}}" /> </a>
+									@else
+									<a href=""> <img src="{{asset('images/profile-image.jpg')}}" /> </a>
+									@endif
 									<div class="textbox2">
 										<h6>{{ucfirst($item->first_name)}}&nbsp;{{ucfirst($item->last_name)}}</h6>
 										<p>{{$item->email}}</p>
@@ -285,7 +290,7 @@
                             </div>
                         </div>
 						
-						 <div class="col-md-6">
+						 <div class="col-md-3">
                             <div class="Pendingbox">
 							<h3>Employees Working On Projects</h3>
 
@@ -312,6 +317,11 @@
 									@if(count($projects) > 0)
 								@foreach( $projects as $data)
 								<div class="imgbox2">
+								@if(!is_null($data->image))
+									<a href=""> <img src="{{asset($data->image)}}" /> </a>
+									@else
+									<a href=""> <img src="{{asset('images/profile-image.jpg')}}" /> </a>
+									@endif
 									
 									<div class="textbox2">
 									@if(!is_null($data))
@@ -347,7 +357,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
 						<div class="Pendingbox">
 						<h3>Employees On Leave</h3>
                             </div>
@@ -368,6 +378,14 @@
 									@if(count($employee_leaves) > 0)
 								@foreach( $employee_leaves as $data)
 								<div class="imgbox2">
+
+								@if(!is_null($data->employee) && !is_null($data->employee->emp_info))
+									<a href=""> <img src="{{asset($data->employee->emp_info->image)}}" /> </a>
+									@else
+									<a href=""> <img src="{{asset('images/profile-image.jpg')}}" /> </a>
+									@endif
+
+									
 									<div class="textbox2">
 									@if(!is_null($data))
 										<h6>{{ucfirst($data->employee->first_name)}} &nbsp;{{$data->employee->last_name}}</h6>
@@ -397,7 +415,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
 						<div class="Pendingbox">
 						<h3>Absent Employees</h3>
                             </div>
@@ -418,6 +436,11 @@
 									@if(count($employee_absent) > 0)
 								@foreach( $employee_absent as $data)
 								<div class="imgbox2">
+								@if(!is_null($data->emp_info))
+									<a href=""> <img src="{{asset($data->emp_info->image)}}" /> </a>
+									@else
+									<a href=""> <img src="{{asset('images/profile-image.jpg')}}" /> </a>
+									@endif
 									
 									<div class="textbox2">
 									@if(!is_null($data))

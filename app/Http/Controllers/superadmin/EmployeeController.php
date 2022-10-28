@@ -9,6 +9,8 @@ use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\Mail;
 use PDF;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 
 
@@ -114,7 +116,25 @@ class EmployeeController extends Controller
         $employee_info->employee_id  = $request->employee_id;
         $employee_info->department = $request->department;
         $employee_info->designation = $request->designation;
-        $employee_info->job_title = $request->job_title;
+
+
+
+        // $employee_info->job_title = $request->job_title;
+
+        if ($request->has('image')) {
+            $image = $request->file('image');
+            $img_ext = $image->getClientOriginalName();
+            $filename = 'service-image-' . time() . '.' . $img_ext;
+            $filePath = '/images/smart-it/' . $filename;
+            Storage::disk('s3')->put($filePath, file_get_contents($image));
+            $url = config('services.base_url') . "/images/smart-it/" . $filename;
+            $employee_info->image =  $url;
+             }
+
+
+
+
+
         $employee_info->employee_type = $request->employee_type;
         $employee_info->date_of_joining = $request->date_of_joining;
         $employee_info->save();
@@ -223,7 +243,21 @@ class EmployeeController extends Controller
         $user->emp_info->employee_id  = $request->employee_id;
         $user->emp_info->department = $request->department;
         $user->emp_info->designation = $request->designation;
-        $user->emp_info->job_title = $request->job_title;
+
+        // $user->emp_info->job_title = $request->job_title;
+        if ($request->has('image')) {
+            $image = $request->file('image');
+            $img_ext = $image->getClientOriginalName();
+            $filename = 'service-image-' . time() . '.' . $img_ext;
+            $filePath = '/images/smart-it/' . $filename;
+            Storage::disk('s3')->put($filePath, file_get_contents($image));
+            $url = config('services.base_url') . "/images/smart-it/" . $filename;
+            $user->emp_info->image =  $url;
+             }
+
+
+
+
         $user->emp_info->employee_type = $request->employee_type;
         $user->emp_info->date_of_joining = $request->date_of_joining;
         $user->emp_info->save();

@@ -22,7 +22,7 @@ class CreateEmployeeInformationTable extends Migration
             $table->string('employee_id')->unique();
             $table->string('department')->nullable();
             $table->string('designation')->nullable();
-            $table->string('job_title')->nullable();
+            $table->string('image')->nullable();
             $table->string('employee_type')->nullable();
             $table->string('date_of_joining')->nullable();
             $table->timestamps();

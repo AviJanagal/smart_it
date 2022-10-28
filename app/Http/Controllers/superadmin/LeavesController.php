@@ -5,6 +5,8 @@ namespace App\Http\Controllers\superadmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+
+
 class LeavesController extends Controller
 {
     /**
@@ -16,11 +18,16 @@ class LeavesController extends Controller
     {
         //
         $leaves = \App\Leave::orderBy('id','desc')->get();
-        $employee = \App\User::where('role','employee')->orderBy('id','desc')->get();
+        $leave_name = \App\Leave::pluck('employee_id');
+        $employee = \App\User::where('role','employee')->whereNotIn('id',$leave_name)->orderBy('id','desc')->get();
         $type = 1;
         foreach($leaves as $data)
         {
-            $developer = \App\User::where('role','employee')->find($data->employee_name);
+            if(!is_null($data->employee_id))
+            {
+                $developer = \App\User::where('role','employee')->find($data->employee_id);
+
+            }
             if(!is_null($developer))
             {
                 $data->first_name = $developer->first_name.' '.$developer->last_name;
@@ -49,14 +56,14 @@ class LeavesController extends Controller
     {
         //
 
-      foreach ($request->employee_name as  $val) {
+      foreach ($request->employee_id as  $val) {
         $leave = new \App\Leave;
-        $leave->employee_name = $val;
+        $leave->employee_id = $val;
         $leave->save();
     }
         if ($leave->save())
         {
-            return redirect()->route('admin.leave.index')->with(['alert' => 'success', 'message' => 'Leave has been Added Successfully!.']);
+            return redirect()->route('admin.leave.index')->with(['alert' => 'success','message' => 'Leave has been Added Successfully!.']);
         }
         else
         {
@@ -100,9 +107,12 @@ class LeavesController extends Controller
 
         foreach($leaves as $data)
         {
-        
-            $developer = \App\User::where('role','employee')->find($data->employee_name);
-            if(!is_null($developer))
+            if(!is_null($data->employee_id))
+            {
+                $developer = \App\User::where('role','employee')->find($data->employee_id);
+
+            }
+                    if(!is_null($developer))
             {
                 $data->first_name = $developer->first_name.' '.$developer->last_name;
 
@@ -123,9 +133,9 @@ class LeavesController extends Controller
     {
         //
 
-        foreach ($request->employee_name as  $val) {
+        foreach ($request->employee_id as  $val) {
             $leave =  \App\Leave::find($id);
-            $leave->employee_name = $val;
+            $leave->employee_id = $val;
             $leave->save();
         }
         if ($leave->save())

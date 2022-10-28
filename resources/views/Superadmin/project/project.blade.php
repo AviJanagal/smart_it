@@ -74,7 +74,7 @@
       <div class="table-title-add">
         <div class="row">
           <div class="col-sm-12">
-            <h2 style="text-align:center;">project  List </h2>
+            <h2 style="text-align:center;">Project  List </h2>
           </div>
         </div>
       </div>

@@ -289,6 +289,7 @@ a.vendor1 {
     padding: 24px;
     box-shadow: 4px -5px 123px -18px rgb(161 170 166 / 22%);
     background: #fff;
+    text-align: center;
 }
 
 .imgbox2 img {
@@ -301,13 +302,10 @@ a.vendor1 {
 
 .imgbox2 {
     display: flex;
-
-    padding-bottom: 17px;
+    padding-bottom: 28px;
 }
-
 .buttonbox2 a {
     text-decoration: none;
-  
     padding: 5px 12px 5px 12px;
     color: white;
     width: 100%;
@@ -315,6 +313,7 @@ a.vendor1 {
     border-radius: 6px;
     font-size: 12px;
     background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    margin-top: 8px;
 }
 
 .buttonbox2 {
@@ -405,9 +404,8 @@ textarea#message-text {
 }
 
 img.holicon {
-    width: 116px !important;
+    width: 144px !important;
 }
-
 .table thead th {
     vertical-align: bottom;
     border-bottom: 2px solid #dee2e6;
@@ -967,6 +965,8 @@ button.btn.btn-danger.custom-innerbutton {
     background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);    width: 15%;
     display: block;
     padding: 12px;
+    border: transparent;
+
 }
 
 .custom-control-lg {
@@ -1464,6 +1464,8 @@ table.table td:last-child i {
     opacity: 0.9;
     font-size: 16px;
     margin: 0 5px;
+    cursor: pointer;
+
 }
 
 table.table td a {
@@ -1609,7 +1611,7 @@ table.table .avatar {
 .modal .modal-header,
 .modal .modal-body,
 .modal .modal-footer {
-    padding: 20px 30px;
+    padding: 16px 30px;
 }
 
 .modal .modal-content {
@@ -1617,14 +1619,18 @@ table.table .avatar {
 }
 
 .modal .modal-footer {
-    background: #ecf0f1;
+    /* background: #ecf0f1; */
     border-radius: 0 0 3px 3px;
+    margin: auto;
 }
 
 .modal .modal-title {
     display: inline-block;
+    font-weight: 600;
+    color: #f05a22;
+    /* text-align: center!important; */
+    margin: auto;
 }
-
 .modal .form-control {
     border-radius: 2px;
     box-shadow: none;
@@ -1959,12 +1965,19 @@ select#myProject {
 }
 
 select#graph_time {
-    padding: 10px;
+    padding: 10;
     width: 100%;
     font-size: 15px;
     box-shadow: 0px 0px 4px 2px #0000000a;
     border: 0px !important;
     border-radius: 7px;
+    background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    margin-top: 33px;
+    padding: 11px;
+    margin-left: 12px;
+    font-weight: 600;
+
+
 }
 
 /* log in css */
@@ -2739,9 +2752,13 @@ button.custtombuttonsettingdownload {
 }
 .confleave {
     background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    border: transparent;
+
 }
 .reqleave {
     background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    border: transparent;
+
 }
 .projectbtnsetting {
     margin-top: 25px !important;
@@ -2749,4 +2766,57 @@ button.custtombuttonsettingdownload {
 }
 .btn-stylessav {
     margin-top: 35px !important;
+}
+
+
+.modbody {
+    display: flex;
+    /* margin-left: 0px!important; */
+    margin-bottom: 9px;
+    margin-left: 17%;
+}
+.leave_startdate {
+    margin-left: 40px;
+}
+.leave_enddate {
+    margin-left: 47px;
+}
+.leave_desc {
+    margin-left: 30px;
+}
+.empmodbody {
+    font-weight: 600;
+}
+.leave_status {
+    margin-left: 10px;
+}
+.alertclosecss {
+    float: right !important;
+    margin-top: -24px;
+    border: transparent;
+    background-color: transparent;
+    font-weight: 600;
+}
+.textbox2 {
+    /* text-align: center; */
+    text-align: justify;
+    margin-top: 5px;
+}
+.customdeletecss {
+    border-radius: 9px;
+    border-bottom: 3px solid #6e83db;
+    border-radius: 9px!important;
+    /* border: none; */
+    font-size: 19px;
+    font-weight: 500;
+    background: linear-gradient(to right, rgba(241, 90, 34, 1) 0%, rgba(33, 64, 154, 1) 100%);
+    margin-top: 0px;
+}
+.modalclosecss {
+    border: none;
+    background: #fff;
+}
+.modalclosespan {
+    font-size: 38px;
+    color: #f05a22;
 }

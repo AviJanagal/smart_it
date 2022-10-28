@@ -34,14 +34,14 @@
                <div class="col-md-7">
                 <div class="form-group custom-from">
                   <label for="Name" class="inputlabel">Employee Name</label>
-                  <select class="select2 form-select" id="select_employee" name="employee_name[]" multiple="multiple" required>
+                  <select class="select2 form-select" id="select_employee" name="employee_id[]" multiple="multiple" required>
                   @if($type == 1)
                         @foreach($employee as $list)
                         <option value="{{$list->id}}">{{$list->first_name}}&nbsp;{{$list->last_name}}</option>
                         @endforeach
                         @else
                             @foreach($employee as $list)
-                                @if($list->id == $leave->employee_name)
+                                @if($list->id == $leave->employee_id)
                                 <option value="{{$list->id}}" selected>{{$list->first_name}}&nbsp;{{$list->last_name}}</option>
                                 @else
                                 <option value="{{$list->id}}">{{$list->first_name}}&nbsp;{{$list->last_name}}</option>
