@@ -507,7 +507,18 @@ class EmployeeController extends Controller
         // Attendence History
 
 
+        $my_attendance = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereMonth('created_at', Carbon::now()->month)->get();
+        $total_mins = \App\EmployeeAttendance::where('employee_id',Auth::id())->whereMonth('created_at', Carbon::now()->month)->sum('time_in_minutes');
+        $hours = floor($total_mins/60) ;
+        $minute = $total_mins%60 ;
 
+        if($hours == 0){
+            $total_time =  $minute." min";
+        }
+        else{
+            $total_time = $hours." hrs ". $minute." min";
+        }
+        $month_status = date('F');
 
 
 

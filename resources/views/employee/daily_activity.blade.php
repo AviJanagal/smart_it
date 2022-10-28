@@ -57,11 +57,16 @@
             <div class="row">
               <div class="col-sm-12">
                 <h2 class="mb-0" style="text-align:center;">Today's Activity List</h2>
+              
+                   <h6 class="totaltimeactivity">  <span class="totleorotime">Total  Time :</span> {{$total_time}}</h6>
+              
               </div>
+              @if(count($total_daily_activity))
+              @endif
             </div>
         </div>
       </div>
-      
+
       <div class="customtableinnerbox">
 
       <div class="main-container-inner">
