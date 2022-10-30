@@ -40,6 +40,8 @@ Route::group(['as'=>'admin.','prefix' => 'admin','middleware' => ['auth', 'isAdm
    Route::post('leave_approvel', 'superadmin\EmployeeController@leave_approvel')->name('leave_approvel');
 
    Route::post('activity_filter/{id}', 'superadmin\EmployeeController@activity_filter')->name('activity_filter');
+   Route::post('attendance_filter/{id}', 'superadmin\EmployeeController@attendance_filter')->name('attendance_filter');
+
 
 
 

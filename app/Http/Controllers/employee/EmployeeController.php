@@ -295,6 +295,9 @@ class EmployeeController extends Controller
     }
 
 
+    
+
+
     public function activity_filter(Request $request){
         $year = $request->year;
         (!empty($request->month))?  $month = date("m", strtotime($request->month)):  $month = "" ;

@@ -1,6 +1,7 @@
 @include('Superadmin.layouts.header')
 @include('Superadmin.layouts.sidebar')
 <main class="maintop">
+
     <div class="mainsectionbox">
         <div class="container-fluid">
             @if(Session::get('alert'))
@@ -21,6 +22,8 @@
             </div>
         </div>
     </div>
+
+
     <div class="mainprofilesection">
         <div class="container-fluid">
             <div class="row">
@@ -31,11 +34,8 @@
                                 <a class="nav-item nav-link custom-tab active " id="nav-Profile-tab" data-toggle="tab" href="#nav-Profile" role="tab" aria-controls="nav-Profile" aria-selected="true">Profile</a>
                                 <a class="nav-item nav-link custom-tab " id="nav-Services-tab" data-toggle="tab" href="#nav-Services" role="tab" aria-controls="nav-Services" aria-selected="false">Projects</a>
                                 <a class="nav-item nav-link custom-tab " id="nav-Reviews-tab" data-toggle="tab" href="#nav-Reviews" role="tab" aria-controls="nav-Reviews" aria-selected="false">Graphs</a>
-                                <!-- <a class="nav-item nav-link custom-tab " id="nav-Gallery-tab" data-toggle="tab" href="#nav-Gallery" role="tab" aria-controls="nav-Gallery" aria-selected="false">Attendence</a> -->
-                                <a class="nav-item nav-link custom-tab " id="nav-Bank-information-tab" data-toggle="tab" href="#nav-Bank-information" role="tab" aria-controls="nav-Bank-information" aria-selected="false">Daily Activity</a>                            
-
-                                <!-- <a class="nav-item nav-link custom-tab " id="nav-Bank-information-tab" data-toggle="tab" href="#nav-Bank-information" role="tab" aria-controls="nav-Bank-information" aria-selected="false">Information</a>                             -->
-
+                                <a class="nav-item nav-link custom-tab " id="nav-Gallery-tab" data-toggle="tab" href="#nav-Gallery" role="tab" aria-controls="nav-Gallery" aria-selected="false">Attendence</a>
+                                <a class="nav-item nav-link custom-tab " id="nav-Bank-information-tab" data-toggle="tab" href="#nav-Bank-information" role="tab" aria-controls="nav-Bank-information" aria-selected="false">Daily Activity</a>
                             </div>
                         </nav>
                     </div>
@@ -43,11 +43,18 @@
             </div>
         </div>
     </div>
+
+
     <div class="tab-content " id="nav-tabContent">
+
+
         <div class="tab-pane fade show active" id="nav-Profile" role="tabpanel" aria-labelledby="nav-Profile-tab">
             <div class="profile">
                 <div class="container-fluid">
                     <div class="row">
+
+
+
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-12 custom-col">
@@ -62,6 +69,8 @@
                                         <h3></h3>
                                     </div>
                                 </div>
+
+
                                 <div class="col-md-12">
                                     <div class="personal-info">
                                         <h4>Personal Information</h4>
@@ -70,7 +79,6 @@
                                         <div class="iocn-box">
                                             <i class="fa fa-user" aria-hidden="true"></i>
                                         </div>
-
                                         @if(!is_null($employee) && !is_null($employee->first_name) && !is_null($employee->last_name) )
                                         <p>{{ucfirst($employee->first_name)}}&nbsp;{{ucfirst($employee->last_name)}}</p>
                                         @else
@@ -108,13 +116,18 @@
                                         @endif
                                     </div>
                                 </div>
+
+
                                 <div class="col-md-12">
                                     <div class="personal-info">
                                         <!-- <h4>Address</h4> -->
                                     </div>
                                 </div>
+
                             </div>
                         </div>
+
+
                         <div class="col-md-8">
                             <div class="row">
                                 <div class="col-md-12">
@@ -129,7 +142,6 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="contactinforight">
-
                                         @if(!is_null($employee) && !is_null($employee->emp_info) && !is_null($employee->emp_info->employee_id))
                                         <h5>{{$employee->emp_info->employee_id}}</h5>
                                         @else
@@ -150,7 +162,6 @@
                                         @else
                                         <h5>No Data</h5>
                                         @endif
-
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -189,20 +200,28 @@
                 </div>
             </div>
         </div>
+
+
+
+
+
         <!-- <div class="tab-pane fade " id="nav-Gallery" role="tabpanel" aria-labelledby="nav-Gallery-tab">
             <div class="gallery-section">
                 <div class="container-fluid">
                 <div class="row">
-                    
                     </div>
                 </div>
             </div>
         </div> -->
+
+
         <div class="tab-pane fade " id="nav-Services" role="tabpanel" aria-labelledby="nav-Services-tab">
             <div class="main-table">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="table-innerdata">
+                        @if(isset($project_assign) && count($project_assign) > 0 )
+
                             <table class="table table-striped table-bordered datatable" id="user_data_table" style="width:100%">
                                 <thead class="inner-tablecolor">
                                     <tr>
@@ -212,7 +231,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if(isset($project_assign) && count($project_assign) > 0 )
                                     @foreach($project_assign as $item)
                                     <tr>
                                         <td>
@@ -226,15 +244,21 @@
                                         </td>
                                     </tr>
                                     @endforeach
-                                    @else
-                                    @endif
+                                    
                                 </tbody>
                             </table>
+                            @else                 
+                                <h1 class="nodatafoundheading">No data found</h1>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
+
         <div class="tab-pane fade" id="nav-Reviews" role="tabpanel" aria-labelledby="nav-Reviews-tab">
             <div class="main-table">
                 <div class="row">
@@ -249,7 +273,6 @@
                                         <option value="monthly" <?php if ($key == "monthly") echo 'selected'; ?>>Monthly</option>
                                         <option value="yearly" <?php if ($key == "yearly") echo 'selected'; ?>>Yearly</option>
                                     </select>
-
                                 </div>
                             </div>
                         </form>
@@ -258,126 +281,234 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade " id="nav-Gallery-tab" role="tabpanel" aria-labelledby="nav-Bank-information-tab">
-            <div class="bank-section">
+
+
+
+
+
+
+
+        <div class="tab-pane fade " id="nav-Gallery" role="tabpanel" aria-labelledby="nav-Gallery-tab">
+            <div class="gallery-section">
                 <div class="container-fluid">
+
+                    <form  method="post" action="{{ route('admin.attendance_filter',$employee->id)}}" id="filterForm" enctype="multipart/form-data">
+                        <div class="row">
+                            @csrf
+                            <div class="col-sm-2">
+                                <input type="text" id="yearPicker" name="year" placeholder="Select Year" value="{{(!empty($year_status))? $year_status:''}}"autocomplete="off">
+                            </div>
+
+                            <div class="col-sm-2"> 
+                                <input type="text" id="monthPicker" name="month"  placeholder="Select Month" value="{{(!empty($month_status))? $month_status:''}}"autocomplete="off">
+                            </div>
+                            
+                            <div class="col-sm-2">
+                                <input type="text" id="datePicker"  name="date"  placeholder="Select Date" value="{{(!empty($date_status))? $date_status:''}}"autocomplete="off">
+                            </div>
+
+                            <div class="col-sm-2">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+
+                            <div class="col-sm-2 mt-2 ml-4">
+                                <h6>  <span class="totleorotime">Total  Time :</span> </h6>
+                            </div>
+                        </div>
+                    </form>
+
+
+                    
+               
+                      
+
+                    
+
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="bank-innersection">
-                                <h3>No record found.</h3>
+                            @if(isset($my_attendance) && count($my_attendance) > 0 )
+                                <table class="datatable table table-bordered table-striped table-hover" id="myDtTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Date</th>
+                                            <th>Start Time</th>
+                                            <th>End Time</th>
+                                            <th>Total Time</th>
+                                        </tr>  
+                                    </thead>
+                                    <tbody>
+                                        @foreach($my_attendance as $attendance)
+                                            <tr>
+                                                <td>{{$attendance->id}}</td>
+                                                <td>{{$attendance->date}}</td>
+                                                <td>{{($attendance->start_time !== null) ? \Carbon\Carbon::parse($attendance->start_time)->format('g:i A') : "Pending"}}</td>
+                                                <td>{{($attendance->end_time !== null) ? \Carbon\Carbon::parse($attendance->end_time)->format('g:i A') : "Pending"}}</td>
+                                                <?php
+                                                    // Converting time to hours/minutes/seconds..
+                                                    $startTime = strtotime($attendance->start_time);
+                                                    if (!is_null($attendance->end_time)) {
+                                                        $endTime = strtotime($attendance->end_time);
+                                                        $init = $endTime - $startTime;
+                                                        $hours = floor($init / 3600);
+                                                        $hour = (int) $hours;
+                                                        $minutes = floor(($init / 60) % 60);
+                                                        $minute = (int) $minutes;
+                                                    }
+
+                                                    //End converting time to hours/minutes/seconds..
+                                                ?>
+                                                @if(!is_null($attendance->end_time)) @if($hour !== 0 )
+                                                <td>{{$hour}} hour {{$minute}} min</td>
+                                                @else
+                                                <td>{{$minute}} min</td>
+                                                @endif @else
+                                                <td>Pending</td>
+                                                @endif
+                                            </tr>
+                                            @endforeach
+                                            
+                                    </tbody>
+                                </table>
+                                @else                 
+                                <h1 class="nodatafoundheading">No data found</h1>
+                            @endif
+                               
                             </div>
                         </div>
                     </div>
+
+
+
+
                 </div>
             </div>
         </div>
 
-        
+
+
+
+
+
+
+
+
+
+
         <div class="tab-pane fade " id="nav-Bank-information" role="tabpanel" aria-labelledby="nav-Bank-information-tab">
-        <div class="main-table">
-            <div class="bank-innersection">
-        <div class="table-title-add">
-            <div class="row">
-            <div class="col-sm-12">
-            <h2 style="text-align:center;">My Activity</h2>
-            <form  method="post" action="{{ route('admin.activity_filter',$employee->id)}}" id="filterForm" enctype="multipart/form-data">
-                <div class="row">
-                @csrf
-                <div class="col-sm-2">
-                    <input type="text" id="yearPicker" name="year" placeholder="Select Year" value="{{(!empty($year_status))? $year_status:''}}" autocomplete="off">
+            <div class="main-table">
+
+
+
+                <div class="bank-innersection">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- <h2 style="text-align:center;">My Activity</h2> -->
+
+                            <form  method="post" action="{{ route('admin.activity_filter',$employee->id)}}" id="filterForm" enctype="multipart/form-data">
+                                <div class="row">
+                                    @csrf
+                                    <div class="col-sm-2">
+                                        <input type="text" id="yearPicker" name="year" placeholder="Select Year" value="{{(!empty($year_status))? $year_status:''}}" autocomplete="off">
+                                    </div>
+                                    <div class="col-sm-2"> 
+                                        <input type="text" id="monthPicker" name="month"  placeholder="Select Month" value="{{(!empty($month_status))? $month_status:''}}" autocomplete="off">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <input type="text" id="datePicker"  name="date"  placeholder="Select Date" value="{{(!empty($date_status))? $date_status:''}}" autocomplete="off">
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button type="submit" class="btn btn-primary">Search</button>
+                                    </div>
+                                    <div class="col-sm-2 mt-2 ml-4">
+                                        <h6> <span class="totleorotime">Total Productivity Time :</span></h6>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-2"> 
-                    <input type="text" id="monthPicker" name="month"  placeholder="Select Month" value="{{(!empty($month_status))? $month_status:''}}" autocomplete="off">
-                </div>
-                <div class="col-sm-2">
-                    <input type="text" id="datePicker"  name="date"  placeholder="Select Date" value="{{(!empty($date_status))? $date_status:''}}" autocomplete="off">
-                </div>
-                <div class="col-sm-2">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </div>
-                <div class="col-sm-2 mt-2 ml-4">
-                   <h6>  <span class="totleorotime">Total Productivity Time :</span></h6>
-                </div>
-             
-                </div>
-            </form>
-            </div>
-            </div>
-        </div>
-        </div>
+
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="table-innerdata">
+                        @if(isset($all_daily_activities) && count($all_daily_activities) > 0 )
+
                             <table class="table table-striped table-bordered datatable" id="user_data_table" style="width:100%">
                                 <thead class="inner-tablecolor">
                                     <tr>
-                                    <th>Id</th>
-                        <th>Date</th>
-                        <th>Project Name</th>
-                        <th>Description</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                        <th>Total Time</th>
-
-
-                                        <!-- <th scope="col">Action</th> -->
+                                        <th>Id</th>
+                                        <th>Date</th>
+                                        <th>Project Name</th>
+                                        <th>Description</th>
+                                        <th>Start Time</th>
+                                        <th>End Time</th>
+                                        <th>Total Time</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                    @foreach($all_daily_activities as $daily_activities)
-                    <tr>
-                        <td>{{$daily_activities->id}}</td>
-                        <td>{{$daily_activities->date}}</td>
-                        @if($daily_activities->project_id !== 0)
-                            @php
-                                $project = \App\Project::where('id', $daily_activities->project_id)->value('project_name');
-                            @endphp
-                            <td>{{$project}}</td>
-                            @else
-                                <td>Other</td>
-                        @endif
-                        <td>{{$daily_activities->description }}</td>
-                        <td>{{($daily_activities->start_time !== null) ? \Carbon\Carbon::parse($daily_activities->start_time)->format('g:i A') : "Pending"}}</td>
-                        <td>{{($daily_activities->end_time !== null) ? \Carbon\Carbon::parse($daily_activities->end_time)->format('g:i A') : "Pending"}}</td>
-
-                        <?php
-                            // Converting time to hours/minutes/seconds..
-                            $startTime = strtotime($daily_activities->start_time);
-                            if(!is_null($daily_activities->end_time)){
-                                $endTime = strtotime($daily_activities->end_time);
-                                $init = $endTime - $startTime;
-                                $hours = floor($init / 3600);
-                                $hour = (int) ($hours);
-                                $minutes = floor(($init / 60) % 60);
-                                $minute = (int) ($minutes);
-                            }
-                            //End converting time to hours/minutes/seconds..
-                        ?>   
-                        
-                        @if(!is_null($daily_activities->end_time))
-                            @if($hour !== 0 )
-                                <td>{{$hour}} hour {{$minute}} min</td>
-                            @else
-                                <td>{{$minute}} min</td>
-                            @endif
-                        @else
-                            <td>Pending</td>
-                        @endif
-                           
-
-                    </tr>  
-                    @endforeach
-                </tbody>
+                                    @foreach($all_daily_activities as $daily_activities)
+                                    <tr>
+                                        <td>{{$daily_activities->id}}</td>
+                                        <td>{{$daily_activities->date}}</td>
+                                        @if($daily_activities->project_id !== 0)
+                                            @php
+                                                $project = \App\Project::where('id', $daily_activities->project_id)->value('project_name');
+                                            @endphp
+                                            <td>{{$project}}</td>
+                                            @else
+                                                <td>Other</td>
+                                        @endif
+                                        <td>{{$daily_activities->description }}</td>
+                                        <td>{{($daily_activities->start_time !== null) ? \Carbon\Carbon::parse($daily_activities->start_time)->format('g:i A') : "Pending"}}</td>
+                                        <td>{{($daily_activities->end_time !== null) ? \Carbon\Carbon::parse($daily_activities->end_time)->format('g:i A') : "Pending"}}</td>
+                                        <?php
+                                            // Converting time to hours/minutes/seconds..
+                                            $startTime = strtotime($daily_activities->start_time);
+                                            if(!is_null($daily_activities->end_time)){
+                                                $endTime = strtotime($daily_activities->end_time);
+                                                $init = $endTime - $startTime;
+                                                $hours = floor($init / 3600);
+                                                $hour = (int) ($hours);
+                                                $minutes = floor(($init / 60) % 60);
+                                                $minute = (int) ($minutes);
+                                            }
+                                            //End converting time to hours/minutes/seconds..
+                                        ?>   
+                                        @if(!is_null($daily_activities->end_time))
+                                            @if($hour !== 0 )
+                                                <td>{{$hour}} hour {{$minute}} min</td>
+                                            @else
+                                                <td>{{$minute}} min</td>
+                                            @endif
+                                        @else
+                                            <td>Pending</td>
+                                        @endif
+                                    </tr>  
+                                    @endforeach
+                                    
+                                </tbody>
                             </table>
+                            @else                 
+                                <h1 class="nodatafoundheading">No data found</h1>
+                            @endif
                         </div>
                     </div>
                 </div>
 
 
 
-            </div>
         </div>
     </div>
+
+
+
+
+
+
 </main>
 @include('Superadmin.layouts.footer')
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

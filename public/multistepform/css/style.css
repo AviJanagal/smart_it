@@ -818,37 +818,26 @@ span.icon {
 }
 #employee_id-error {
   left: 28%!important;
-}#dob-error {
+}#department-error {
   left: 28%!important;
-}#dob-error {
+}#designation-error {
   left: 28%!important;
-}#dob-error {
+}#employee_type-error {
   left: 28%!important;
-}#dob-error {
-  left: 28%!important;
-}#dob-error {
-  left: 28%!important;
-}#dob-error {
-  left: 28%!important;
-}#dob-error {
+}#date_of_joining-error {
   left: 28%!important;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #ctc-error {
+  left: 30%;
+}
+#bank_name-error {
+  left: 30%;
+}#city-error {
+  left: 30%;
+}#branch_name-error {
+  left: 30%;
+}#ifsc_code-error {
+  left: 30%;
+}#account_number-error {
   left: 30%;
 }
