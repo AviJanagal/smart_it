@@ -6,6 +6,8 @@ use App\Mail\ApplyLeaveMail;
 use App\{DailyActivity,Project,Leave,User,EmployeeAttendance,Calender,EmployeeInformation,ApplyLeave};
 use Carbon\{Carbon,CarbonPeriod};
 use PDF,DB,DateTime,DateInterval,DatePeriod,Mail,Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -382,31 +384,35 @@ class EmployeeController extends Controller
             $type = $request->graph_time;
         }
         elseif($request->graph_time == "yearly"){
-            $result = [];
-            $month = [];
+            
+            $months = [];
             for ($m=1; $m<=12; $m++) {
-                $month[] = date('F', mktime(0,0,0,$m, 1, date('Y')));
+                $months[] = date('F', mktime(0,0,0,$m, 1, date('Y')));
             }
-            foreach($month as $month){
-                $minutes = DailyActivity::where('employee_id',Auth::id())->whereMonth('created_at',date('m',strtotime($month)))->whereYear('created_at', date('Y'))->where('project_id','!=',0)->sum('time_in_minutes');
-                $hours = floor($minutes/60) ;
-                $minutes = $minutes%60 ;
-                array_push($result,[date('F',strtotime($month)), $hours.".".$minutes ,"#122f51"]);
-            }
-           
+            // return $months;
+               $result = [];
+            foreach($months as $month){
+                $c_month = date_parse($month);
+                $minutes = DailyActivity::where('employee_id',Auth::id())->whereYear('created_at',date('Y'))->whereMonth('created_at',$c_month['month'])->where('project_id','!=',0)->sum('time_in_minutes');
+                    $hours = floor($minutes/60) ;
+                    $minutes = $minutes%60 ;
+                    array_push($result,[date('F', mktime(0,0,0,$c_month['month'], 1)), $hours.".".$minutes ,"#122f51"]);
+                
+            }  
             $title_discription = "My Yearly Productivity";
             $title = "Months";
             $type = $request->graph_time;
         }
         else{
-            $week_dates = CarbonPeriod::create(Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek());
+            $week_dates = CarbonPeriod::create(Carbon::now()->startOfWeek()->addDays(1), Carbon::now()->endOfWeek()->addDays(1));
             $result = [];
             foreach($week_dates as $date){
                 $minutes = DailyActivity::where('employee_id',Auth::id())->whereDate('created_at',$date)->where('project_id','!=',0)->sum('time_in_minutes');
                 $hours = floor($minutes/60) ;
                 $minutes = $minutes%60 ;
-                array_push($result,[(string)$date->format('l'), $hours.".".$minutes ,"#122f51"]);
+                array_push($result,[$date, $hours.".".$minutes ,"#122f51"]);
             }
+            return $result;
             $title_discription = "My Weekly Productivity";
             $title = "Days";
             $type = $request->graph_time;
@@ -475,6 +481,30 @@ class EmployeeController extends Controller
         //  return view('employee.icard',compact('pdf','profile'));
     
         return $pdf->download('SmartIt I-Card.pdf');
+    }
+
+    public function upload_profile_pic(Request $request){
+        // return $request->all();
+        $user = EmployeeInformation::where('user_id',Auth::id())->first();
+        if ($request->has('profile_pic')) {
+            $image = $request->file('profile_pic');
+            $img_ext = $image->getClientOriginalName();
+            $filename = 'service-image-' . time() . '.' . $img_ext;
+            $filePath = '/images/smart-it/' . $filename;
+            Storage::disk('s3')->put($filePath, file_get_contents($image));
+            $url = config('services.base_url') . "/images/smart-it/" . $filename;
+            $user->image =  $url;
+        if($user->update()){
+            
+            alert()->message('Profile Pic Added Successfully!','Success');
+            return redirect()->route('employee.my_profile');
+        }
+        else{
+            
+            alert()->error('Something Went Wrong');
+            return redirect()->route('employee.my_profile');
+        }
+        }
     }
 
 

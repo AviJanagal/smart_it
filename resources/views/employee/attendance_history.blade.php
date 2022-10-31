@@ -12,12 +12,12 @@
             @endif
             @include('sweet::alert')
         </div>
-    <div class="bank-innersection">
-        <div class="table-title-add">
-            <div class="row">
-            <div class="col-sm-12">
-                <h2 style="text-align:center;">My Attendance </h2>
-            </div>
+        <div class="bank-innersection">
+            <div class="table-title-add">
+                <div class="row">
+                <div class="col-sm-12">
+                    <h2 style="text-align:center;">My Attendance </h2>
+                </div>
             @if(count($my_attendance))
             <form  method="post" action="{{ route('employee.attendance_filter')}}" id="filterForm" enctype="multipart/form-data">
                 <div class="row">

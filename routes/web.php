@@ -85,6 +85,8 @@ Route::group(['as'=>'employee.','prefix' => 'employee','middleware' => ['auth', 
    Route::get('getMondays', 'employee\EmployeeController@getMondays')->name('getMondays');
    Route::get('my_profile', 'employee\EmployeeController@my_profile')->name('my_profile');
    Route::get('download_icard', 'employee\EmployeeController@download_icard')->name('download_icard');
+   Route::post('upload_profile_pic', 'employee\EmployeeController@upload_profile_pic')->name('upload_profile_pic');
+
 
 });
 

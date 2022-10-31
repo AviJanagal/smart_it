@@ -14,9 +14,12 @@
       <div class="mainsection">
         <div class="container">
           <div class="row">
+             @include('sweet::alert')
             <div class="col-md-4">
               <div class="profilesectionleftcustomsetting">
+               
                 <div class="profileimgboxcustomsetting">
+                  <a href="#"><i class="fa fa-camera" aria-hidden="true"  onclick="UploadProfileImg()"></i></a>
                   <img src="{{(!is_null($profile->image))? $profile->image : asset('images/profile-image.jpg')}}">
                 </div>
                 <div class="customphoneboxsetting">
@@ -143,8 +146,55 @@
           </div>
         </div>
       </div>
+     
     <!-- main-wrapper end -->
     <!-- footer start-->
     <!-- footer end -->
     </main>
    @include('employee.layouts.footer')
+   <!-- get project description model -->
+<div class="modal fade " id="ProfilePicModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content customchanges">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Profile Image</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        <form action="{{ route('employee.upload_profile_pic')}}" method="post" id="myformVal" enctype="multipart/form-data">
+        @csrf
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Upload Image:</label>
+            <input type="file" name="profile_pic" id="imgInp" required>
+            <img src="{{(!is_null($profile->image))? $profile->image : asset('images/profile-image.jpg')}}" height="50" width="50" id="blah" class="mt-4">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" onclick="hideModel()">Update</button>
+      </div>
+	    </form>
+    </div>
+  </div>
+</div>
+	<!-- End project description model -->
+
+<script>
+  function UploadProfileImg(){
+    $('#ProfilePicModal').modal('show');
+  }
+  
+  imgInp.onchange = evt => {
+  const [file] = imgInp.files
+  if (file) {
+    blah.src = URL.createObjectURL(file)
+  }
+}
+
+function hideModel() {
+  $('#ProfilePicModal').modal('hide')
+}
+</script>
+
