@@ -2829,6 +2829,23 @@ th.fc-day-header.fc-widget-header span {
     transition: all ease 1s;
 }
 
+.profileimgboxcustomsetting a {
+    position: absolute;
+    left: 62%;
+    /* bottom: 0px; */
+    top: 29%;
+    background: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    border: 1px solid #000;
+}
+
+.profileimgboxcustomsetting a i {
+    font-size: 17px;
+    margin-top: 5px;
+    color: #000;
+}
 
 
 /* body {

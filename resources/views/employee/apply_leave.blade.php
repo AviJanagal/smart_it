@@ -22,13 +22,13 @@
                         <div class="col-md-6">
                             <div class="form-group custom-from">
                                 <label for="Name" class="inputlabel">Leave From</label>
-                                <input class="form-control custom-control @error('service_name') is-invalid @enderror"  type="date" id="service_name" name="start_date" placeholder=" Date From" required  />
+                                <input class="form-control custom-control @error('service_name') is-invalid @enderror"  type="date" id="service_name" min="<?php echo date("Y-m-d"); ?>" name="start_date" placeholder=" Date From" required  />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group custom-from">
                                 <label for="Name" class="inputlabel"> Leave To</label>
-                                <input class="form-control custom-control @error('service_name') is-invalid @enderror"  type="date" id="service_name" name="end_date" placeholder=" Date To"   />
+                                <input class="form-control custom-control @error('service_name') is-invalid @enderror"  type="date" id="service_name" min="<?php echo date("Y-m-d"); ?>" name="end_date" placeholder=" Date To"   />
                                 @error('service_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
