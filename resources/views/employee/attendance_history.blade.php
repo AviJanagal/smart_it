@@ -18,7 +18,7 @@
                 <div class="col-sm-12">
                     <h2 style="text-align:center;">My Attendance </h2>
                 </div>
-            @if(count($my_attendance))
+           {{-- @if(count($my_attendance)) --}}
             <form  method="post" action="{{ route('employee.attendance_filter')}}" id="filterForm" enctype="multipart/form-data">
                 <div class="row">
                 @csrf
@@ -38,7 +38,7 @@
                 <div class="col-sm-2 mt-2 ml-4">
                    <h6>  <span class="totleorotime">Total  Time :</span> {{ $total_time}}</h6>
                 </div>
-                @endif
+             {{-- @endif --}}  
                 </div>
             </form>
             </div>
