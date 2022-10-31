@@ -339,7 +339,7 @@
                                                         $minute = (int) $minutes;
                                                     }
 
-                                                    //End converting time to hours/minutes/seconds..
+                                                    //End converting time to hours/minutes/seconds..1
                                                 ?>
                                                 @if(!is_null($attendance->end_time)) @if($hour !== 0 )
                                                 <td>{{$hour}} hour {{$minute}} min</td>
@@ -363,7 +363,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade " id="nav-Bank-information" role="tabpanel" aria-labelledby="nav-Bank-information-tab">
+      <div class="tab-pane fade " id="nav-Bank-information" role="tabpanel" aria-labelledby="nav-Bank-information-tab">
             <div class="main-table">
                 <div class="bank-innersection">
                     <div class="table-title-add">
@@ -463,7 +463,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 </main>
 @include('Superadmin.layouts.footer')
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
