@@ -39,6 +39,11 @@ Route::group(['as'=>'admin.','prefix' => 'admin','middleware' => ['auth', 'isAdm
    Route::get('view_emp_leave', 'superadmin\EmployeeController@view_emp_leave')->name('view_emp_leave');
    Route::post('leave_approvel', 'superadmin\EmployeeController@leave_approvel')->name('leave_approvel');
 
+   Route::post('activity_filter/{id}', 'superadmin\EmployeeController@activity_filter')->name('activity_filter');
+   Route::post('attendance_filter/{id}', 'superadmin\EmployeeController@attendance_filter')->name('attendance_filter');
+
+
+
 
    Route::get('/del_emp_assigned_project/{id}', 'superadmin\EmployeeController@del_emp_assigned_project')->name('del_emp_assigned_project');
    Route::post('/employee_graph/{id}', 'superadmin\EmployeeController@employee_graph')->name('employee_graph');

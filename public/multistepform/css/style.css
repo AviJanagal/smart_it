@@ -815,8 +815,29 @@ span.icon {
 }
 #dob-error {
   left: 28%!important;
-  
+}
+#employee_id-error {
+  left: 28%!important;
+}#department-error {
+  left: 28%!important;
+}#designation-error {
+  left: 28%!important;
+}#employee_type-error {
+  left: 28%!important;
+}#date_of_joining-error {
+  left: 28%!important;
 }
 #ctc-error {
+  left: 30%;
+}
+#bank_name-error {
+  left: 30%;
+}#city-error {
+  left: 30%;
+}#branch_name-error {
+  left: 30%;
+}#ifsc_code-error {
+  left: 30%;
+}#account_number-error {
   left: 30%;
 }

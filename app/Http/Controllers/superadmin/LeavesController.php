@@ -21,7 +21,7 @@ class LeavesController extends Controller
         //
         $current_date = Carbon::now('Asia/Kolkata')->format('Y-m-d');
         $leaves = \App\Leave::where('date',$current_date)->orderBy('id','desc')->get();
-        $leave_name = \App\Leave::pluck('employee_id');
+        $leave_name = \App\Leave::where('date',$current_date)->pluck('employee_id');
         $employee = \App\User::where('role','employee')->whereNotIn('id',$leave_name)->orderBy('id','desc')->get();
         $type = 1;
         foreach($leaves as $data)
@@ -29,7 +29,6 @@ class LeavesController extends Controller
             if(!is_null($data->employee_id))
             {
                 $developer = \App\User::where('role','employee')->find($data->employee_id);
-
             }
             if(!is_null($developer))
             {

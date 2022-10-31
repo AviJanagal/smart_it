@@ -26,6 +26,8 @@
 <script src="https://kit.fontawesome.com/9681e38096.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.2.0/js/bootstrap-datepicker.min.js"></script>
+
 
 <script>
 
@@ -283,6 +285,35 @@ $(function(){
 });
 
 </script>
+
+
+<script>
+
+  $(document).ready(function () {
+    $("#monthPicker").datepicker({
+        format: "MM",
+        viewMode: "months",
+        minViewMode: "months",
+        autoclose: true,
+        orientation: "left",
+    });
+    $("#yearPicker").datepicker({
+        format: "yyyy",
+        viewMode: "years",
+        minViewMode: "years",
+        autoclose: true,
+        orientation: "left",
+    });
+    $("#datePicker").datepicker({
+        autoclose: true,
+         orientation: "left",
+    });
+
+  });
+
+
+</script>
+
 </body>
 </html>
 
