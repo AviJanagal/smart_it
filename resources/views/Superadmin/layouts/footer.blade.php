@@ -85,6 +85,14 @@ $( document ).ready(function() {
     $('#user_data_table').DataTable({order:[[0,"desc"]]});
 });
 
+$( document ).ready(function() {
+    $('#user_data_table_attendence').DataTable({order:[[0,"desc"]]});
+});
+
+$( document ).ready(function() {
+    $('#user_data_table_activity').DataTable({order:[[0,"desc"]]});
+});
+
  
 
 // $( document ).ready(function() {
@@ -151,15 +159,15 @@ $('#percent').on('change', function() {
 
 
 
-let toggle = document.querySelector('.toggle');
-let sidemenubar = document.querySelector('.sidemenubar');
-let maintop = document.querySelector('.maintop');
-let headertop = document.querySelector('.headertop');
-toggle.onclick = function(){
-    sidemenubar.classList.toggle('active');
-    maintop.classList.toggle('active');
-    headertop.classList.toggle('active');
-}
+// let toggle = document.querySelector('.toggle');
+// let sidemenubar = document.querySelector('.sidemenubar');
+// let maintop = document.querySelector('.maintop');
+// let headertop = document.querySelector('.headertop');
+// toggle.onclick = function(){
+//     sidemenubar.classList.toggle('active');
+//     maintop.classList.toggle('active');
+//     headertop.classList.toggle('active');
+// }
 
 
 
@@ -288,7 +296,6 @@ $(function(){
 
 
 <script>
-
   $(document).ready(function () {
     $("#monthPicker").datepicker({
         format: "MM",
@@ -310,9 +317,40 @@ $(function(){
     });
 
   });
-
-
 </script>
+
+<script>
+  $(document).ready(function () {
+    $("#month_picker").datepicker({
+        format: "MM",
+        viewMode: "months",
+        minViewMode: "months",
+        autoclose: true,
+        orientation: "left",
+    });
+    $("#year_picker").datepicker({
+        format: "yyyy",
+        viewMode: "years",
+        minViewMode: "years",
+        autoclose: true,
+        orientation: "left",
+    });
+    $("#date_picker").datepicker({
+        autoclose: true,
+         orientation: "left",
+    });
+
+  });
+</script>
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
