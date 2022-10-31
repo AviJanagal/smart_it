@@ -384,12 +384,10 @@ class EmployeeController extends Controller
             $type = $request->graph_time;
         }
         elseif($request->graph_time == "yearly"){
-            
             $months = [];
             for ($m=1; $m<=12; $m++) {
                 $months[] = date('F', mktime(0,0,0,$m, 1, date('Y')));
             }
-            // return $months;
                $result = [];
             foreach($months as $month){
                 $c_month = date_parse($month);
@@ -494,16 +492,14 @@ class EmployeeController extends Controller
             Storage::disk('s3')->put($filePath, file_get_contents($image));
             $url = config('services.base_url') . "/images/smart-it/" . $filename;
             $user->image =  $url;
-        if($user->update()){
-            
-            alert()->message('Profile Pic Added Successfully!','Success');
-            return redirect()->route('employee.my_profile');
-        }
-        else{
-            
-            alert()->error('Something Went Wrong');
-            return redirect()->route('employee.my_profile');
-        }
+            if($user->update()){
+                alert()->message('Profile Pic Updated Successfully!','Success');
+                return redirect()->route('employee.my_profile');
+            }
+            else{
+                alert()->error('Something Went Wrong');
+                return redirect()->route('employee.my_profile');
+            }
         }
     }
 
