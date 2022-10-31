@@ -879,12 +879,16 @@ class EmployeeController extends Controller
             $emp_days = [];
             foreach($months as $data)
             {
-                $emp_act_minutes = \App\DailyActivity::where('employee_id',$employee->id)->whereMonth('date',date('m', strtotime($data)))->sum('time_in_minutes');
+                $c_month = date_parse($data);
+                $emp_act_minutes = \App\DailyActivity::where('employee_id',$employee->id)->whereMonth('date',$c_month['month'])->sum('time_in_minutes');
                 $time_in_hours = floor($emp_act_minutes/60);
                 $time_in_minutes =   $emp_act_minutes - ($time_in_hours * 60);
                 $time_val = $time_in_hours .".".$time_in_minutes;  
-                 array_push($emp_days,[$data, $time_val ,"#122f51"]);
+                array_push($emp_days,[date('M', mktime(0,0,0,$c_month['month'], 1)), $time_val ,"#122f51"]);
             }
+
+            // return $emp_days;
+
             $title_description = "Yearly Attendance Chart";
             $title = "Months";
             $key ="yearly";
@@ -901,6 +905,9 @@ class EmployeeController extends Controller
                 $time_val = $time_in_hours .".".$time_in_minutes;  
                 array_push($emp_days,[$data->format('d/M/y'), $time_val ,"#122f51"]);
             }
+
+
+
             $title_description = "Monthly Attendance Chart";
             $title = "Dates";
             $key ="monthly";
