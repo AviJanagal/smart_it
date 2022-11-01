@@ -212,22 +212,6 @@
                             @enderror
                         </div>
                     </div>
-
-
-
-                    <!-- <div class="col-md-10">
-                        <div class="form-group custom-from">
-                            <label for="Name" class="inputlabel multiformlabel"> Job Title</label>
-                            <input class="form-control  @error('service_name') is-invalid @enderror" value="<?php echo $type == 2 ? $employee->emp_info->job_title : ''; ?>" type="text" id="job_title" name="job_title" placeholder="Job Title " required  />
-                            @error('name')
-                            <span class="invalid-feedback errorcorrectmessage" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                    </div> -->
-
-
                     <div class="col-md-10">
                     <div class="form-group custom-from">
                     <label for="Name" class="inputlabel multiformlabel">Image</label>
@@ -241,10 +225,6 @@
                                 @endif
                             </div>
                         </div>
-
-
-
-
                     <div class="col-md-10">
                         <div class="form-group custom-from">
                             <label for="Name" class="inputlabel multiformlabel"> Employee Type</label>
@@ -355,8 +335,6 @@
         </div>
     </div>
 </div>
-
-
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
@@ -369,7 +347,6 @@
 
 
 <script>
-
 
 $("#select_employee").select2({
     placeholder: "Select Developer",

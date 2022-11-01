@@ -193,8 +193,6 @@ class UserController extends Controller
       $employee_account->ifsc_code = $request->ifsc_code;
       $employee_account->account_number  = $request->account_number;
       $employee_account->save();
-
-
       if ($employee_account->save()) {
         return response()->json(['status' => true, 'message' => 'Employee Added Successfully.', 'user_id' => $user->id, 'payload' => $user, $employee_info, $employee_account]);
       } else {
@@ -250,8 +248,6 @@ class UserController extends Controller
       $user->emp_info->employee_id  = $request->employee_id;
       $user->emp_info->department = $request->department;
       $user->emp_info->designation = $request->designation;
-
-
       if ($request->has('image')) {
         $image = $request->file('image');
         $img_ext = $image->getClientOriginalName();
@@ -261,11 +257,10 @@ class UserController extends Controller
         $url = config('services.base_url') . "/images/smart-it/" . $filename;
         $user->emp_info->image =  $url;
          }
-
       $user->emp_info->employee_type = $request->employee_type;
       $user->emp_info->date_of_joining = $request->date_of_joining;
       $user->emp_info->save();
-      $user->emp_account->ctc     = $request->ctc;
+      $user->emp_account->ctc = $request->ctc;
       $user->emp_account->bank_name  = $request->bank_name;
       $user->emp_account->city = $request->city;
       $user->emp_account->branch_name = $request->branch_name;

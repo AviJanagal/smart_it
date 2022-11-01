@@ -60,6 +60,7 @@ class HomeController extends Controller
             $data->project_name = $project->project_name;
 
             $developer = \App\User::where('role','employee')->find($data->developer_id);
+            $data->id = $developer->id;
             $data->first_name = $developer->first_name.' '.$developer->last_name;
             $data->email = $developer->email;
             $data->image = $developer->emp_info->image;

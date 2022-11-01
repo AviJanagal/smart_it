@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\Mail;
-use PDF;
+use PDF,DateTime,DateInterval,DatePeriod;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
@@ -265,8 +265,8 @@ class EmployeeController extends Controller
         $key = "weekly";
 
     // Attendence History
-        $my_attendance = \App\EmployeeAttendance::where('employee_id', $employee->id)->whereMonth('created_at', Carbon::now()->month)->get();
-        $total_mins = \App\EmployeeAttendance::where('employee_id', $employee->id)->whereMonth('created_at', Carbon::now()->month)->sum('time_in_minutes');
+        $my_attendance = \App\EmployeeAttendance::where('employee_id', $employee->id)->whereMonth('created_at',\Carbon\Carbon::now()->month)->get();
+         $total_mins = \App\EmployeeAttendance::where('employee_id', $employee->id)->whereMonth('created_at', \Carbon\Carbon::now()->month)->sum('time_in_minutes');
         $hours = floor($total_mins / 60);
         $minute = $total_mins % 60;
         if ($hours == 0) {
@@ -279,8 +279,9 @@ class EmployeeController extends Controller
         $attendence_year = $request->attendence_year;
         if (!empty($request->attendence_month)) {
             $c_month = date_parse($request->attendence_month);
-            $month = $c_month['month'];
+            $attendence_month = $c_month['month'];
         }
+        
         if (!empty($request->attendence_date)) {
             $attendence_date = date("Y-m-d", strtotime($request->attendence_date));
         }
@@ -310,7 +311,15 @@ class EmployeeController extends Controller
             $total_mins = \App\EmployeeAttendance::where('employee_id', $employee->id)->whereMonth('created_at', \Carbon\Carbon::now()->month)->sum('time_in_minutes');
         }
         $year_status_attendence = $request->attendence_year;
-        $month_status_attendence = $request->attendence_month;
+        // $month_status_attendence = $request->attendence_month;
+        if (!isset($request->attendence_month)) {
+            $month_status_attendence = date('F');
+        } else {
+            $month_status_attendence = $request->attendence_month;
+        }
+
+
+
         $date_status_attendence = $request->attendence_date;
         $hours = floor($total_mins / 60);
         $minute = $total_mins % 60;
@@ -339,6 +348,7 @@ class EmployeeController extends Controller
             $c_month = date_parse($request->month);
             $month = $c_month['month'];
         }
+       
         (!empty($request->date)) ? $date = date("Y-m-d", strtotime($request->date)) : $date = "";
         if (!empty($year) && !empty($month) && !empty($date)) {
             $all_daily_activities =  \App\DailyActivity::where('employee_id', $employee->id)->whereYear('created_at', $year)->whereMonth('created_at', $month)->whereDate('created_at', $date)->get();
@@ -436,6 +446,7 @@ class EmployeeController extends Controller
             $c_month = date_parse($request->month);
             $month = $c_month['month'];
         }
+        
         (!empty($request->date)) ? $date = date("Y-m-d", strtotime($request->date)) : $date = "";
         if (!empty($year) && !empty($month) && !empty($date)) {
             $all_daily_activities = \App\DailyActivity::where('employee_id', $employee->id)->whereYear('created_at', $year)->whereMonth('created_at', $month)->whereDate('created_at', $date)->get();
@@ -489,8 +500,9 @@ class EmployeeController extends Controller
         $attendence_year = $request->attendence_year;
         if (!empty($request->month)) {
             $c_month = date_parse($request->month);
-            $month = $c_month['month'];
+            $attendence_month = $c_month['month'];
         }
+        
         if (!empty($request->attendence_month)) {
             $umonth = $request->attendence_month;
             $attendence_month = date("m", strtotime($umonth));
@@ -585,6 +597,7 @@ class EmployeeController extends Controller
             $c_month = date_parse($request->month);
             $month = $c_month['month'];
         }
+        
         (!empty($request->date)) ? $date = date("Y-m-d", strtotime($request->date)) : $date = "";
 
         if (!empty($year) && !empty($month) && !empty($date)) {
@@ -645,8 +658,9 @@ class EmployeeController extends Controller
         $attendence_year = $request->attendence_year;
         if (!empty($request->attendence_month)) {
             $c_month = date_parse($request->attendence_month);
-            $month = $c_month['month'];
+            $attendence_month = $c_month['month'];
         }
+        
         if (!empty($request->attendence_date)) {
             $attendence_date = date("Y-m-d", strtotime($request->attendence_date));
         }

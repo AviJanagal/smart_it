@@ -252,11 +252,9 @@
 								@if(count($employee) > 0)
 								@foreach($employee as $item)
 								<div class="imgbox2">
-									@if(!is_null($item) && !is_null($item->emp_info->image))
+									@if(!is_null($item) && !is_null($item->emp_info) && !is_null($item->emp_info->image))
 									<a href=""><img src="{{asset($item->emp_info->image)}}" /></a>
-
 									@else
-
 									 <img src="{{asset('images/profile-image.jpg')}}" />
 
 									@endif
@@ -264,7 +262,7 @@
 										<h6>{{ucfirst($item->first_name)}}&nbsp;{{ucfirst($item->last_name)}}</h6>
 										<p>{{$item->email}}</p>
 									</div>
-									<div class="buttonbox2"> <a href="">{{$item->emp_status}}</a></div>
+									<div class="buttonbox2"> <a href="{{route('admin.view_employee',$item->id)}}">{{$item->emp_status}}</a></div>
 
 								</div>
 								@endforeach
@@ -296,7 +294,6 @@
 						 <div class="col-md-3">
                             <div class="Pendingbox">
 							<h3>Employees Working On Projects</h3>
-
                             </div>
                             <nav>
                                 <div class="nav nav-tabs custom-maintab1" id="nav-tab" role="tablist">
@@ -333,7 +330,7 @@
 										@endif
 										<p>{{$data->email}}</p>
 									</div>
-									<div class="buttonbox2"> <a href="">{{$data->project_name}}</a></div>
+									<div class="buttonbox2"> <a style="color:white;">{{$data->project_name}}</a></div>
 								</div>
 								@endforeach
 								<div class="viewbuttonbox"> <a href="{{route('admin.get_project_assign')}}">View More</a></div>
@@ -396,7 +393,7 @@
 										@endif
 										<p>{{$data->employee->email}}</p>
 									</div>
-									<div class="buttonbox2"> <a href="">{!! date('d M Y', strtotime($data->date)) !!}</a> </div>
+									<div class="buttonbox2"> <a href="{{route('admin.view_employee',$data->id)}}">{!! date('d M Y', strtotime($data->date)) !!}</a> </div>
 								</div>
 								@endforeach
 								<div class="viewbuttonbox"> <a href="{{route('admin.show_emp_leave',['view_confirmed_leaves'])}}">View More</a></div>
@@ -440,7 +437,7 @@
 									@if(count($employee_absent) > 0)
 								@foreach( $employee_absent as $data)
 								<div class="imgbox2">
-								@if(!is_null($data->emp_info->image))
+								@if(!is_null($data->emp_info) && !is_null($data->emp_info->image))
 									<a href=""> <img src="{{asset($data->emp_info->image)}}"/> </a>
 									@else
 									 <img src="{{asset('images/profile-image.jpg')}}">
