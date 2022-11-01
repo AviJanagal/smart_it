@@ -598,56 +598,6 @@ class EmployeeController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // $dates = [
         //         (string)new Carbon('first Sunday  of '.date("F").''.date("Y").''),
         //         (string)new Carbon('second Sunday  of '.date("F").''.date("Y").''),
