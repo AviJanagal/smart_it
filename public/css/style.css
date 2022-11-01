@@ -386,7 +386,7 @@ nav.navbar.navbar-expand-lg.navbar-light.navbarcustome li.nav-item.dropdown.ownd
     padding: 3px 16px;
     font-size: 15px;
     background: #f9f9f9;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
 
 nav.navbar.navbar-expand-lg.navbar-light.navbarcustome .dropdown-menu {
@@ -2829,4 +2829,21 @@ button.custtombuttonsettingdownload {
 }
 .logouthovercss:hover {
     background: #fff;
+}
+.attendencefiltercss {
+    margin-top: 30px;
+    margin-right: auto;
+    background-color: #f8f9fa;
+}
+.row.activityfiltercss {
+    margin-top: 30px;
+    margin-left: 0px;
+    background-color: #f8f9fa;
+}
+.attendencetableinnerdata {
+    padding: 0px;
+}
+
+.textcssattendence {
+    text-align: justify;
 }
