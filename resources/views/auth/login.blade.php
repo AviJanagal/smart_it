@@ -4,11 +4,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Login</title>
-        <link rel="icon" href="{{ asset('images/moblogo.png') }}" type="image/png" sizes="16x16" />
+        <link rel="icon" href="{{ asset('images/smart_it.png') }}" type="image/png" sizes="16x16" />
         <link rel="stylesheet" href="{{ asset('css/employee/bootstrap.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/employee/style.css') }}" />
         <link href="{{ asset('css/employee/responsive.css') }}" rel="stylesheet" />
-        <link rel="icon" href="{{ asset('images/smartit.png') }}" type="image/png" sizes="16x16" />
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
         <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />

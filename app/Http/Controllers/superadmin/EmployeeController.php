@@ -317,9 +317,6 @@ class EmployeeController extends Controller
         } else {
             $month_status_attendence = $request->attendence_month;
         }
-
-
-
         $date_status_attendence = $request->attendence_date;
         $hours = floor($total_mins / 60);
         $minute = $total_mins % 60;
