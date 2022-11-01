@@ -240,9 +240,12 @@ class EmployeeController extends Controller
     public function attendance_filter(Request $request){
         $year = $request->year;
         if(!empty($request->month)){
-            $umonth = $request->month;
-            $month = date("m", strtotime($umonth));
+            $c_month = date_parse($request->month);
+            $month = $c_month['month'];
+        }else{
+            $month = "";
         }
+       
         if(!empty($request->date)){
             $date = date("Y-m-d", strtotime($request->date));
         }
@@ -297,12 +300,16 @@ class EmployeeController extends Controller
     }
 
 
-    
-
-
     public function activity_filter(Request $request){
         $year = $request->year;
-        (!empty($request->month))?  $month = date("m", strtotime($request->month)):  $month = "" ;
+
+        if(!empty($request->month)){
+            $c_month = date_parse($request->month);
+            $month = $c_month['month'];
+        }else{
+            $month = "";
+        }
+            
         (!empty($request->date))? $date = date("Y-m-d", strtotime($request->date)) : $date = "" ;
 
         if(!empty($year) && !empty($month) && !empty($date)){
@@ -588,56 +595,6 @@ class EmployeeController extends Controller
 }
 
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
