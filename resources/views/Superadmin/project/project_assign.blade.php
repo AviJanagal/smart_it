@@ -33,7 +33,6 @@
                 <label for="Name" class="inputlabel">Project Name</label>
                     <select id="select_project" class="select2 form-select" name="select_project" required>
                     <option value="" disabled selected hidden>Select Project</option>
-
                         @if($type == 1)
                         @foreach($get_projects as $list)
                         <option value="{{$list->id}}">{{$list->project_name}}</option>
@@ -50,7 +49,6 @@
                     </select>
                 </div>
               </div>
-
                <div class="col-md-7">
                 <div class="form-group custom-from">
                   <label for="Name" class="inputlabel">Developer Name</label>
@@ -71,7 +69,6 @@
                   </select>
                 </div>
               </div> 
-
               <div class="col-md-5">
                 @if($type == 1)
                 <button type="submit" class="btn btn-danger custom-innerbutton btn-stylessav">Assign</button>

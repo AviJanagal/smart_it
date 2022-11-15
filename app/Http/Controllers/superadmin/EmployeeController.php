@@ -29,7 +29,7 @@ class EmployeeController extends Controller
         // return $pdf = PDF::loadView('Superadmin.pdf.employee_register_pdf', compact('profile'));
         // Mail::to('harjeetsmartitventures@gmail.com')->send(new \App\Mail\EmployeeregisterMail($pdf));
         $get_department = \App\Department::get();
-        return view('superadmin/employee/add_employee', compact('type', 'get_department'));
+        return view('Superadmin/employee/add_employee', compact('type', 'get_department'));
     }
 
     /**
@@ -55,7 +55,7 @@ class EmployeeController extends Controller
                 $data->emp_status = "Available";
             }
         }
-        return view('superadmin/employee/show_employee', compact('employee', 'current_date'));
+        return view('Superadmin/employee/show_employee', compact('employee', 'current_date'));
     }
 
     /**
@@ -159,7 +159,7 @@ class EmployeeController extends Controller
         $type = 2;
         $employee = \App\User::where('role', 'employee')->find($id);
         $get_department = \App\Department::get();
-        return view('superadmin/employee/add_employee', compact('type', 'employee', 'get_department'));
+        return view('Superadmin/employee/add_employee', compact('type', 'employee', 'get_department'));
     }
 
     /**
@@ -387,7 +387,7 @@ class EmployeeController extends Controller
         } else {
             $total_time = $hours . " hrs " . $minute . " min";
         }
-        return view('superadmin/employee/view_employee', compact('employee', 'project_assign', 'emp_days', 'title_description', 'title', 'key', 'all_daily_activities', 'total_mins', 'hours', 'minute', 'month_status', 'date_status', 'year_status', 'total_time', 'my_attendance', 'year_status_attendence', 'month_status_attendence', 'date_status_attendence'));
+        return view('Superadmin/employee/view_employee', compact('employee', 'project_assign', 'emp_days', 'title_description', 'title', 'key', 'all_daily_activities', 'total_mins', 'hours', 'minute', 'month_status', 'date_status', 'year_status', 'total_time', 'my_attendance', 'year_status_attendence', 'month_status_attendence', 'date_status_attendence'));
     }
 
 
@@ -542,7 +542,7 @@ class EmployeeController extends Controller
         } else {
             $total_time = $hours . " hrs " . $minute . " min";
         }
-        return view('superadmin/employee/view_employee', compact('my_attendance', 'month_status', 'date_status', 'year_status', 'total_time', 'employee', 'project_assign', 'emp_days', 'title_description', 'title', 'key', 'all_daily_activities', 'total_mins', 'hours', 'minute', 'total_time', 'year_status_attendence', 'month_status_attendence', 'date_status_attendence'));
+        return view('Superadmin/employee/view_employee', compact('my_attendance', 'month_status', 'date_status', 'year_status', 'total_time', 'employee', 'project_assign', 'emp_days', 'title_description', 'title', 'key', 'all_daily_activities', 'total_mins', 'hours', 'minute', 'total_time', 'year_status_attendence', 'month_status_attendence', 'date_status_attendence'));
     }
 
 
@@ -696,7 +696,7 @@ class EmployeeController extends Controller
         } else {
             $total_time = $hours . " hrs " . $minute . " min";
         }
-        return view('superadmin/employee/view_employee', compact('employee', 'project_assign', 'emp_days', 'title_description', 'title', 'key', 'all_daily_activities', 'total_mins', 'month_status', 'hours', 'minute', 'date_status', 'year_status', 'total_time', 'my_attendance', 'year_status_attendence', 'month_status_attendence', 'date_status_attendence'));
+        return view('Superadmin/employee/view_employee', compact('employee', 'project_assign', 'emp_days', 'title_description', 'title', 'key', 'all_daily_activities', 'total_mins', 'month_status', 'hours', 'minute', 'date_status', 'year_status', 'total_time', 'my_attendance', 'year_status_attendence', 'month_status_attendence', 'date_status_attendence'));
     }
 
 
@@ -761,7 +761,7 @@ class EmployeeController extends Controller
             $title = "Dates";
             $key = "monthly";
         }
-        return view('superadmin/employee/view_employee', compact('employee', 'emp_days', 'title_description', 'title', 'key'));
+        return view('Superadmin/employee/view_employee', compact('employee', 'emp_days', 'title_description', 'title', 'key'));
     }
 
     public function show_department()

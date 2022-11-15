@@ -11,23 +11,18 @@
             </div>
             @endif
         </div>
-
-
-       
-
         <div class="bank-innersection">
-        <div class="table-title-add">
-            <div class="row">
-            <div class="col-sm-12">
-            <h2 style="text-align:center;">Employee Leaves</h2>
-            </div>
+            <div class="table-title-add">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2 style="text-align:center;">Employee Leaves</h2>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-
         <div class="card toptrashbutton">
             <div class="card-header ">
-                <div class ="row">
+                <div class="row">
                     <div class="col col-md-12 text-right">
                         @if(request()->has('view_confirmed_leaves'))
                         <a href="{{route('admin.show_emp_leave')}}" class="btn btn-primary reqleave">View Requested Leaves</a>
@@ -39,8 +34,8 @@
             </div>
         </div>
         <div class="customtableinnerbox">
-        <div class="main-container-inner">
-            @if(count($employee_leaves) > 0)
+            <div class="main-container-inner">
+                @if(count($employee_leaves) > 0)
                 <div class="table-wrapper p-0">
                     <table class=" datatable table table-bordered table-striped table-hover " id="user_data_table">
                         <thead>
@@ -61,19 +56,18 @@
                                 <td>{{$item->employee->phone_number}}</td>
                                 <td>
                                     <a data-id="{{$item->employee->id}}" class="edit btn-edit-plan"><i class="fa fa-eye"></i></a>
-                                    
+
                                 </td>
-                            </tr>  
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-            @else
-            <h1 class="nodatafoundheading" >No data found</h1>
-            @endif
+                @else
+                <h1 class="nodatafoundheading">No data found</h1>
+                @endif
+            </div>
         </div>
-        </div>
-    </div> 
+    </div>
 </main>
 @include('Superadmin.layouts.footer')
-

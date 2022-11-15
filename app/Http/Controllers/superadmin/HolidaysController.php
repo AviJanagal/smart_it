@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\superadmin;
-use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class HolidaysController extends Controller
@@ -16,10 +16,9 @@ class HolidaysController extends Controller
     {
         //
 
-        $holidays = \App\Calender::orderBy('id','desc')->get();
+        $holidays = \App\Calender::orderBy('id', 'desc')->get();
         $type = 1;
-        return view('Superadmin/holidays/holiday',compact('holidays','type'));
-
+        return view('Superadmin/holidays/holiday', compact('holidays', 'type'));
     }
 
     /**
@@ -42,16 +41,13 @@ class HolidaysController extends Controller
     {
         //
 
-      $holiday = new \App\Calender;
-      $holiday->title = $request->title;
-      $holiday->date = $request->date;
+        $holiday = new \App\Calender;
+        $holiday->title = $request->title;
+        $holiday->date = $request->date;
 
-        if ($holiday->save())
-        {
+        if ($holiday->save()) {
             return redirect()->route('admin.holidays.index')->with(['alert' => 'success', 'message' => 'Holidays has been Added Successfully!.']);
-        }
-        else
-        {
+        } else {
             return redirect()->route('admin.holidays.index')->with(['alert' => 'danger', 'message' => 'Holidays has not been Added!.']);
         }
     }
@@ -66,18 +62,13 @@ class HolidaysController extends Controller
     {
         //
 
-        
-       $holiday = \App\Calender::find($id);
-       if($holiday->delete())
-       {
+
+        $holiday = \App\Calender::find($id);
+        if ($holiday->delete()) {
             return redirect()->route('admin.holidays.index')->with(['alert' => 'success', 'message' => 'Holidays has been Deleted Successfully!.']);
-       }
-       else
-       {
+        } else {
             return redirect()->route('admin.holidays.index')->with(['alert' => 'danger', 'message' => 'Holidays has not been Deleted!.']);
-       }
-
-
+        }
     }
 
     /**
@@ -91,11 +82,9 @@ class HolidaysController extends Controller
         //
 
         $holiday =  \App\Calender::find($id);
-        $holidays = \App\Calender::orderBy('id','desc')->get();
+        $holidays = \App\Calender::orderBy('id', 'desc')->get();
         $type = 2;
-        return view('Superadmin/holidays/holiday',compact('holiday','holidays','type'));
-
-        
+        return view('Superadmin/holidays/holiday', compact('holiday', 'holidays', 'type'));
     }
 
     /**
@@ -112,12 +101,9 @@ class HolidaysController extends Controller
         $holiday->title = $request->title;
         $holiday->date = $request->date;
 
-        if ($holiday->save())
-        {
+        if ($holiday->save()) {
             return redirect()->route('admin.holidays.index')->with(['alert' => 'success', 'message' => 'Holiday has been Updated Successfully!.']);
-        }
-        else
-        {
+        } else {
             return redirect()->route('admin.holidays.index')->with(['alert' => 'danger', 'message' => 'Holiday has not been Updated!.']);
         }
     }

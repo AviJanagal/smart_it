@@ -44,7 +44,6 @@ Route::group(['as'=>'admin.','prefix' => 'admin','middleware' => ['auth', 'isAdm
 
 
 
-
    Route::get('/del_emp_assigned_project/{id}', 'superadmin\EmployeeController@del_emp_assigned_project')->name('del_emp_assigned_project');
    Route::post('/employee_graph/{id}', 'superadmin\EmployeeController@employee_graph')->name('employee_graph');
    Route::resource('client', 'superadmin\ClientController');
@@ -58,10 +57,7 @@ Route::group(['as'=>'admin.','prefix' => 'admin','middleware' => ['auth', 'isAdm
    Route::resource('leave','superadmin\LeavesController');
 
 
-
-
 });
-
 
 
 

@@ -60,10 +60,18 @@ class HomeController extends Controller
             $data->project_name = $project->project_name;
 
             $developer = \App\User::where('role','employee')->find($data->developer_id);
-            $data->id = $developer->id;
-            $data->first_name = $developer->first_name.' '.$developer->last_name;
-            $data->email = $developer->email;
-            $data->image = $developer->emp_info->image;
+            {
+                if(!is_null($developer) && !is_null($developer->emp_info) && !is_null($developer->emp_info->image))
+                {
+                    $data->id = $developer->id;
+                    $data->first_name = $developer->first_name.' '.$developer->last_name;
+                    $data->email = $developer->email;
+                    $data->image = $developer->emp_info->image;
+
+
+                }
+            }
+            
 
 
         }
@@ -88,9 +96,7 @@ class HomeController extends Controller
         }
 
 
-
-
-
+        
           $employee_present = \App\User::where('role', 'employee')->orderBy('id', 'desc')->pluck('id')->toArray();
           $absent_employees = \App\EmployeeAttendance::where('date',$current_date)->whereNotNull('start_time')->orderBy('id','desc')->pluck('employee_id')->toArray();
         
@@ -100,7 +106,7 @@ class HomeController extends Controller
            $employee_absent = \App\User::where('role', 'employee')->whereIn('id',$item)->get();
 
 
-        return view('superadmin/dashboard',compact('total_employees','total_clients','total_projects','employee','current_date','projects','get_projects','employee_leaves','employee_absent','array_diff','item'));
+        return view('Superadmin/dashboard',compact('total_employees','total_clients','total_projects','employee','current_date','projects','get_projects','employee_leaves','employee_absent','array_diff','item'));
 
 
     }

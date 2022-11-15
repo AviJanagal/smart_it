@@ -41,8 +41,8 @@
               </div>
               <div class="col-md-7">
                 <div class="form-group custom-from">
-                    <label for="category" class="form-label">Clients</label>
-                    <select id="select_client" class="select2 form-select" name="client">
+                    <label for="category" class="inputlabel">Clients</label>
+                    <select id="select_client" class="select2 form-select" name="client" required>
                     <option value="" disabled selected hidden>Select Clients</option>
                         @if($type == 1)
                         @foreach($get_clients as $list)

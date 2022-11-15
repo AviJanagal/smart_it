@@ -6,9 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-
-
-
 class LeavesController extends Controller
 {
     /**
@@ -20,22 +17,19 @@ class LeavesController extends Controller
     {
         //
         $current_date = Carbon::now('Asia/Kolkata')->format('Y-m-d');
-        $leaves = \App\Leave::where('date',$current_date)->orderBy('id','desc')->get();
-        $leave_name = \App\Leave::where('date',$current_date)->pluck('employee_id');
-        $employee = \App\User::where('role','employee')->whereNotIn('id',$leave_name)->orderBy('id','desc')->get();
+        $leaves = \App\Leave::where('date', $current_date)->orderBy('id', 'desc')->get();
+        $leave_name = \App\Leave::where('date', $current_date)->pluck('employee_id');
+        $employee = \App\User::where('role', 'employee')->whereNotIn('id', $leave_name)->orderBy('id', 'desc')->get();
         $type = 1;
-        foreach($leaves as $data)
-        {
-            if(!is_null($data->employee_id))
-            {
-                $developer = \App\User::where('role','employee')->find($data->employee_id);
+        foreach ($leaves as $data) {
+            if (!is_null($data->employee_id)) {
+                $developer = \App\User::where('role', 'employee')->find($data->employee_id);
             }
-            if(!is_null($developer))
-            {
-                $data->first_name = $developer->first_name.' '.$developer->last_name;
+            if (!is_null($developer)) {
+                $data->first_name = $developer->first_name . ' ' . $developer->last_name;
             }
         }
-        return view('Superadmin/leaves/leaves',compact('leaves','type','employee'));
+        return view('Superadmin/leaves/leaves', compact('leaves', 'type', 'employee'));
     }
 
     /**
@@ -58,20 +52,17 @@ class LeavesController extends Controller
     {
         //
 
-      foreach ($request->employee_id as  $val) {
-        $leave = new \App\Leave;
-        $leave->employee_id = $val;
-        $leave->date = $request->date;
+        foreach ($request->employee_id as  $val) {
+            $leave = new \App\Leave;
+            $leave->employee_id = $val;
+            $leave->date = $request->date;
 
-        $leave->save();
-    }
-
-        if ($leave->save())
-        {
-            return redirect()->route('admin.leave.index')->with(['alert' => 'success','message' => 'Leave has been Added Successfully!.']);
+            $leave->save();
         }
-        else
-        {
+
+        if ($leave->save()) {
+            return redirect()->route('admin.leave.index')->with(['alert' => 'success', 'message' => 'Leave has been Added Successfully!.']);
+        } else {
             return redirect()->route('admin.leave.index')->with(['alert' => 'danger', 'message' => 'Leave has not been Added!.']);
         }
     }
@@ -86,14 +77,11 @@ class LeavesController extends Controller
     {
         //
         $leave = \App\Leave::find($id);
-       if($leave->delete())
-       {
+        if ($leave->delete()) {
             return redirect()->route('admin.leave.index')->with(['alert' => 'success', 'message' => 'Leave has been Deleted Successfully!.']);
-       }
-       else
-       {
+        } else {
             return redirect()->route('admin.leave.index')->with(['alert' => 'danger', 'message' => 'Leave has not been Deleted!.']);
-       }
+        }
     }
 
     /**
@@ -107,25 +95,19 @@ class LeavesController extends Controller
         //
         $leave =  \App\Leave::find($id);
         $current_date = Carbon::now('Asia/Kolkata')->format('Y-m-d');
-        $leaves = \App\Leave::where('date',$current_date)->orderBy('id','desc')->get();
-        $employee = \App\User::where('role','employee')->orderBy('id','desc')->get();
+        $leaves = \App\Leave::where('date', $current_date)->orderBy('id', 'desc')->get();
+        $employee = \App\User::where('role', 'employee')->orderBy('id', 'desc')->get();
         $type = 2;
 
-        foreach($leaves as $data)
-        {
-            if(!is_null($data->employee_id))
-            {
-                $developer = \App\User::where('role','employee')->find($data->employee_id);
-
+        foreach ($leaves as $data) {
+            if (!is_null($data->employee_id)) {
+                $developer = \App\User::where('role', 'employee')->find($data->employee_id);
             }
-                    if(!is_null($developer))
-            {
-                $data->first_name = $developer->first_name.' '.$developer->last_name;
-
+            if (!is_null($developer)) {
+                $data->first_name = $developer->first_name . ' ' . $developer->last_name;
             }
-
         }
-        return view('Superadmin/leaves/leaves',compact('leave','type','leaves','employee'));
+        return view('Superadmin/leaves/leaves', compact('leave', 'type', 'leaves', 'employee'));
     }
 
     /**
@@ -146,12 +128,9 @@ class LeavesController extends Controller
 
             $leave->save();
         }
-        if ($leave->save())
-        {
+        if ($leave->save()) {
             return redirect()->route('admin.leave.index')->with(['alert' => 'success', 'message' => 'Leave has been Updated Successfully!.']);
-        }
-        else
-        {
+        } else {
             return redirect()->route('admin.leave.index')->with(['alert' => 'danger', 'message' => 'Leave has not been Updated!.']);
         }
     }

@@ -182,14 +182,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="tab-pane fade " id="nav-Gallery" role="tabpanel" aria-labelledby="nav-Gallery-tab">
-            <div class="gallery-section">
-                <div class="container-fluid">
-                <div class="row">
-                    </div>
-                </div>
-            </div>
-        </div> -->
         <div class="tab-pane fade " id="nav-Services" role="tabpanel" aria-labelledby="nav-Services-tab">
             <div class="main-table">
                 <div class="row">
