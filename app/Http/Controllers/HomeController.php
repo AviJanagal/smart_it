@@ -95,7 +95,6 @@ class HomeController extends Controller
 
         }
 
-
         
           $employee_present = \App\User::where('role', 'employee')->orderBy('id', 'desc')->pluck('id')->toArray();
           $absent_employees = \App\EmployeeAttendance::where('date',$current_date)->whereNotNull('start_time')->orderBy('id','desc')->pluck('employee_id')->toArray();
